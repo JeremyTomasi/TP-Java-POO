@@ -8,12 +8,13 @@ public class Ingredient {
     protected double poids;
     protected int quantite;
 
-    public Ingredient(String nom, boolean bio,int calories,double poids,int quantite){
+    public Ingredient(String nom, boolean bio,int calories,double poids,int quantite, String consigne){
         this.nom = nom;
         this.bio = bio;
         this.calories = calories;
         this.poids = poids;
         this.quantite = quantite;
+        this.consigne = consigne;
     }
 
     public boolean isBio() {
