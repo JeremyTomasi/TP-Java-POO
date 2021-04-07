@@ -10,6 +10,11 @@ public class Padawan extends Personne{
         this.chefRef = chefRef;
     }
 
+    public Padawan(int id, String nom, String prenom, Genre genre, String telephone) {
+        super(id, nom, prenom, genre);
+        this.telephone = telephone;
+    }
+
     public String getTelephone() {
         return telephone;
     }

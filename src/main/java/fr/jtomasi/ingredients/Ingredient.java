@@ -17,6 +17,14 @@ public class Ingredient {
         this.consigne = consigne;
     }
 
+    public Ingredient(String nom, boolean bio,int calories,double poids,int quantite){
+        this.nom = nom;
+        this.bio = bio;
+        this.calories = calories;
+        this.poids = poids;
+        this.quantite = quantite;
+    }
+
     public boolean isBio() {
         return bio;
     }
