@@ -2,12 +2,13 @@ package fr.jtomasi;
 
 import fr.jtomasi.ingredients.Ingredient;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Plat {
 
     private String nomPlat;
-    private List<Ingredient> listeIngredients;
+    private List<Ingredient> listeIngredients = new ArrayList<>();
     private int notePlat;
 
     public Plat(String nomPlat){
@@ -32,5 +33,9 @@ public class Plat {
 
     public int getNotePlat(){
         return this.notePlat;
+    }
+
+    public List<Ingredient> getListeIngredients(){
+        return this.listeIngredients;
     }
 }

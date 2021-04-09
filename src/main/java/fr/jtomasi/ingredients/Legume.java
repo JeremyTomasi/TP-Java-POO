@@ -8,8 +8,13 @@ public class Legume extends Ingredient{
         super(nom, bio, calories, quantite, consigne);
     }
 
-    public Legume(String nom, boolean bio, int calories, int quantite, String consigne, double tauxFibre) {
+    public Legume(String nom, boolean bio, int calories, int quantite ,String consigne, double tauxFibre) {
         super(nom, bio, calories, quantite, consigne);
+        this.tauxFibre = tauxFibre;
+    }
+
+    public Legume(String nom, boolean bio, int calories, int quantite,double tauxFibre) {
+        super(nom, bio, calories, quantite);
         this.tauxFibre = tauxFibre;
     }
 

@@ -4,7 +4,7 @@ public class Ingredient {
     protected String nom;
     protected boolean bio;
     protected int calories;
-    protected String consigne;
+    protected String consigne = null;
     protected int quantite;
 
     public Ingredient(String nom, boolean bio,int calories,int quantite, String consigne){
