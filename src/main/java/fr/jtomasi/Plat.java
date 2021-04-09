@@ -8,6 +8,7 @@ public class Plat {
 
     private String nomPlat;
     private List<Ingredient> listeIngredients;
+    private int notePlat;
 
     public Plat(String nomPlat){
         this.nomPlat = nomPlat;
@@ -15,5 +16,21 @@ public class Plat {
 
     public void addIngredient(Ingredient ingredient){
         this.listeIngredients.add(ingredient);
+    }
+
+    public void noterPlat(int notePlat){
+        this.notePlat = notePlat;
+    }
+
+    public String getNomPlat(){
+        return this.nomPlat;
+    }
+
+    public void setNomPlat(String nomPlat){
+        this.nomPlat = nomPlat;
+    }
+
+    public int getNotePlat(){
+        return this.notePlat;
     }
 }

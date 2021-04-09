@@ -26,5 +26,6 @@ public class MembreJury extends Personne{
 
     public void ajouterParticipationConcours(Concours concours){
         this.participationsConcours.add(concours);
+        this.nbParticipations++;
     }
 }

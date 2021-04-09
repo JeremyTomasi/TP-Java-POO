@@ -5,23 +5,20 @@ public class Ingredient {
     protected boolean bio;
     protected int calories;
     protected String consigne;
-    protected double poids;
     protected int quantite;
 
-    public Ingredient(String nom, boolean bio,int calories,double poids,int quantite, String consigne){
+    public Ingredient(String nom, boolean bio,int calories,int quantite, String consigne){
         this.nom = nom;
         this.bio = bio;
         this.calories = calories;
-        this.poids = poids;
         this.quantite = quantite;
         this.consigne = consigne;
     }
 
-    public Ingredient(String nom, boolean bio,int calories,double poids,int quantite){
+    public Ingredient(String nom, boolean bio,int calories,int quantite){
         this.nom = nom;
         this.bio = bio;
         this.calories = calories;
-        this.poids = poids;
         this.quantite = quantite;
     }
 
@@ -47,14 +44,6 @@ public class Ingredient {
 
     public void setConsigne(String consigne) {
         this.consigne = consigne;
-    }
-
-    public double getPoids() {
-        return poids;
-    }
-
-    public void setPoids(double poids) {
-        this.poids = poids;
     }
 
     public int getQuantite() {

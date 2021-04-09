@@ -5,7 +5,7 @@ import fr.jtomasi.Concours;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Chef extends Personne{
+public class Chef extends Personne {
 
     private String telephone;
     private int nbEtoiles;
