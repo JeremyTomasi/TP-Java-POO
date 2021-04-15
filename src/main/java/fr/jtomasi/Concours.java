@@ -25,7 +25,6 @@ public class Concours {
     private String dateFinConcours;
 
 
-
     public void addMembreJuryConcours(MembreJury membreJury){
         this.juryConcours.add(membreJury);
         membreJury.ajouterParticipationConcours(this);
@@ -42,12 +41,20 @@ public class Concours {
         this.dateFinConcours = dateFinConcours;
     }
 
+    public String getNomConcours(){
+        return this.nomConcours;
+    }
+
     public void addParticipant(Padawan padawan){
         this.participantsConcours.add(padawan);
     }
 
     public void addPlatConcours(Plat plat){
         this.listePlats.add(plat);
+    }
+
+    public List<Plat> getListePlats(){
+        return this.listePlats;
     }
 
     public void getPlatBio(){
