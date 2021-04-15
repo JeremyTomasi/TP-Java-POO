@@ -6,6 +6,8 @@ import fr.jtomasi.personnes.Padawan;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class Concours {
     private int minChef = 5;
@@ -16,6 +18,7 @@ public class Concours {
     private List<Padawan> participantsConcours = new ArrayList<>();
     private List<Concours> concoursEnCours = new ArrayList<>();
     private List<Concours> concoursTermines = new ArrayList<>();
+    private List<Plat> listePlats = new ArrayList<>();
 
     private String nomConcours;
     private String dateDebutConcours;
@@ -41,6 +44,19 @@ public class Concours {
 
     public void addParticipant(Padawan padawan){
         this.participantsConcours.add(padawan);
+    }
+
+    public void addPlatConcours(Plat plat){
+        this.listePlats.add(plat);
+    }
+
+    public void getPlatBio(){
+        Logger logger = Logger.getLogger(this.getClass().getName());
+        for(Plat plat : this.listePlats){
+            if(plat.isBio()){
+                logger.log(Level.INFO,"Nom du plat : " + plat.getNomPlat());
+            }
+        }
     }
 
 

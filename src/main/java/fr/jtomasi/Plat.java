@@ -4,12 +4,15 @@ import fr.jtomasi.ingredients.Ingredient;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class Plat {
 
     private String nomPlat;
     private List<Ingredient> listeIngredients = new ArrayList<>();
     private int notePlat;
+    private boolean bio = false;
 
     public Plat(String nomPlat){
         this.nomPlat = nomPlat;
@@ -37,5 +40,30 @@ public class Plat {
 
     public List<Ingredient> getListeIngredients(){
         return this.listeIngredients;
+    }
+
+    public void displayIngredients(){
+        Logger logger = Logger.getLogger(this.getClass().getName());
+        for(Ingredient i : this.getListeIngredients()){
+            logger.log(Level.INFO,"Id de l'ingredient : " + i.getId());
+            logger.log(Level.INFO,"Nom de l'ingredient : " + i.getNom());
+            logger.log(Level.INFO,"Consigne de l'ingredient : " + i.getConsigne());
+            logger.log(Level.INFO,"Quantite de l'ingredient : " + i.getQuantite());
+            logger.log(Level.INFO,"Calories de l'ingredient : " + i.getCalories());
+            logger.log(Level.INFO,"Est-il bio ? : " + i.isBio());
+        }
+    }
+
+    public boolean isBio() {
+        int nbIngredientsBio = 0;
+        for(Ingredient i : this.getListeIngredients()){
+            if(i.isBio()){
+                nbIngredientsBio++;
+            }
+        }
+        if(nbIngredientsBio == this.getListeIngredients().size()){
+            this.bio = true;
+        }
+        return bio;
     }
 }

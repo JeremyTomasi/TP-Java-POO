@@ -10,7 +10,7 @@ public class IngredientTest {
 
     @Test
     public void testCreationEpice(){
-        Epice paprika = new Epice("Paprika",false,200,5);
+        Epice paprika = new Epice(1,"Paprika",false,200,5);
 
         assertEquals("Paprika",paprika.getNom());
         assertFalse(paprika.isBio());
@@ -20,14 +20,14 @@ public class IngredientTest {
 
     @Test
     public void testCreationLegume(){
-        Legume salade = new Legume("Salade",true,200,2,"Cru");
+        Legume salade = new Legume(1,"Salade",true,200,2,"Cru");
 
         assertEquals("Salade",salade.getNom());
         assertTrue(salade.isBio());
         assertEquals(200,salade.getCalories());
         assertEquals(2,salade.getQuantite());
 
-        Legume salade2 = new Legume("Salade",true,200,2,"Cru",10.0);
+        Legume salade2 = new Legume(2,"Salade",true,200,2,"Cru",10.0);
 
         assertEquals("Salade",salade2.getNom());
         assertTrue(salade2.isBio());
@@ -38,7 +38,7 @@ public class IngredientTest {
 
     @Test
     public void testCreationPoisson(){
-        Poisson poisson = new Poisson("Bar",true,500,1,"Saignant");
+        Poisson poisson = new Poisson(1,"Bar",true,500,1,"Saignant");
 
         assertEquals("Bar",poisson.getNom());
         assertTrue(poisson.isBio());
@@ -46,7 +46,7 @@ public class IngredientTest {
         assertEquals(1,poisson.getQuantite());
         assertEquals("Saignant",poisson.getConsigne());
 
-        Poisson poisson2 = new Poisson("Bar",true,500,1,"Saignant",5.0);
+        Poisson poisson2 = new Poisson(2,"Bar",true,500,1,"Saignant",5.0);
 
         assertEquals("Bar",poisson2.getNom());
         assertTrue(poisson2.isBio());
@@ -57,7 +57,7 @@ public class IngredientTest {
 
     @Test
     public void testCreationViande(){
-        Viande boeuf = new Viande("Boeuf",false,800,1,"Saignant");
+        Viande boeuf = new Viande(1,"Boeuf",false,800,1,"Saignant");
 
         assertEquals("Boeuf",boeuf.getNom());
         assertFalse(boeuf.isBio());
@@ -65,7 +65,7 @@ public class IngredientTest {
         assertEquals(1,boeuf.getQuantite());
         assertEquals("Saignant",boeuf.getConsigne());
 
-        Viande boeuf2 = new Viande("Boeuf",true,800,2,"A point",5.0);
+        Viande boeuf2 = new Viande(1,"Boeuf",true,800,2,"A point",5.0);
 
         assertEquals("Boeuf",boeuf2.getNom());
         assertTrue(boeuf2.isBio());

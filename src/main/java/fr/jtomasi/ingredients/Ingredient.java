@@ -1,13 +1,15 @@
 package fr.jtomasi.ingredients;
 
 public class Ingredient {
+    protected int id;
     protected String nom;
     protected boolean bio;
     protected int calories;
     protected String consigne = null;
     protected int quantite;
 
-    public Ingredient(String nom, boolean bio,int calories,int quantite, String consigne){
+    public Ingredient(int id,String nom, boolean bio,int calories,int quantite, String consigne){
+        this.id = id;
         this.nom = nom;
         this.bio = bio;
         this.calories = calories;
@@ -15,7 +17,8 @@ public class Ingredient {
         this.consigne = consigne;
     }
 
-    public Ingredient(String nom, boolean bio,int calories,int quantite){
+    public Ingredient(int id,String nom, boolean bio,int calories,int quantite){
+        this.id = id;
         this.nom = nom;
         this.bio = bio;
         this.calories = calories;
@@ -60,5 +63,13 @@ public class Ingredient {
 
     public void setNom(String nom) {
         this.nom = nom;
+    }
+
+    public int getId(){
+        return this.id;
+    }
+
+    public void setId(int id){
+        this.id = id;
     }
 }
