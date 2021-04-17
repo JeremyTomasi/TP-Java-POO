@@ -1,11 +1,13 @@
 package fr.jtomasi;
 
+import fr.jtomasi.ingredients.Ingredient;
 import fr.jtomasi.personnes.Chef;
 import fr.jtomasi.personnes.MembreJury;
 import fr.jtomasi.personnes.Padawan;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -24,6 +26,8 @@ public class Concours {
     private String dateDebutConcours;
     private String dateFinConcours;
 
+    private Logger logger;
+
 
     public void addMembreJuryConcours(MembreJury membreJury){
         this.juryConcours.add(membreJury);
@@ -36,6 +40,7 @@ public class Concours {
     }
 
     public Concours(String nomConcours, String dateDebutConcours, String dateFinConcours){
+        logger = Logger.getLogger(this.getClass().getName());
         this.nomConcours = nomConcours;
         this.dateDebutConcours = dateDebutConcours;
         this.dateFinConcours = dateFinConcours;
@@ -57,15 +62,56 @@ public class Concours {
         return this.listePlats;
     }
 
-    public void getPlatBio(){
-        Logger logger = Logger.getLogger(this.getClass().getName());
-        for(Plat plat : this.listePlats){
-            if(plat.isBio()){
-                logger.log(Level.INFO,"Nom du plat : " + plat.getNomPlat());
+    public void displayListePlats(){
+        for(Plat plat : this.getListePlats()){
+            logger.log(Level.INFO,"Nom du plat : " + plat.getNomPlat());
+            plat.displayIngredients();
+        }
+    }
+
+    public void displayListeChefs(){
+        for(Chef chef : this.chefConcours){
+            logger.log(Level.INFO,"Nom du chef : " + chef.getNom());
+            logger.log(Level.INFO,"Prenom du chef : " + chef.getPrenom());
+            logger.log(Level.INFO,"Specialite : " + chef.getSpecialite());
+            logger.log(Level.INFO,"Nombre d'etoiles : " + chef.getNbEtoiles() + " etoiles");
+            logger.log(Level.INFO,"Nombre de plats realises : " + chef.getNbPlatsRealises());
+        }
+    }
+
+    public void displayListeMembreJury(){
+        for(MembreJury jury : this.juryConcours){
+            logger.log(Level.INFO,"Nom du membre du jury : " + jury.getNom());
+            logger.log(Level.INFO,"Prenom du membre du jury : " + jury.getPrenom());
+            logger.log(Level.INFO,"Nombre de participations : " + jury.getNbParticipations() + " participations");
+        }
+    }
+
+    public void displayListeParticipants(){
+        for(Padawan participant : this.participantsConcours){
+            logger.log(Level.INFO,"Nom du participant : " + participant.getNom());
+            logger.log(Level.INFO,"Prenom du participant : " + participant.getPrenom());
+            if(participant.getChefRef() != null){
+                logger.log(Level.INFO,"Nom / Prénom de son chef referent : " + participant.getChefRef().getNom() + participant.getChefRef().getPrenom());
             }
         }
     }
 
+    public void displayPlatBio(){
+        for(Plat plat : this.listePlats){
+            if(plat.isBio()){
+                this.logger.log(Level.INFO,"Nom du plat : " + plat.getNomPlat());
+            }
+        }
+    }
+
+    public String getDateDebutConcours(){
+        return this.dateDebutConcours;
+    }
+
+    public String getDateFinConcours(){
+        return this.dateFinConcours;
+    }
 
 
 }
