@@ -34,7 +34,7 @@ public class Ingredient {
     }
 
     public int getCalories() {
-        return calories;
+        return quantite * calories;
     }
 
     public void setCalories(int calories) {

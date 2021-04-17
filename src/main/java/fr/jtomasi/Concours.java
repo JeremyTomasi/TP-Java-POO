@@ -14,6 +14,8 @@ import java.util.logging.Logger;
 public class Concours {
     private int minChef = 5;
     private int minMembreJury = 3;
+    private boolean concoursDemarre = false;
+    private boolean concoursTermine = false;
 
     private List<Chef> chefConcours = new ArrayList<>();
     private List<MembreJury> juryConcours = new ArrayList<>();
@@ -27,6 +29,30 @@ public class Concours {
     private String dateFinConcours;
 
     private Logger logger;
+
+    public void demarrerConcours() throws Exception{
+        if(chefConcours.size() < this.minChef || juryConcours.size() < this.minMembreJury){
+            throw new Exception("Il manque des chefs ou des membres de jury !!!");
+        } else if(participantsConcours.size() == 0){
+            throw new Exception("Il manque des participants dans le concours !!!");
+        } else {
+            concoursDemarre = true;
+        }
+    }
+
+    public void finirConcours(){
+        int nbPlatsNotes = 0;
+        for(Plat plat : this.listePlats){
+            if(plat.getNotePlat() != -1){
+                nbPlatsNotes++;
+            }
+        }
+
+        if(nbPlatsNotes == listePlats.size()){
+            concoursTermine = true;
+            concoursDemarre = false;
+        }
+    }
 
 
     public void addMembreJuryConcours(MembreJury membreJury){

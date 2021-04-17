@@ -11,8 +11,9 @@ public class Plat {
 
     private String nomPlat;
     private List<Ingredient> listeIngredients = new ArrayList<>();
-    private int notePlat;
+    private int notePlat = -1;
     private boolean bio = false;
+    private double caloriesPlat;
 
     public Plat(String nomPlat){
         this.nomPlat = nomPlat;
@@ -52,6 +53,16 @@ public class Plat {
             logger.log(Level.INFO,"Calories de l'ingredient : " + i.getCalories());
             logger.log(Level.INFO,"Est-il bio ? : " + i.isBio());
         }
+    }
+
+    public void setCaloriesPlat(){
+        for(Ingredient i : this.listeIngredients){
+            caloriesPlat += i.getCalories();
+        }
+    }
+
+    public double getCaloriesPlat() {
+        return caloriesPlat;
     }
 
     public boolean isBio() {

@@ -16,4 +16,8 @@ public class Poisson extends Ingredient{
     public void setTauxGraisse(double tauxGraisse){
         this.tauxGraisse = tauxGraisse;
     }
+
+    public double getTauxGraisse(){
+        return tauxGraisse;
+    }
 }

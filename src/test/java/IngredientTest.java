@@ -14,7 +14,7 @@ public class IngredientTest {
 
         assertEquals("Paprika",paprika.getNom());
         assertFalse(paprika.isBio());
-        assertEquals(200,paprika.getCalories());
+        assertEquals(1000,paprika.getCalories());
         assertEquals(5,paprika.getQuantite());
     }
 
@@ -24,14 +24,14 @@ public class IngredientTest {
 
         assertEquals("Salade",salade.getNom());
         assertTrue(salade.isBio());
-        assertEquals(200,salade.getCalories());
+        assertEquals(400,salade.getCalories());
         assertEquals(2,salade.getQuantite());
 
         Legume salade2 = new Legume(2,"Salade",true,200,2,"Cru",10.0);
 
         assertEquals("Salade",salade2.getNom());
         assertTrue(salade2.isBio());
-        assertEquals(200,salade2.getCalories());
+        assertEquals(400,salade2.getCalories());
         assertEquals(2,salade2.getQuantite());
         assertEquals(10.0,salade2.getTauxFibre());
     }
@@ -69,7 +69,7 @@ public class IngredientTest {
 
         assertEquals("Boeuf",boeuf2.getNom());
         assertTrue(boeuf2.isBio());
-        assertEquals(800,boeuf2.getCalories());
+        assertEquals(1600,boeuf2.getCalories());
         assertEquals(2,boeuf2.getQuantite());
         assertEquals("A point",boeuf2.getConsigne());
     }
