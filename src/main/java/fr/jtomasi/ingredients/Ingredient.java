@@ -4,72 +4,44 @@ public class Ingredient {
     protected int id;
     protected String nom;
     protected boolean bio;
-    protected int calories;
-    protected String consigne = null;
-    protected int quantite;
+    private double calories;
 
-    public Ingredient(int id,String nom, boolean bio,int calories,int quantite, String consigne){
+    public Ingredient(int id,String nom,double calories, boolean bio){
         this.id = id;
         this.nom = nom;
         this.bio = bio;
         this.calories = calories;
-        this.quantite = quantite;
-        this.consigne = consigne;
     }
 
-    public Ingredient(int id,String nom, boolean bio,int calories,int quantite){
-        this.id = id;
-        this.nom = nom;
-        this.bio = bio;
-        this.calories = calories;
-        this.quantite = quantite;
-    }
-
+    /**
+     * Permet de savoir si l'ingrédient est bio ou pas
+     * @return boolean
+     */
     public boolean isBio() {
         return bio;
     }
 
-    public void setBio(boolean bio) {
-        this.bio = bio;
+    /**
+     * Renvoie le nombre de calories
+     * @return double
+     */
+    public double getCalories() {
+        return calories;
     }
 
-    public int getCalories() {
-        return quantite * calories;
-    }
-
-    public void setCalories(int calories) {
-        this.calories = calories;
-    }
-
-    public String getConsigne() {
-        return consigne;
-    }
-
-    public void setConsigne(String consigne) {
-        this.consigne = consigne;
-    }
-
-    public int getQuantite() {
-        return quantite;
-    }
-
-    public void setQuantite(int quantite) {
-        this.quantite = quantite;
-    }
-
+    /**
+     * Renvoie le nom de l'ingrédient
+     * @return String
+     */
     public String getNom() {
         return nom;
     }
 
-    public void setNom(String nom) {
-        this.nom = nom;
-    }
-
+    /**
+     * Renvoie l'identifiant de l'ingrédient
+     * @return int
+     */
     public int getId(){
         return this.id;
-    }
-
-    public void setId(int id){
-        this.id = id;
     }
 }

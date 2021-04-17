@@ -4,24 +4,23 @@ public class Legume extends Ingredient{
     private double tauxFibre;
 
 
-    public Legume(int id,String nom, boolean bio, int calories, int quantite, String consigne) {
-        super(id,nom, bio, calories, quantite, consigne);
-    }
-
-    public Legume(int id,String nom, boolean bio, int calories, int quantite ,String consigne, double tauxFibre) {
-        super(id,nom, bio, calories, quantite, consigne);
+    public Legume(int id,String nom, boolean bio, double calories,double tauxFibre) {
+        super(id,nom,calories, bio);
         this.tauxFibre = tauxFibre;
     }
 
-    public Legume(int id,String nom, boolean bio, int calories, int quantite,double tauxFibre) {
-        super(id,nom, bio, calories, quantite);
-        this.tauxFibre = tauxFibre;
-    }
-
+    /**
+     * Permet de définir le taux de fibre du légume
+     * @param tauxFibre Le taux de fibre du légume
+     */
     public void setTauxFibre(double tauxFibre){
         this.tauxFibre = tauxFibre;
     }
 
+    /**
+     * Renvoie le taux de fibre du légume
+     * @return double
+     */
     public double getTauxFibre(){
         return this.tauxFibre;
     }

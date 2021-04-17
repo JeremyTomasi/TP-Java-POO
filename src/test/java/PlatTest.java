@@ -1,4 +1,5 @@
 import fr.jtomasi.Plat;
+import fr.jtomasi.Recette;
 import fr.jtomasi.ingredients.Ingredient;
 import fr.jtomasi.ingredients.Legume;
 import fr.jtomasi.ingredients.Viande;
@@ -14,35 +15,32 @@ public class PlatTest {
     public void testListIngredients(){
         Plat plat = new Plat("Burger");
 
-        Viande steak = new Viande(1,"Steak hache",true,800,1,"A point");
-        Legume cornichon = new Legume(1,"Cornichon",false,500,2,5.0);
-        Ingredient sauce = new Ingredient(1,"Sauce tomate",true,200,1);
-        Ingredient pain = new Ingredient(1,"Pain burger",true,300,1);
+        Viande steak = new Viande(1,"Steak hache",true,500,2.0);
+        Legume cornichon = new Legume(1,"Cornichon",false,200,5.0);
+        Ingredient sauce = new Ingredient(1,"Sauce tomate",500,true);
+        Ingredient pain = new Ingredient(1,"Pain burger",500,true);
 
-        plat.addIngredient(steak);
-        plat.addIngredient(cornichon);
-        plat.addIngredient(sauce);
-        plat.addIngredient(pain);
+        plat.addIngredient(steak,1,"A point");
+        plat.addIngredient(cornichon,1,"Découpe");
+        plat.addIngredient(sauce,1,"Chaude");
+        plat.addIngredient(pain,1,"Cuit au four");
 
-        assertEquals("Steak hache",plat.getListeIngredients().get(0).getNom());
-        assertEquals("Cornichon",plat.getListeIngredients().get(1).getNom());
-        assertEquals("Sauce tomate",plat.getListeIngredients().get(2).getNom());
-        assertEquals("Pain burger",plat.getListeIngredients().get(3).getNom());
+        plat.displayIngredients();
     }
 
     @Test
     public void testPlatBio(){
         Plat plat = new Plat("Burger");
 
-        Viande steak = new Viande(1,"Steak hache",true,800,1,"A point");
-        Legume cornichon = new Legume(1,"Cornichon",true,500,2,5.0);
-        Ingredient sauce = new Ingredient(1,"Sauce tomate",true,200,1);
-        Ingredient pain = new Ingredient(1,"Pain burger",true,300,1);
+        Viande steak = new Viande(1,"Steak hache",true,400,3.0);
+        Legume cornichon = new Legume(1,"Cornichon",true,200,5.0);
+        Ingredient sauce = new Ingredient(1,"Sauce tomate",200,true);
+        Ingredient pain = new Ingredient(1,"Pain burger",200,true);
 
-        plat.addIngredient(steak);
-        plat.addIngredient(cornichon);
-        plat.addIngredient(sauce);
-        plat.addIngredient(pain);
+        plat.addIngredient(steak,1,"A point");
+        plat.addIngredient(cornichon,1,"Découpe");
+        plat.addIngredient(sauce,1,"Chaude");
+        plat.addIngredient(pain,1,"Cuit au four");
 
         assertTrue(plat.isBio());
         System.out.println(plat.isBio());

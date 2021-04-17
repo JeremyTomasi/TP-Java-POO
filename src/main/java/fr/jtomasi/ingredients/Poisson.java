@@ -4,19 +4,27 @@ public class Poisson extends Ingredient{
     private double tauxGraisse;
 
 
-    public Poisson(int id,String nom, boolean bio, int calories, int quantite, String consigne) {
-        super(id,nom, bio, calories, quantite, consigne);
+    public Poisson(int id,String nom,double calories, boolean bio) {
+        super(id,nom, calories,bio);
     }
 
-    public Poisson(int id,String nom, boolean bio, int calories, int quantite, String consigne, double tauxGraisse) {
-        super(id,nom, bio, calories, quantite, consigne);
+    public Poisson(int id,String nom, boolean bio,double calories, double tauxGraisse) {
+        super(id,nom, calories,bio);
         this.tauxGraisse = tauxGraisse;
     }
 
+    /**
+     * Permet de définir le taux de graisse du poisson
+     * @param tauxGraisse Le taux de graisse du poisson
+     */
     public void setTauxGraisse(double tauxGraisse){
         this.tauxGraisse = tauxGraisse;
     }
 
+    /**
+     * Renvoie le taux de graisse du poisson
+     * @return double
+     */
     public double getTauxGraisse(){
         return tauxGraisse;
     }
