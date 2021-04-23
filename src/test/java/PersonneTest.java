@@ -1,6 +1,4 @@
-import fr.jtomasi.Plat;
 import fr.jtomasi.personnes.*;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;

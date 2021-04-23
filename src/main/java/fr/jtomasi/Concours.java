@@ -16,18 +16,18 @@ public class Concours {
     private boolean concoursDemarre = false;
     private boolean concoursTermine = false;
 
-    private List<Chef> chefConcours = new ArrayList<>();
-    private List<MembreJury> juryConcours = new ArrayList<>();
-    private List<Padawan> participantsConcours = new ArrayList<>();
-    private List<Plat> listePlats = new ArrayList<>();
+    private final List<Chef> chefConcours = new ArrayList<>();
+    private final List<MembreJury> juryConcours = new ArrayList<>();
+    private final List<Padawan> participantsConcours = new ArrayList<>();
+    private final List<Plat> listePlats = new ArrayList<>();
 
-    private String nomConcours;
-    private String dateDebutConcours;
-    private String dateFinConcours;
+    private final String nomConcours;
+    private final String dateDebutConcours;
+    private final String dateFinConcours;
 
-    private Logger logger = Logger.getLogger(this.getClass().getName());
+    private final Logger logger = Logger.getLogger(this.getClass().getName());
 
-    private ListeConcours listeConcours;
+    private final ListeConcours listeConcours;
 
     public void demarrerConcours() throws NoNumberChefRequiredException, NoNumberMembreJuryRequiredException,NoParticipantsException {
         int minMembreJury = 3;

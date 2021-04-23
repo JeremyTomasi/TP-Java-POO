@@ -18,9 +18,9 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class ConcoursTest {
 
-    private ListeConcours listeConcours = new ListeConcours();
-    private Logger logger = Logger.getLogger(this.getClass().getName());
-    private Padawan jeremy = new Padawan(1,"Tomasi","Jeremy",Genre.HOMME,"");
+    private final ListeConcours listeConcours = new ListeConcours();
+    private final Logger logger = Logger.getLogger(this.getClass().getName());
+    private final Padawan jeremy = new Padawan(1,"Tomasi","Jeremy",Genre.HOMME,"");
 
     @Test
     public void testCreationConcours(){

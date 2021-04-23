@@ -13,13 +13,13 @@ import java.util.logging.Logger;
 
 public class Plat {
 
-    private String nomPlat;
-    private List<Recette> listeIngredients = new ArrayList<>();
+    private final String nomPlat;
+    private final List<Recette> listeIngredients = new ArrayList<>();
     private int notePlat = -1;
-    private Personne auteurPlat;
+    private final Personne auteurPlat;
     private boolean bio = false;
     private double caloriesPlat;
-    private Logger logger = Logger.getLogger(this.getClass().getName());
+    private final Logger logger = Logger.getLogger(this.getClass().getName());
 
     public Plat(String nomPlat, Padawan auteurPlat){
         this.nomPlat = nomPlat;

@@ -10,8 +10,8 @@ import org.junit.jupiter.api.Test;
 
 public class ListeConcoursTest {
 
-    private ListeConcours listeConcours = new ListeConcours();
-    private Padawan jeremy = new Padawan(1,"Tomasi","Jeremy",Genre.HOMME,"");
+    private final ListeConcours listeConcours = new ListeConcours();
+    private final Padawan jeremy = new Padawan(1,"Tomasi","Jeremy",Genre.HOMME,"");
 
     @Test
     public void testAddConcoursPrevu(){

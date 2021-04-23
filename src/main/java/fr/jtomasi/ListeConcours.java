@@ -7,10 +7,10 @@ import java.util.logging.Logger;
 
 public class ListeConcours {
 
-    private List<Concours> concoursPrevus = new ArrayList<>();
-    private List<Concours> concoursEnCours = new ArrayList<>();
-    private List<Concours> concoursTermines = new ArrayList<>();
-    private Logger logger = Logger.getLogger(this.getClass().getName());
+    private final List<Concours> concoursPrevus = new ArrayList<>();
+    private final List<Concours> concoursEnCours = new ArrayList<>();
+    private final List<Concours> concoursTermines = new ArrayList<>();
+    private final Logger logger = Logger.getLogger(this.getClass().getName());
 
     public void addConcoursPrevu(Concours concours){
         this.concoursPrevus.add(concours);

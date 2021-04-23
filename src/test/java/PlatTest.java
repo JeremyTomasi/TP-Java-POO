@@ -5,14 +5,12 @@ import fr.jtomasi.ingredients.Legume;
 import fr.jtomasi.ingredients.Viande;
 import fr.jtomasi.personnes.Genre;
 import fr.jtomasi.personnes.Padawan;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class PlatTest {
-    private Padawan jeremy = new Padawan(1,"Tomasi","Jeremy", Genre.HOMME,"");
+    private final Padawan jeremy = new Padawan(1,"Tomasi","Jeremy", Genre.HOMME,"");
     @Test
     public void testListIngredients(){
         Plat plat = new Plat("Burger",jeremy);
