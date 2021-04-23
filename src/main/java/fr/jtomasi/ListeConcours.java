@@ -12,34 +12,61 @@ public class ListeConcours {
     private final List<Concours> concoursTermines = new ArrayList<>();
     private final Logger logger = Logger.getLogger(this.getClass().getName());
 
+    /**
+     * Ajout un concours à la liste des concours prévus
+     * @param concours Concours prévu
+     */
     public void addConcoursPrevu(Concours concours){
         this.concoursPrevus.add(concours);
     }
 
+    /**
+     * Ajoute un concours à la liste des concours en cours
+     * @param concours Concours en cours
+     */
     public void addConcoursEnCours(Concours concours){
         if(concours.isConcoursDemarre()){
             this.concoursEnCours.add(concours);
         }
     }
 
+    /**
+     * Ajoute un concours à la liste des concours terminés
+     * @param concours Concours terminé
+     */
     public void addConcoursTermine(Concours concours){
         if(concours.isConcoursTermine()){
             this.concoursTermines.add(concours);
         }
     }
 
+    /**
+     * Récupère la liste des concours prévus
+     * @return List<Concours>
+     */
     public List<Concours> getConcoursPrevus() {
         return concoursPrevus;
     }
 
+    /**
+     * Récupère la liste des concours en cours
+     * @return List<Concours>
+     */
     public List<Concours> getConcoursEnCours(){
         return concoursEnCours;
     }
 
+    /**
+     * Récupère la liste des concours terminés
+     * @return List<Concours>
+     **/
     public List<Concours> getConcoursTermines(){
         return concoursTermines;
     }
 
+    /**
+     * Affiche la liste des concours prévus
+     */
     public void displayListeConcoursPrevus(){
         for(Concours c : this.concoursPrevus){
             logger.log(Level.INFO,"Nom du concours : " + c.getNomConcours());
@@ -48,6 +75,9 @@ public class ListeConcours {
         }
     }
 
+    /**
+     * Affiche la liste des concours en cours
+     */
     public void displayListeConcoursEnCours(){
         for(Concours c : this.concoursEnCours){
             logger.log(Level.INFO,"Nom du councours : " + c.getNomConcours());
@@ -56,6 +86,9 @@ public class ListeConcours {
         }
     }
 
+    /**
+     * Affiche la liste des concours terminés
+     */
     public void displayListeConcoursTermines(){
         for(Concours c : this.concoursTermines){
             logger.log(Level.INFO,"Nom du councours : " + c.getNomConcours());

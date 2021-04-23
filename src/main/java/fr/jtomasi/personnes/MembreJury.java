@@ -9,21 +9,32 @@ public class MembreJury extends Personne{
 
     private int nbParticipations;
 
-    private List<Concours> participationsConcours = new ArrayList<>();
+    private final List<Concours> participationsConcours = new ArrayList<>();
 
     public MembreJury(int id, String nom, String prenom, Genre genre, int nbParticipations) {
         super(id, nom, prenom, genre);
         this.nbParticipations = nbParticipations;
     }
 
+    /**
+     * Récupère le nombre de participations à un concours en tant que jury
+     * @return int
+     */
     public int getNbParticipations() {
         return nbParticipations;
     }
 
-    public void setNbParticipations(int nbParticipations) {
-        this.nbParticipations = nbParticipations;
+    /**
+     * Ajoute une nouvelle participation à son compteur
+     */
+    public void addParticipation() {
+        this.nbParticipations++;
     }
 
+    /**
+     * Ajoute la participation du membre du jury au concours
+     * @param concours Le concours auquel il participe en tant que membre du jury
+     */
     public void ajouterParticipationConcours(Concours concours){
         this.participationsConcours.add(concours);
         this.nbParticipations++;

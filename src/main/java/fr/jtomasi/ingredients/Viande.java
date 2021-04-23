@@ -9,6 +9,10 @@ public class Viande extends Ingredient{
         this.tauxGraisse = tauxGraisse;
     }
 
+    /**
+     * Récupère le taux de graisse de la viande
+     * @return
+     */
     public double getTauxGraisse(){
         return tauxGraisse;
     }

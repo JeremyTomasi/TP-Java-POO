@@ -15,14 +15,26 @@ public class Padawan extends Personne{
         this.telephone = telephone;
     }
 
+    /**
+     * Récupère le numéro de téléphone
+     * @return String
+     */
     public String getTelephone() {
         return telephone;
     }
 
+    /**
+     * Définit un nouveau numéro de téléphone
+     * @param telephone Nouveau numéro de téléphone
+     */
     public void setTelephone(String telephone) {
         this.telephone = telephone;
     }
 
+    /**
+     * Récupère le chef référent du participant
+     * @return
+     */
     public Chef getChefRef() {
         return chefRef;
     }

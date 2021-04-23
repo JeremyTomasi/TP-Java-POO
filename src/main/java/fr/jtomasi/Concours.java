@@ -3,6 +3,7 @@ package fr.jtomasi;
 import fr.jtomasi.exceptions.NoNumberChefRequiredException;
 import fr.jtomasi.exceptions.NoNumberMembreJuryRequiredException;
 import fr.jtomasi.exceptions.NoParticipantsException;
+import fr.jtomasi.exceptions.TousPlatsNonNotesException;
 import fr.jtomasi.personnes.Chef;
 import fr.jtomasi.personnes.MembreJury;
 import fr.jtomasi.personnes.Padawan;
@@ -29,6 +30,12 @@ public class Concours {
 
     private final ListeConcours listeConcours;
 
+    /**
+     * Démarre le concours si les conditions sont requises
+     * @throws NoNumberChefRequiredException S'il n'y a pas assez de chefs
+     * @throws NoNumberMembreJuryRequiredException S'il n'y a pas assez de membre du jury
+     * @throws NoParticipantsException S'il n'y a pas de participants
+     */
     public void demarrerConcours() throws NoNumberChefRequiredException, NoNumberMembreJuryRequiredException,NoParticipantsException {
         int minMembreJury = 3;
         int minChef = 5;
@@ -45,6 +52,10 @@ public class Concours {
         }
     }
 
+    /**
+     * Récupère le gagnant du concours
+     * @return Padawan
+     */
     public Padawan getWinnerConcours(){
         Plat platWithMaxNote = this.listePlats.get(0);
         for(Plat plat : this.listePlats){
@@ -57,7 +68,11 @@ public class Concours {
         return (Padawan) platWithMaxNote.getAuteurPlat();
     }
 
-    public void finirConcours(){
+    /**
+     * Finit le concours si tous les plats ont été notés
+     * @throws TousPlatsNonNotesException Si tous les plats n'ont pas été notés
+     */
+    public void finirConcours() throws TousPlatsNonNotesException {
         int nbPlatsNotes = 0;
         for(Plat plat : this.listePlats){
             if(plat.getNotePlat() != -1){
@@ -71,15 +86,25 @@ public class Concours {
             logger.log(Level.INFO,"Le gagnant est : " + winner.getNom() + " " + winner.getPrenom());
             listeConcours.getConcoursEnCours().remove(this);
             listeConcours.addConcoursTermine(this);
+        } else {
+            throw new TousPlatsNonNotesException("Tous les plats n'ont pas ete notes !");
         }
     }
 
 
+    /**
+     * Ajoute un membre de jury au concours
+     * @param membreJury Membre à ajouter au concours
+     */
     public void addMembreJuryConcours(MembreJury membreJury){
         this.juryConcours.add(membreJury);
         membreJury.ajouterParticipationConcours(this);
     }
 
+    /**
+     * Ajoute un chef au concours
+     * @param chef Chef à ajouter au concours
+     */
     public void addChefConcours(Chef chef){
         this.chefConcours.add(chef);
         chef.addParticipationConcours(this);
@@ -94,22 +119,41 @@ public class Concours {
         listeConcours.addConcoursPrevu(this);
     }
 
+    /**
+     * Récupère le nom du concours
+     * @return String
+     */
     public String getNomConcours(){
         return this.nomConcours;
     }
 
+    /**
+     * Ajoute un nouvel participant au concours
+     * @param padawan Participant à ajouter au concours
+     */
     public void addParticipant(Padawan padawan){
         this.participantsConcours.add(padawan);
     }
 
+    /**
+     * Ajoute un plat au concours
+     * @param plat Plat à ajouter au concours
+     */
     public void addPlatConcours(Plat plat){
         this.listePlats.add(plat);
     }
 
+    /**
+     * Récupère la liste des plats
+     * @return List<Plat>
+     */
     public List<Plat> getListePlats(){
         return this.listePlats;
     }
 
+    /**
+     * Affiche la liste des plats et leurs ingrédients
+     */
     public void displayListePlats(){
         for(Plat plat : this.getListePlats()){
             logger.log(Level.INFO,"Nom du plat : " + plat.getNomPlat());
@@ -117,6 +161,9 @@ public class Concours {
         }
     }
 
+    /**
+     * Affiche la liste des chefs
+     */
     public void displayListeChefs(){
         for(Chef chef : this.chefConcours){
             logger.log(Level.INFO,"Nom du chef : " + chef.getNom());
@@ -127,6 +174,9 @@ public class Concours {
         }
     }
 
+    /**
+     * Affiche la liste des membres du jury
+     */
     public void displayListeMembreJury(){
         for(MembreJury jury : this.juryConcours){
             logger.log(Level.INFO,"Nom du membre du jury : " + jury.getNom());
@@ -135,6 +185,9 @@ public class Concours {
         }
     }
 
+    /**
+     * Affiche la liste des participants
+     */
     public void displayListeParticipants(){
         for(Padawan participant : this.participantsConcours){
             logger.log(Level.INFO,"Nom du participant : " + participant.getNom());
@@ -145,6 +198,9 @@ public class Concours {
         }
     }
 
+    /**
+     * Affiche tous les plats bio
+     */
     public void displayPlatBio(){
         for(Plat plat : this.listePlats){
             if(plat.isBio()){
@@ -153,18 +209,34 @@ public class Concours {
         }
     }
 
+    /**
+     * Récupère la date de début du concours
+     * @return String
+     */
     public String getDateDebutConcours(){
         return this.dateDebutConcours;
     }
 
+    /**
+     * Récupère la date de fin du concours
+     * @return String
+     */
     public String getDateFinConcours(){
         return this.dateFinConcours;
     }
 
+    /**
+     * Permet de savoir si le concours à démarré
+     * @return boolean
+     */
     public boolean isConcoursDemarre(){
         return concoursDemarre;
     }
 
+    /**
+     * Permet de savoir si le concours est terminé
+     * @return boolean
+     */
     public boolean isConcoursTermine() {
         return concoursTermine;
     }

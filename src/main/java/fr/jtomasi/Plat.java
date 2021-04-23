@@ -41,10 +41,18 @@ public class Plat {
         listeIngredients.add(new Recette(ingredient,quantite,preparation));
     }
 
+    /**
+     * Permet d'ajouter une recette
+     * @param recette Recette à ajouter
+     */
     public void addIngredient(Recette recette){
         listeIngredients.add(recette);
     }
 
+    /**
+     * Récupère la personne auteur du plat
+     * @return Personne
+     */
     public Personne getAuteurPlat(){
         return auteurPlat;
     }
