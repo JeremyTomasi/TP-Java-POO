@@ -240,4 +240,15 @@ public class Concours {
     public boolean isConcoursTermine() {
         return concoursTermine;
     }
+
+    public void sauvegardeBdd(){
+        // Sauvegarde concours
+
+
+        // Sauvegarde Personnes
+
+        // Sauvegarde plats
+
+
+    }
 }
