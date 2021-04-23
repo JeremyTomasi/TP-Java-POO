@@ -144,5 +144,11 @@ public class Concours {
         return this.dateFinConcours;
     }
 
+    public boolean isConcoursDemarre(){
+        return concoursDemarre;
+    }
 
+    public boolean isConcoursTermine() {
+        return concoursTermine;
+    }
 }

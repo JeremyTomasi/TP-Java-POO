@@ -17,11 +17,10 @@ public class Chef extends Personne {
     private int nbPlatsRealises;
     private List<Concours> participationsConcours = new ArrayList<>();
     private List<Plat> platConnu = new ArrayList<>();
-    private Logger logger;
+    private Logger logger = Logger.getLogger(this.getClass().getName());
 
     public Chef(int id, String nom, String prenom, Genre genre, String telephone, int nbEtoiles, String specialite,int nbPlatsRealises) {
         super(id, nom, prenom, genre);
-        logger = Logger.getLogger(this.getClass().getName());
         this.telephone = telephone;
         this.nbEtoiles = nbEtoiles;
         this.specialite = specialite;
@@ -79,6 +78,7 @@ public class Chef extends Personne {
     public void displayPlatsConnus(){
         for(Plat plat : this.platConnu){
             logger.log(Level.INFO,"Nom du plat : " + plat.getNomPlat());
+            logger.log(Level.INFO,"Calories du plat : " + plat.getCaloriesPlat());
             plat.displayIngredients();
         }
     }
