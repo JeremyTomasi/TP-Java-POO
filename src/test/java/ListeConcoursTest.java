@@ -78,12 +78,16 @@ public class ListeConcoursTest {
 
             Plat gateau = new Plat("Gateau au chocolat");
 
+            gateau.noterPlat(8);
+
+            meilleurPatissier.finirConcours();
+
         }catch (Exception e){
             System.out.println(e.getMessage());
         }
 
-        listeConcours.displayListeConcoursEnCours();
+        listeConcours.displayListeConcoursTermines();
 
-        Assertions.assertEquals("Le Meilleur Patissier",listeConcours.getConcoursEnCours().get(0).getNomConcours());
+        Assertions.assertEquals("Le Meilleur Patissier",listeConcours.getConcoursTermines().get(0).getNomConcours());
     }
 }
