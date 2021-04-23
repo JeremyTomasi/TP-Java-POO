@@ -3,37 +3,35 @@ package fr.jtomasi;
 import fr.jtomasi.exceptions.NoNumberChefRequiredException;
 import fr.jtomasi.exceptions.NoNumberMembreJuryRequiredException;
 import fr.jtomasi.exceptions.NoParticipantsException;
-import fr.jtomasi.ingredients.Ingredient;
 import fr.jtomasi.personnes.Chef;
 import fr.jtomasi.personnes.MembreJury;
 import fr.jtomasi.personnes.Padawan;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class Concours {
-    private int minChef = 5;
-    private int minMembreJury = 3;
     private boolean concoursDemarre = false;
     private boolean concoursTermine = false;
 
     private List<Chef> chefConcours = new ArrayList<>();
     private List<MembreJury> juryConcours = new ArrayList<>();
     private List<Padawan> participantsConcours = new ArrayList<>();
-    private List<Concours> concoursEnCours = new ArrayList<>();
-    private List<Concours> concoursTermines = new ArrayList<>();
     private List<Plat> listePlats = new ArrayList<>();
 
     private String nomConcours;
     private String dateDebutConcours;
     private String dateFinConcours;
 
-    private Logger logger;
+    private Logger logger = Logger.getLogger(this.getClass().getName());
+
+    private ListeConcours listeConcours;
 
     public void demarrerConcours() throws NoNumberChefRequiredException, NoNumberMembreJuryRequiredException,NoParticipantsException {
+        int minMembreJury = 3;
+        int minChef = 5;
         if(chefConcours.size() < minChef){
             throw new NoNumberChefRequiredException("Il manque des chefs !!");
         } else if(juryConcours.size() < minMembreJury){
@@ -42,6 +40,8 @@ public class Concours {
             throw new NoParticipantsException("Il n'y a pas de participants !!");
         } else {
             concoursDemarre = true;
+            listeConcours.getConcoursPrevus().remove(this);
+            listeConcours.addConcoursEnCours(this);
         }
     }
 
@@ -55,7 +55,8 @@ public class Concours {
 
         if(nbPlatsNotes == listePlats.size()){
             concoursTermine = true;
-            concoursDemarre = false;
+            listeConcours.getConcoursEnCours().remove(this);
+            listeConcours.addConcoursTermine(this);
         }
     }
 
@@ -70,11 +71,13 @@ public class Concours {
         chef.addParticipationConcours(this);
     }
 
-    public Concours(String nomConcours, String dateDebutConcours, String dateFinConcours){
-        logger = Logger.getLogger(this.getClass().getName());
+    public Concours(String nomConcours, String dateDebutConcours, String dateFinConcours, ListeConcours listeConcours){
         this.nomConcours = nomConcours;
         this.dateDebutConcours = dateDebutConcours;
         this.dateFinConcours = dateFinConcours;
+
+        this.listeConcours = listeConcours;
+        listeConcours.addConcoursPrevu(this);
     }
 
     public String getNomConcours(){
@@ -123,7 +126,7 @@ public class Concours {
             logger.log(Level.INFO,"Nom du participant : " + participant.getNom());
             logger.log(Level.INFO,"Prenom du participant : " + participant.getPrenom());
             if(participant.getChefRef() != null){
-                logger.log(Level.INFO,"Nom / Prénom de son chef referent : " + participant.getChefRef().getNom() + participant.getChefRef().getPrenom());
+                logger.log(Level.INFO,"Nom / Prenom de son chef referent : " + participant.getChefRef().getNom() + " " + participant.getChefRef().getPrenom());
             }
         }
     }
