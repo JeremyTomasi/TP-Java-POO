@@ -1,9 +1,11 @@
 import fr.jtomasi.Concours;
 import fr.jtomasi.Plat;
-import fr.jtomasi.ingredients.Ingredient;
-import fr.jtomasi.ingredients.Viande;
+import fr.jtomasi.exceptions.NoNumberChefRequiredException;
+import fr.jtomasi.exceptions.NoNumberMembreJuryRequiredException;
+import fr.jtomasi.exceptions.NoParticipantsException;
 import fr.jtomasi.personnes.Chef;
 import fr.jtomasi.personnes.Genre;
+import fr.jtomasi.personnes.MembreJury;
 import fr.jtomasi.personnes.Padawan;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -53,6 +55,41 @@ public class ConcoursTest {
         topChef.addParticipant(padawan1);
 
         topChef.displayListeParticipants();
+    }
+
+    @Test
+    public void testChefException(){
+        Concours topChef = new Concours("Top Chef","2021-04-19","2021-05-19");
+
+        Assertions.assertThrows(NoNumberChefRequiredException.class, topChef::demarrerConcours);
+    }
+
+    @Test
+    public void testMembreJuryException(){
+        Concours topChef = new Concours("Top Chef","2021-04-19","2021-05-19");
+        topChef.addChefConcours(new Chef(1,"Etchebest","Philippe",Genre.HOMME,"",4,"Gastronomie",50));
+        topChef.addChefConcours(new Chef(2,"Etchebest","Philippe",Genre.HOMME,"",4,"Gastronomie",50));
+        topChef.addChefConcours(new Chef(3,"Etchebest","Philippe",Genre.HOMME,"",4,"Gastronomie",50));
+        topChef.addChefConcours(new Chef(4,"Etchebest","Philippe",Genre.HOMME,"",4,"Gastronomie",50));
+        topChef.addChefConcours(new Chef(5,"Etchebest","Philippe",Genre.HOMME,"",4,"Gastronomie",50));
+
+        Assertions.assertThrows(NoNumberMembreJuryRequiredException.class, topChef::demarrerConcours);
+    }
+
+    @Test
+    public void testParticipantsException(){
+        Concours topChef = new Concours("Top Chef","2021-04-19","2021-05-19");
+        topChef.addChefConcours(new Chef(1,"Etchebest","Philippe",Genre.HOMME,"",4,"Gastronomie",50));
+        topChef.addChefConcours(new Chef(2,"Etchebest","Philippe",Genre.HOMME,"",4,"Gastronomie",50));
+        topChef.addChefConcours(new Chef(3,"Etchebest","Philippe",Genre.HOMME,"",4,"Gastronomie",50));
+        topChef.addChefConcours(new Chef(4,"Etchebest","Philippe",Genre.HOMME,"",4,"Gastronomie",50));
+        topChef.addChefConcours(new Chef(5,"Etchebest","Philippe",Genre.HOMME,"",4,"Gastronomie",50));
+
+        topChef.addMembreJuryConcours(new MembreJury(1,"test","test",Genre.FEMME,5));
+        topChef.addMembreJuryConcours(new MembreJury(2,"test","test",Genre.FEMME,5));
+        topChef.addMembreJuryConcours(new MembreJury(3,"test","test",Genre.FEMME,5));
+
+        Assertions.assertThrows(NoParticipantsException.class, topChef::demarrerConcours);
     }
 
 }

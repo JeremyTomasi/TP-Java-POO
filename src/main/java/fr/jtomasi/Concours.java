@@ -1,5 +1,8 @@
 package fr.jtomasi;
 
+import fr.jtomasi.exceptions.NoNumberChefRequiredException;
+import fr.jtomasi.exceptions.NoNumberMembreJuryRequiredException;
+import fr.jtomasi.exceptions.NoParticipantsException;
 import fr.jtomasi.ingredients.Ingredient;
 import fr.jtomasi.personnes.Chef;
 import fr.jtomasi.personnes.MembreJury;
@@ -30,11 +33,13 @@ public class Concours {
 
     private Logger logger;
 
-    public void demarrerConcours() throws Exception{
-        if(chefConcours.size() < this.minChef || juryConcours.size() < this.minMembreJury){
-            throw new Exception("Il manque des chefs ou des membres de jury !!!");
+    public void demarrerConcours() throws NoNumberChefRequiredException, NoNumberMembreJuryRequiredException,NoParticipantsException {
+        if(chefConcours.size() < minChef){
+            throw new NoNumberChefRequiredException("Il manque des chefs !!");
+        } else if(juryConcours.size() < minMembreJury){
+            throw new NoNumberMembreJuryRequiredException("Il manque des membres de jury !!");
         } else if(participantsConcours.size() == 0){
-            throw new Exception("Il manque des participants dans le concours !!!");
+            throw new NoParticipantsException("Il n'y a pas de participants !!");
         } else {
             concoursDemarre = true;
         }
