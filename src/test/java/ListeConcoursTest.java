@@ -11,6 +11,7 @@ import org.junit.jupiter.api.Test;
 public class ListeConcoursTest {
 
     private ListeConcours listeConcours = new ListeConcours();
+    private Padawan jeremy = new Padawan(1,"Tomasi","Jeremy",Genre.HOMME,"");
 
     @Test
     public void testAddConcoursPrevu(){
@@ -76,7 +77,7 @@ public class ListeConcoursTest {
 
             listeConcours.addConcoursEnCours(meilleurPatissier);
 
-            Plat gateau = new Plat("Gateau au chocolat");
+            Plat gateau = new Plat("Gateau au chocolat",jeremy);
 
             gateau.noterPlat(8);
 

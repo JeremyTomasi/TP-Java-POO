@@ -1,6 +1,9 @@
 package fr.jtomasi;
 
 import fr.jtomasi.ingredients.Ingredient;
+import fr.jtomasi.personnes.Chef;
+import fr.jtomasi.personnes.Padawan;
+import fr.jtomasi.personnes.Personne;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,12 +16,19 @@ public class Plat {
     private String nomPlat;
     private List<Recette> listeIngredients = new ArrayList<>();
     private int notePlat = -1;
+    private Personne auteurPlat;
     private boolean bio = false;
     private double caloriesPlat;
     private Logger logger = Logger.getLogger(this.getClass().getName());
 
-    public Plat(String nomPlat){
+    public Plat(String nomPlat, Padawan auteurPlat){
         this.nomPlat = nomPlat;
+        this.auteurPlat = auteurPlat;
+    }
+
+    public Plat(String nomPlat, Chef auteurPlat){
+        this.nomPlat = nomPlat;
+        this.auteurPlat = auteurPlat;
     }
 
     /**
@@ -33,6 +43,10 @@ public class Plat {
 
     public void addIngredient(Recette recette){
         listeIngredients.add(recette);
+    }
+
+    public Personne getAuteurPlat(){
+        return auteurPlat;
     }
 
     /**

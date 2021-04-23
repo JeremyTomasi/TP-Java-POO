@@ -3,6 +3,8 @@ import fr.jtomasi.Recette;
 import fr.jtomasi.ingredients.Ingredient;
 import fr.jtomasi.ingredients.Legume;
 import fr.jtomasi.ingredients.Viande;
+import fr.jtomasi.personnes.Genre;
+import fr.jtomasi.personnes.Padawan;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -10,10 +12,10 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class PlatTest {
-
+    private Padawan jeremy = new Padawan(1,"Tomasi","Jeremy", Genre.HOMME,"");
     @Test
     public void testListIngredients(){
-        Plat plat = new Plat("Burger");
+        Plat plat = new Plat("Burger",jeremy);
 
         Viande steak = new Viande(1,"Steak hache",true,500,2.0);
         Legume cornichon = new Legume(1,"Cornichon",false,200,5.0);
@@ -30,7 +32,7 @@ public class PlatTest {
 
     @Test
     public void testPlatBio(){
-        Plat plat = new Plat("Burger");
+        Plat plat = new Plat("Burger 2",jeremy);
 
         Viande steak = new Viande(1,"Steak hache",true,400,3.0);
         Legume cornichon = new Legume(1,"Cornichon",true,200,5.0);

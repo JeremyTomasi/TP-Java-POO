@@ -42,7 +42,7 @@ public class ListeConcours {
 
     public void displayListeConcoursPrevus(){
         for(Concours c : this.concoursPrevus){
-            logger.log(Level.INFO,"Nom du councours : " + c.getNomConcours());
+            logger.log(Level.INFO,"Nom du concours : " + c.getNomConcours());
             logger.log(Level.INFO,"Date début concours : " + c.getDateDebutConcours());
             logger.log(Level.INFO, "Date fin concours : " + c.getDateFinConcours());
         }

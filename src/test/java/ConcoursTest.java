@@ -20,6 +20,7 @@ public class ConcoursTest {
 
     private ListeConcours listeConcours = new ListeConcours();
     private Logger logger = Logger.getLogger(this.getClass().getName());
+    private Padawan jeremy = new Padawan(1,"Tomasi","Jeremy",Genre.HOMME,"");
 
     @Test
     public void testCreationConcours(){
@@ -46,7 +47,7 @@ public class ConcoursTest {
     public void testAjoutPlat(){
         Concours topChef = new Concours("Top Chef","2021-04-15","2021-05-15",listeConcours);
 
-        Plat rizCurry = new Plat("Riz au curry");
+        Plat rizCurry = new Plat("Riz au curry",jeremy);
 
 
         topChef.addPlatConcours(rizCurry);
@@ -181,7 +182,7 @@ public class ConcoursTest {
         try {
             topChef.demarrerConcours();
 
-            Plat rizCurry = new Plat("Riz au curry");
+            Plat rizCurry = new Plat("Riz au curry",jeremy);
             rizCurry.addIngredient(new Ingredient(1,"Riz",200,false),2,"Bien cuit");
 
             topChef.addPlatConcours(rizCurry);

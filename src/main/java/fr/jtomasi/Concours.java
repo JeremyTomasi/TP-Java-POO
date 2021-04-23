@@ -45,6 +45,18 @@ public class Concours {
         }
     }
 
+    public Padawan getWinnerConcours(){
+        Plat platWithMaxNote = this.listePlats.get(0);
+        for(Plat plat : this.listePlats){
+            if(plat.getAuteurPlat() instanceof Padawan){
+                if(plat.getNotePlat() > platWithMaxNote.getNotePlat()){
+                    platWithMaxNote = plat;
+                }
+            }
+        }
+        return (Padawan) platWithMaxNote.getAuteurPlat();
+    }
+
     public void finirConcours(){
         int nbPlatsNotes = 0;
         for(Plat plat : this.listePlats){
@@ -55,6 +67,8 @@ public class Concours {
 
         if(nbPlatsNotes == listePlats.size()){
             concoursTermine = true;
+            Padawan winner = this.getWinnerConcours();
+            logger.log(Level.INFO,"Le gagnant est : " + winner.getNom() + " " + winner.getPrenom());
             listeConcours.getConcoursEnCours().remove(this);
             listeConcours.addConcoursTermine(this);
         }
