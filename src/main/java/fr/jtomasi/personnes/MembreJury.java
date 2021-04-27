@@ -2,14 +2,20 @@ package fr.jtomasi.personnes;
 
 import fr.jtomasi.Concours;
 
+import javax.persistence.Entity;
 import java.util.ArrayList;
 import java.util.List;
 
+@Entity
 public class MembreJury extends Personne{
 
     private int nbParticipations;
 
-    private final List<Concours> participationsConcours = new ArrayList<>();
+    private transient List<Concours> participationsConcours = new ArrayList<>();
+
+    public MembreJury(){
+        super();
+    }
 
     public MembreJury(int id, String nom, String prenom, Genre genre, int nbParticipations) {
         super(id, nom, prenom, genre);

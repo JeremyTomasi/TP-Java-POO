@@ -4,20 +4,26 @@ import com.sun.tools.jconsole.JConsoleContext;
 import fr.jtomasi.Concours;
 import fr.jtomasi.Plat;
 
+import javax.persistence.Entity;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+@Entity
 public class Chef extends Personne {
 
     private String telephone;
     private int nbEtoiles;
     private String specialite;
     private int nbPlatsRealises;
-    private List<Concours> participationsConcours = new ArrayList<>();
-    private List<Plat> platConnu = new ArrayList<>();
-    private Logger logger = Logger.getLogger(this.getClass().getName());
+    private transient List<Concours> participationsConcours = new ArrayList<>();
+    private transient List<Plat> platConnu = new ArrayList<>();
+    private transient Logger logger = Logger.getLogger(this.getClass().getName());
+
+    public Chef(){
+        super();
+    }
 
     public Chef(int id, String nom, String prenom, Genre genre, String telephone, int nbEtoiles, String specialite,int nbPlatsRealises) {
         super(id, nom, prenom, genre);
@@ -60,7 +66,7 @@ public class Chef extends Personne {
 
     /**
      * Récupère la spécialité du chef
-     * @return
+     * @return String
      */
     public String getSpecialite() {
         return specialite;
@@ -111,7 +117,7 @@ public class Chef extends Personne {
 
     /**
      * Ajoute un plat à sa liste de plats connus
-     * @param plat
+     * @param plat Plat à ajouter
      */
     public void addPlatConnu(Plat plat){
         this.platConnu.add(plat);

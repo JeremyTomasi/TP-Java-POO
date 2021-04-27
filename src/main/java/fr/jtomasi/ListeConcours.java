@@ -1,5 +1,10 @@
 package fr.jtomasi;
 
+import fr.jtomasi.personnes.Personne;
+
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
@@ -95,5 +100,34 @@ public class ListeConcours {
             logger.log(Level.INFO,"Date début concours : " + c.getDateDebutConcours());
             logger.log(Level.INFO, "Date fin concours : " + c.getDateFinConcours());
         }
+    }
+
+    public void saveBdd(){
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("Bdd");
+        EntityManager em = emf.createEntityManager();
+
+        // Sauvegarde personnes
+        for(Concours c: this.concoursEnCours){
+            for(Personne p : c.getParticipants()){
+                em.getTransaction().begin();
+                em.persist(p);
+                em.getTransaction().commit();
+            }
+
+            for(Personne p: c.getChefConcours()){
+                em.getTransaction().begin();
+                em.persist(p);
+                em.getTransaction().commit();
+            }
+
+            for(Personne p: c.getMembreJuryConcours()){
+                em.getTransaction().begin();
+                em.persist(p);
+                em.getTransaction().commit();
+            }
+        }
+
+        em.close();
+        emf.close();
     }
 }
