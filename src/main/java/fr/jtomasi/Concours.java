@@ -241,14 +241,15 @@ public class Concours {
         return concoursTermine;
     }
 
-    public void sauvegardeBdd(){
-        // Sauvegarde concours
+    public List<Chef> getChefConcours(){
+        return this.chefConcours;
+    }
 
+    public List<MembreJury> getMembreJuryConcours(){
+        return this.juryConcours;
+    }
 
-        // Sauvegarde Personnes
-
-        // Sauvegarde plats
-
-
+    public List<Padawan> getParticipants(){
+        return this.participantsConcours;
     }
 }

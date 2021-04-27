@@ -1,8 +1,15 @@
 package fr.jtomasi.personnes;
 
+import javax.persistence.Entity;
+
+@Entity
 public class Padawan extends Personne{
     private String telephone;
-    private Chef chefRef;
+    private transient Chef chefRef;
+
+    public Padawan(){
+        super();
+    }
 
     public Padawan(int id, String nom, String prenom, Genre genre, String telephone, Chef chefRef) {
         super(id, nom, prenom, genre);
@@ -33,7 +40,7 @@ public class Padawan extends Personne{
 
     /**
      * Récupère le chef référent du participant
-     * @return
+     * @return Chef
      */
     public Chef getChefRef() {
         return chefRef;
