@@ -1,5 +1,6 @@
 package fr.jtomasi;
 
+import fr.jtomasi.ingredients.Ingredient;
 import fr.jtomasi.personnes.Personne;
 
 import javax.persistence.EntityManager;
@@ -107,7 +108,16 @@ public class ListeConcours {
         EntityManager em = emf.createEntityManager();
 
         // Sauvegarde personnes
-        for(Concours c: this.concoursEnCours){
+        writeBdd(em,this.concoursPrevus);
+        writeBdd(em,this.concoursEnCours);
+        writeBdd(em,this.concoursTermines);
+
+        em.close();
+        emf.close();
+    }
+
+    private void writeBdd(EntityManager em, List<Concours> tabConcours ){
+        for(Concours c: tabConcours){
             for(Personne p : c.getParticipants()){
                 em.getTransaction().begin();
                 em.persist(p);
@@ -125,9 +135,18 @@ public class ListeConcours {
                 em.persist(p);
                 em.getTransaction().commit();
             }
-        }
 
-        em.close();
-        emf.close();
+            for(Plat plat : c.getListePlats()){
+                for (Recette recette : plat.getListeIngredients()){
+                    em.getTransaction().begin();
+                    em.persist(recette.getIngredient());
+                    em.persist(recette);
+                    em.getTransaction().commit();
+                }
+                em.getTransaction().begin();
+                em.persist(plat);
+                em.getTransaction().commit();
+            }
+        }
     }
 }

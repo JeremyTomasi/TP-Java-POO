@@ -2,10 +2,20 @@ package fr.jtomasi;
 
 import fr.jtomasi.ingredients.Ingredient;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
+@Entity
 public class Recette {
-    private Ingredient ingredient;
+    @Id
+    private int id;
+    private transient Ingredient ingredient;
     private int quantite;
     private String preparation;
+
+    public Recette(){
+        super();
+    }
 
     public Recette(Ingredient i, int quantite, String preparation){
         this.ingredient = i;

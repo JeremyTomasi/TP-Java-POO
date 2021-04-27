@@ -10,7 +10,7 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class PlatTest {
-    private final Padawan jeremy = new Padawan(1,"Tomasi","Jeremy", Genre.HOMME,"");
+    private final Padawan jeremy = new Padawan("Tomasi","Jeremy", Genre.HOMME,"");
     @Test
     public void testListIngredients(){
         Plat plat = new Plat("Burger",jeremy);

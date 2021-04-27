@@ -1,7 +1,14 @@
 package fr.jtomasi.ingredients;
 
+import javax.persistence.Entity;
+
+@Entity
 public class Poisson extends Ingredient{
     private double tauxGraisse;
+
+    public Poisson() {
+        super();
+    }
 
 
     public Poisson(int id,String nom,double calories, boolean bio) {

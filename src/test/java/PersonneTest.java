@@ -7,11 +7,10 @@ public class PersonneTest {
 
     @Test
     public void testCreationChef(){
-        Chef chef = new Chef(1,"Test","Test", Genre.HOMME,"0605442051",4,"Street Food",50);
+        Chef chef = new Chef("Test","Test", Genre.HOMME,"0605442051",4,"Street Food",50);
 
         chef.displayPlatsConnus();
 
-        assertEquals(1,chef.getId());
         assertEquals("Test",chef.getNom());
         assertEquals("Test",chef.getPrenom());
         assertEquals(Genre.HOMME,chef.getGenre());
@@ -24,9 +23,8 @@ public class PersonneTest {
 
     @Test
     public void testCreationPadawan(){
-        Padawan padawan = new Padawan(1,"Kenobi","Obi-wan",Genre.HOMME,"0605442051");
+        Padawan padawan = new Padawan("Kenobi","Obi-wan",Genre.HOMME,"0605442051");
 
-        assertEquals(1,padawan.getId());
         assertEquals("Kenobi",padawan.getNom());
         assertEquals("Obi-wan",padawan.getPrenom());
         assertEquals(Genre.HOMME,padawan.getGenre());
@@ -35,9 +33,8 @@ public class PersonneTest {
 
     @Test
     public void testCreationMembreJury(){
-        MembreJury membre = new MembreJury(1,"Dark","Vador",Genre.HOMME,5);
+        MembreJury membre = new MembreJury("Dark","Vador",Genre.HOMME,5);
 
-        assertEquals(1,membre.getId());
         assertEquals("Dark",membre.getNom());
         assertEquals("Vador",membre.getPrenom());
         assertEquals(Genre.HOMME,membre.getGenre());

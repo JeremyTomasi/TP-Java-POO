@@ -1,14 +1,12 @@
 package fr.jtomasi.personnes;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Inheritance;
-import javax.persistence.InheritanceType;
+import javax.persistence.*;
 
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 public class Personne {
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     protected int id;
     protected String nom;
     protected String prenom;
@@ -17,8 +15,7 @@ public class Personne {
     public Personne(){
         super();
     }
-    public Personne(int id,String nom,String prenom,Genre genre){
-        this.id = id;
+    public Personne(String nom,String prenom,Genre genre){
         this.nom = nom;
         this.prenom = prenom;
         this.genre = genre;

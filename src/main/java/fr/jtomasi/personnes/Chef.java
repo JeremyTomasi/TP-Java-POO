@@ -25,8 +25,8 @@ public class Chef extends Personne {
         super();
     }
 
-    public Chef(int id, String nom, String prenom, Genre genre, String telephone, int nbEtoiles, String specialite,int nbPlatsRealises) {
-        super(id, nom, prenom, genre);
+    public Chef(String nom, String prenom, Genre genre, String telephone, int nbEtoiles, String specialite,int nbPlatsRealises) {
+        super(nom, prenom, genre);
         this.telephone = telephone;
         this.nbEtoiles = nbEtoiles;
         this.specialite = specialite;

@@ -17,8 +17,8 @@ public class MembreJury extends Personne{
         super();
     }
 
-    public MembreJury(int id, String nom, String prenom, Genre genre, int nbParticipations) {
-        super(id, nom, prenom, genre);
+    public MembreJury( String nom, String prenom, Genre genre, int nbParticipations) {
+        super(nom, prenom, genre);
         this.nbParticipations = nbParticipations;
     }
 

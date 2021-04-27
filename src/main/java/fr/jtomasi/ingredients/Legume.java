@@ -1,8 +1,14 @@
 package fr.jtomasi.ingredients;
 
+import javax.persistence.Entity;
+
+@Entity
 public class Legume extends Ingredient{
     private double tauxFibre;
 
+    public Legume(){
+        super();
+    }
 
     public Legume(int id,String nom, boolean bio, double calories,double tauxFibre) {
         super(id,nom,calories, bio);

@@ -5,30 +5,49 @@ import fr.jtomasi.personnes.Chef;
 import fr.jtomasi.personnes.Padawan;
 import fr.jtomasi.personnes.Personne;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+@Entity
 public class Plat {
 
-    private final String nomPlat;
-    private final List<Recette> listeIngredients = new ArrayList<>();
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private int idPlat;
+    private String nomPlat;
+    private transient final List<Recette> listeIngredients = new ArrayList<>();
     private int notePlat = -1;
-    private final Personne auteurPlat;
+    private transient Personne auteurPlat;
+    private int idAuteurPlat;
     private boolean bio = false;
     private double caloriesPlat;
-    private final Logger logger = Logger.getLogger(this.getClass().getName());
+    private transient final Logger logger = Logger.getLogger(this.getClass().getName());
 
     public Plat(String nomPlat, Padawan auteurPlat){
         this.nomPlat = nomPlat;
         this.auteurPlat = auteurPlat;
+        this.idAuteurPlat = auteurPlat.getId();
     }
 
     public Plat(String nomPlat, Chef auteurPlat){
         this.nomPlat = nomPlat;
         this.auteurPlat = auteurPlat;
+        this.idAuteurPlat = auteurPlat.getId();
+    }
+
+    public Plat(String nomPlat){
+        this.nomPlat = nomPlat;
+    }
+
+    public Plat(){
+        super();
     }
 
     /**

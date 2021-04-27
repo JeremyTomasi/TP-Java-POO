@@ -11,14 +11,14 @@ public class Padawan extends Personne{
         super();
     }
 
-    public Padawan(int id, String nom, String prenom, Genre genre, String telephone, Chef chefRef) {
-        super(id, nom, prenom, genre);
+    public Padawan(String nom, String prenom, Genre genre, String telephone, Chef chefRef) {
+        super(nom, prenom, genre);
         this.telephone = telephone;
         this.chefRef = chefRef;
     }
 
-    public Padawan(int id, String nom, String prenom, Genre genre, String telephone) {
-        super(id, nom, prenom, genre);
+    public Padawan(String nom, String prenom, Genre genre, String telephone) {
+        super(nom, prenom, genre);
         this.telephone = telephone;
     }
 
