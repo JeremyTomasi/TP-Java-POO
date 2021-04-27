@@ -1,5 +1,4 @@
-import fr.jtomasi.Plat;
-import fr.jtomasi.Recette;
+import fr.jtomasi.plats.Plat;
 import fr.jtomasi.ingredients.Ingredient;
 import fr.jtomasi.ingredients.Legume;
 import fr.jtomasi.ingredients.Viande;

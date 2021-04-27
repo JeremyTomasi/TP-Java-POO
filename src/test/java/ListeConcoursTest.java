@@ -1,6 +1,6 @@
-import fr.jtomasi.Concours;
-import fr.jtomasi.ListeConcours;
-import fr.jtomasi.Plat;
+import fr.jtomasi.concours.Concours;
+import fr.jtomasi.concours.ListeConcours;
+import fr.jtomasi.plats.Plat;
 import fr.jtomasi.personnes.Chef;
 import fr.jtomasi.personnes.Genre;
 import fr.jtomasi.personnes.MembreJury;

@@ -1,6 +1,6 @@
-import fr.jtomasi.Concours;
-import fr.jtomasi.ListeConcours;
-import fr.jtomasi.Plat;
+import fr.jtomasi.concours.Concours;
+import fr.jtomasi.concours.ListeConcours;
+import fr.jtomasi.plats.Plat;
 import fr.jtomasi.exceptions.NoNumberChefRequiredException;
 import fr.jtomasi.exceptions.NoNumberMembreJuryRequiredException;
 import fr.jtomasi.exceptions.NoParticipantsException;
@@ -184,7 +184,7 @@ public class ConcoursTest {
             topChef.demarrerConcours();
 
             Plat rizCurry = new Plat("Riz au curry", jeremy);
-            rizCurry.addIngredient(new Ingredient(1, "Riz", 200, false), 2, "Bien cuit");
+            rizCurry.addIngredient(new Ingredient( "Riz", 200, false), 2, "Bien cuit");
 
             topChef.addPlatConcours(rizCurry);
 
@@ -218,7 +218,7 @@ public class ConcoursTest {
             topChef.demarrerConcours();
 
             Plat rizCurry = new Plat("Riz au curry", jeremy);
-            rizCurry.addIngredient(new Ingredient(1, "Riz", 200, false), 2, "Bien cuit");
+            rizCurry.addIngredient(new Ingredient("Riz", 200, false), 2, "Bien cuit");
 
             topChef.addPlatConcours(rizCurry);
 

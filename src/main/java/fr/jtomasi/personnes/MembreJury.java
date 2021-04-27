@@ -1,6 +1,6 @@
 package fr.jtomasi.personnes;
 
-import fr.jtomasi.Concours;
+import fr.jtomasi.concours.Concours;
 
 import javax.persistence.Entity;
 import java.util.ArrayList;

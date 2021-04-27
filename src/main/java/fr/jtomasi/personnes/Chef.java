@@ -1,8 +1,7 @@
 package fr.jtomasi.personnes;
 
-import com.sun.tools.jconsole.JConsoleContext;
-import fr.jtomasi.Concours;
-import fr.jtomasi.Plat;
+import fr.jtomasi.concours.Concours;
+import fr.jtomasi.plats.Plat;
 
 import javax.persistence.Entity;
 import java.util.ArrayList;

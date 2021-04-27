@@ -1,4 +1,4 @@
-package fr.jtomasi;
+package fr.jtomasi.plats;
 
 import fr.jtomasi.ingredients.Ingredient;
 import fr.jtomasi.personnes.Chef;
@@ -11,7 +11,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 

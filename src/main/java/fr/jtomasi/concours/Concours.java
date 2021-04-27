@@ -1,5 +1,6 @@
-package fr.jtomasi;
+package fr.jtomasi.concours;
 
+import fr.jtomasi.plats.Plat;
 import fr.jtomasi.exceptions.NoNumberChefRequiredException;
 import fr.jtomasi.exceptions.NoNumberMembreJuryRequiredException;
 import fr.jtomasi.exceptions.NoParticipantsException;

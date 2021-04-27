@@ -1,4 +1,4 @@
-package fr.jtomasi;
+package fr.jtomasi.plats;
 
 import fr.jtomasi.ingredients.Ingredient;
 

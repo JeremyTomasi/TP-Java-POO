@@ -1,6 +1,7 @@
-package fr.jtomasi;
+package fr.jtomasi.concours;
 
-import fr.jtomasi.ingredients.Ingredient;
+import fr.jtomasi.plats.Plat;
+import fr.jtomasi.plats.Recette;
 import fr.jtomasi.personnes.Personne;
 
 import javax.persistence.EntityManager;
