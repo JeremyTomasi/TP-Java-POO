@@ -52,6 +52,11 @@ public class Recette {
         return preparation;
     }
 
+
+    /**
+     * Retourne l'id de l'ingrédient
+     * @return int
+     */
     public String getIdIngredient(){
         return idIngredient;
     }

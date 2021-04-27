@@ -103,6 +103,9 @@ public class ListeConcours {
         }
     }
 
+    /**
+     * Sauvegarde la liste des concours ainsi que leurs infos relatives
+     */
     public void saveBdd(){
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("Bdd");
         EntityManager em = emf.createEntityManager();
@@ -116,6 +119,11 @@ public class ListeConcours {
         emf.close();
     }
 
+    /**
+     * Permet de sauvegarder en base de données un tableau de concours donné
+     * @param em L'Entity Manager
+     * @param tabConcours Le tableau de concours à sauvegarder
+     */
     private void writeBdd(EntityManager em, List<Concours> tabConcours ){
         for(Concours c: tabConcours){
             for(Personne p : c.getParticipants()){

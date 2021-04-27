@@ -52,6 +52,8 @@ public class Main {
             topChef.addPlatConcours(rizCurry);
 
             listeConcours.saveBdd();
+
+            //listeConcours.saveBdd();
         } catch (Exception e){
             logger.log(Level.SEVERE,e.getMessage());
         }
