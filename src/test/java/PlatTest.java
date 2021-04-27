@@ -15,10 +15,10 @@ public class PlatTest {
     public void testListIngredients(){
         Plat plat = new Plat("Burger",jeremy);
 
-        Viande steak = new Viande(1,"Steak hache",true,500,2.0);
-        Legume cornichon = new Legume(1,"Cornichon",false,200,5.0);
-        Ingredient sauce = new Ingredient(1,"Sauce tomate",500,true);
-        Ingredient pain = new Ingredient(1,"Pain burger",500,true);
+        Viande steak = new Viande("Steak hache",true,500,2.0);
+        Legume cornichon = new Legume("Cornichon",false,200,5.0);
+        Ingredient sauce = new Ingredient("Sauce tomate",500,true);
+        Ingredient pain = new Ingredient("Pain burger",500,true);
 
         plat.addIngredient(steak,1,"A point");
         plat.addIngredient(cornichon,1,"Découpe");
@@ -32,10 +32,10 @@ public class PlatTest {
     public void testPlatBio(){
         Plat plat = new Plat("Burger 2",jeremy);
 
-        Viande steak = new Viande(1,"Steak hache",true,400,3.0);
-        Legume cornichon = new Legume(1,"Cornichon",true,200,5.0);
-        Ingredient sauce = new Ingredient(1,"Sauce tomate",200,true);
-        Ingredient pain = new Ingredient(1,"Pain burger",200,true);
+        Viande steak = new Viande("Steak hache",true,400,3.0);
+        Legume cornichon = new Legume("Cornichon",true,200,5.0);
+        Ingredient sauce = new Ingredient("Sauce tomate",200,true);
+        Ingredient pain = new Ingredient("Pain burger",200,true);
 
         plat.addIngredient(steak,1,"A point");
         plat.addIngredient(cornichon,1,"Découpe");

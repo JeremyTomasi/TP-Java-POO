@@ -1,15 +1,14 @@
 package fr.jtomasi.ingredients;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Inheritance;
-import javax.persistence.InheritanceType;
+import javax.persistence.*;
+import java.util.UUID;
 
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 public class Ingredient {
+
     @Id
-    protected int id;
+    protected String id;
     protected String nom;
     protected boolean bio;
     private double calories;
@@ -18,11 +17,11 @@ public class Ingredient {
         super();
     }
 
-    public Ingredient(int id,String nom,double calories, boolean bio){
-        this.id = id;
+    public Ingredient(String nom,double calories, boolean bio){
         this.nom = nom;
         this.bio = bio;
         this.calories = calories;
+        this.id= UUID.randomUUID().toString();
     }
 
     /**
@@ -53,7 +52,7 @@ public class Ingredient {
      * Renvoie l'identifiant de l'ingrédient
      * @return int
      */
-    public int getId(){
+    public String getId(){
         return this.id;
     }
 }

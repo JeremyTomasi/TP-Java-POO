@@ -10,6 +10,10 @@
 		<class>fr.jtomasi.personnes.MembreJury</class>
 		<class>fr.jtomasi.personnes.Padawan</class>
 		<class>fr.jtomasi.Recette</class>
+		<class>fr.jtomasi.ingredients.Epice</class>
+		<class>fr.jtomasi.ingredients.Legume</class>
+		<class>fr.jtomasi.ingredients.Poisson</class>
+		<class>fr.jtomasi.ingredients.Viande</class>
 		<properties>
 			<property name="javax.persistence.jdbc.driver"
 				value="com.mysql.jdbc.Driver" />

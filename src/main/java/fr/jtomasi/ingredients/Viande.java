@@ -11,8 +11,8 @@ public class Viande extends Ingredient{
         super();
     }
 
-    public Viande(int id,String nom, boolean bio, double calories, double tauxGraisse) {
-        super(id,nom, calories, bio);
+    public Viande(String nom, boolean bio, double calories, double tauxGraisse) {
+        super(nom, calories, bio);
         this.tauxGraisse = tauxGraisse;
     }
 

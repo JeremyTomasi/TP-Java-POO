@@ -18,7 +18,7 @@ public class IngredientTest {
 
     @Test
     public void testCreationLegume(){
-        Legume salade = new Legume(1,"Salade",true,400,10.0);
+        Legume salade = new Legume("Salade",true,400,10.0);
 
         assertEquals("Salade",salade.getNom());
         assertTrue(salade.isBio());
@@ -27,12 +27,12 @@ public class IngredientTest {
 
     @Test
     public void testCreationPoisson(){
-        Poisson poisson = new Poisson(1,"Bar",200,true);
+        Poisson poisson = new Poisson("Bar",200,true);
 
         assertEquals("Bar",poisson.getNom());
         assertTrue(poisson.isBio());
 
-        Poisson poisson2 = new Poisson(2,"Bar",200,false);
+        Poisson poisson2 = new Poisson("Bar",200,false);
 
         assertEquals("Bar",poisson2.getNom());
         assertFalse(poisson2.isBio());
@@ -40,12 +40,12 @@ public class IngredientTest {
 
     @Test
     public void testCreationViande(){
-        Viande boeuf = new Viande(1,"Boeuf",false,500,2);
+        Viande boeuf = new Viande("Boeuf",false,500,2);
 
         assertEquals("Boeuf",boeuf.getNom());
         assertFalse(boeuf.isBio());
 
-        Viande boeuf2 = new Viande(1,"Boeuf",true,500,5.0);
+        Viande boeuf2 = new Viande("Boeuf",true,500,5.0);
 
         assertEquals("Boeuf",boeuf2.getNom());
         assertTrue(boeuf2.isBio());

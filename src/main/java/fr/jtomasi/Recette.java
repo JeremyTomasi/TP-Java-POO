@@ -3,13 +3,17 @@ package fr.jtomasi;
 import fr.jtomasi.ingredients.Ingredient;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
 public class Recette {
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
     private transient Ingredient ingredient;
+    private String idIngredient;
     private int quantite;
     private String preparation;
 
@@ -21,6 +25,7 @@ public class Recette {
         this.ingredient = i;
         this.quantite = quantite;
         this.preparation = preparation;
+        this.idIngredient = i.getId();
     }
 
     /**
@@ -45,5 +50,9 @@ public class Recette {
      */
     public String getPreparation(){
         return preparation;
+    }
+
+    public String getIdIngredient(){
+        return idIngredient;
     }
 }

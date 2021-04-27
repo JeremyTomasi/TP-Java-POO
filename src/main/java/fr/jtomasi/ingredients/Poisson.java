@@ -11,12 +11,12 @@ public class Poisson extends Ingredient{
     }
 
 
-    public Poisson(int id,String nom,double calories, boolean bio) {
-        super(id,nom, calories,bio);
+    public Poisson(String nom,double calories, boolean bio) {
+        super(nom, calories,bio);
     }
 
-    public Poisson(int id,String nom, boolean bio,double calories, double tauxGraisse) {
-        super(id,nom, calories,bio);
+    public Poisson(String nom, boolean bio,double calories, double tauxGraisse) {
+        super(nom, calories,bio);
         this.tauxGraisse = tauxGraisse;
     }
 
