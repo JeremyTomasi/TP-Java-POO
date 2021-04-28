@@ -1,13 +1,13 @@
 package fr.jtomasi.personnes;
 
 import javax.persistence.*;
+import java.util.UUID;
 
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 public class Personne {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    protected int id;
+    protected String id = UUID.randomUUID().toString();
     protected String nom;
     protected String prenom;
     protected Genre genre;
@@ -25,7 +25,7 @@ public class Personne {
      * Récupère l'identifiant de la personne
      * @return int
      */
-    public int getId() {
+    public String getId() {
         return id;
     }
 
@@ -33,7 +33,7 @@ public class Personne {
      * Définit un nouvel identifiant
      * @param id Nouvel identifiant
      */
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 

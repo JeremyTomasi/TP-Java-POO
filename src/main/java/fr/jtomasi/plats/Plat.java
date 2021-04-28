@@ -24,7 +24,7 @@ public class Plat {
     private transient final List<Recette> listeIngredients = new ArrayList<>();
     private int notePlat = -1;
     private transient Personne auteurPlat;
-    private int idAuteurPlat;
+    private String idAuteurPlat;
     private boolean bio = false;
     private double caloriesPlat;
     private transient final Logger logger = Logger.getLogger(this.getClass().getName());
