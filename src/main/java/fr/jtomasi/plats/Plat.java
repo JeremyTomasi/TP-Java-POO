@@ -122,7 +122,7 @@ public class Plat {
     /**
      * Calcule le nombre de calories du plat
     **/
-    public void setCaloriesPlat(){
+    public void calculCaloriesPlat(){
         for(Recette recette : listeIngredients){
             caloriesPlat += recette.getQuantite() * recette.getIngredient().getCalories();
         }
@@ -138,9 +138,8 @@ public class Plat {
 
     /**
      * Permet de savoir si le plat est bio
-     * @return boolean
      */
-    public boolean isBio() {
+    public void determinerBio() {
         int nbIngredientsBio = 0;
         for(Recette recette : this.listeIngredients){
             if(recette.getIngredient().isBio()){
@@ -148,6 +147,9 @@ public class Plat {
             }
         }
         bio = nbIngredientsBio == listeIngredients.size();
+    }
+
+    public boolean isBio(){
         return bio;
     }
 }

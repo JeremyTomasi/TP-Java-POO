@@ -47,7 +47,10 @@ public class Main {
             Plat rizCurry = new Plat("Riz au curry",padawan1);
             rizCurry.addIngredient(new Ingredient("Riz",200,true),3,"Bien cuit");
             rizCurry.addIngredient(new Viande("Aiguillettes de poulet",true,200,20),6,"Bien cuit");
-            rizCurry.addIngredient(new Ingredient("Sauce Curry",200,false),2,"Chaude");
+            rizCurry.addIngredient(new Ingredient("Sauce Curry",200,true),2,"Chaude");
+
+            rizCurry.calculCaloriesPlat();
+            rizCurry.determinerBio();
 
             topChef.addPlatConcours(rizCurry);
 
