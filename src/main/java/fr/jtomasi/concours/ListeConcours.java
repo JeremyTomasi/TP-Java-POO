@@ -1,5 +1,6 @@
 package fr.jtomasi.concours;
 
+import fr.jtomasi.personnes.Chef;
 import fr.jtomasi.plats.Plat;
 import fr.jtomasi.plats.Recette;
 import fr.jtomasi.personnes.Personne;
@@ -155,6 +156,16 @@ public class ListeConcours {
                 em.getTransaction().begin();
                 em.persist(plat);
                 em.getTransaction().commit();
+            }
+        }
+    }
+
+    public void listeConcoursChefInscrit(Chef chef){
+        for(Concours concours : this.concoursEnCours){
+            for(Chef chefInscrits : concours.getListeChefs()){
+                if(chef.getId().equals(chefInscrits.getId())){
+                    logger.log(Level.INFO,"Nom du concours : " + concours.getNomConcours());
+                }
             }
         }
     }

@@ -231,4 +231,33 @@ public class ConcoursTest {
         assertFalse(topChef.isConcoursTermine());
     }
 
+    @Test
+    public void testDisplayClassement(){
+        Concours topChef = new Concours("Top Chef", "2021-04-19", "2021-05-19", listeConcours);
+        topChef.addChefConcours(new Chef("Etchebest", "Philippe", Genre.HOMME, "", 4, "Gastronomie", 50));
+        topChef.addChefConcours(new Chef("Etchebest", "Philippe", Genre.HOMME, "", 4, "Gastronomie", 50));
+        topChef.addChefConcours(new Chef("Etchebest", "Philippe", Genre.HOMME, "", 4, "Gastronomie", 50));
+        topChef.addChefConcours(new Chef("Etchebest", "Philippe", Genre.HOMME, "", 4, "Gastronomie", 50));
+        topChef.addChefConcours(new Chef("Etchebest", "Philippe", Genre.HOMME, "", 4, "Gastronomie", 50));
+
+        topChef.addMembreJuryConcours(new MembreJury("test", "test", Genre.FEMME, 5));
+        topChef.addMembreJuryConcours(new MembreJury("test", "test", Genre.FEMME, 5));
+        topChef.addMembreJuryConcours(new MembreJury("test", "test", Genre.FEMME, 5));
+
+        topChef.addParticipant(new Padawan("Tomasi", "Jeremy", Genre.HOMME, "0605442051"));
+
+        try {
+            topChef.demarrerConcours();
+
+            Plat rizCurry = new Plat("Riz au curry", jeremy);
+            rizCurry.addIngredient(new Ingredient("Riz", 200, false), 2, "Bien cuit");
+
+            topChef.addPlatConcours(rizCurry);
+
+            topChef.displayClassement();
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
 }

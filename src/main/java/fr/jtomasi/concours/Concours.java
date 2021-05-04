@@ -253,4 +253,20 @@ public class Concours {
     public List<Padawan> getParticipants(){
         return this.participantsConcours;
     }
+
+    public void displayClassement(){
+        for(Plat p : this.listePlats){
+            logger.log(Level.INFO,"Nom du plat : " + p.getNomPlat());
+            if(p.getNotePlat() != -1){
+                logger.log(Level.INFO,"Note du plat : " + p.getNotePlat());
+            } else {
+                logger.log(Level.INFO,"Ce plat n'a pas encore ete note !");
+            }
+        }
+    }
+
+
+    public List<Chef> getListeChefs() {
+        return this.chefConcours;
+    }
 }
