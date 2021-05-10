@@ -7,9 +7,11 @@ Les sources se situent dans le dossier `src/main/java` et les tests se situent d
 
 Le dossier `src/main/java/fr/jtomasi/exceptions` contient toutes les exceptions utilisées dans le projet.  
 Le dossier `src/main/java/fr/jtomasi/ingredients` contient toutes les classes liés aux ingrédients dans le projet.  
-Le dossier `src/main/java/fr/jtomasi/personnes` contient toutes les classes en relation avec les différentes personnes dans le projet.  
+Le dossier `src/main/java/fr/jtomasi/personnes` contient toutes les classes en relation avec les différentes personnes dans le projet.
 
-Le fichier `src/main/resources/META-INF/persistence.xml` contient la configuration permettant la connexion à la base de données MySQL.  
+La base de données MariaDB est à lancer via l'outil Docker via la commande `docker compose up`.  
+
+Le fichier `src/main/resources/META-INF/persistence.xml.example` à renommer en `src/main/resources/META-INF/persistence.xml` contient la configuration permettant la connexion à la base de données MySQL ou MariaDB.  
 Pour changer l'URL permettant de connecter votre base de données MySQL, il suffit de changer la valeur de l'attribut `javax.persistance.jdbc.url` en suivant le schéma suivant :  
 `jdbc:mysql://ADRESSE_IP_BDD:3306/NOM_DB`  
 Pour modifier votre username et votre mot de passe, il suffit de changer les valeurs correspondant aux attributs `javax.persistence.jdbc.user` et à `javax.persistence.jdbc.password`

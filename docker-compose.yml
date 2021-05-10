@@ -1,0 +1,15 @@
+version: '3.8'
+services:
+  adminer:
+    image: adminer
+    ports:
+    - 8080:8080
+    restart: always
+  bdd:
+    image: mariadb
+    ports:
+      - 3306:3306
+    volumes:
+      - ./mysql:/var/lib/mysql
+    env_file:
+      - ./src/main/resources/META-INF/.env

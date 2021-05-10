@@ -1,3 +1,5 @@
 .gradle
 .idea
 build
+src/main/resources/META-INF/persistence.xml
+mysql/
