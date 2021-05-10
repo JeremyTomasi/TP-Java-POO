@@ -23,12 +23,15 @@ public class PersonneTest {
 
     @Test
     public void testCreationPadawan(){
-        Padawan padawan = new Padawan("Kenobi","Obi-wan",Genre.HOMME,"0605442051");
+        Chef chef = new Chef("Etchebest","Philippe",Genre.HOMME,"12564",4,"Gastronomie",50);
+        Padawan padawan = new Padawan("Kenobi","Obi-wan",Genre.HOMME,"0605442051","21/3/2001",chef);
 
         assertEquals("Kenobi",padawan.getNom());
         assertEquals("Obi-wan",padawan.getPrenom());
         assertEquals(Genre.HOMME,padawan.getGenre());
         assertEquals("0605442051",padawan.getTelephone());
+
+        padawan.displayDateNaissance();
     }
 
     @Test

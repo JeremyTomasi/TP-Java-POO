@@ -1,3 +1,4 @@
+import fr.jtomasi.personnes.Chef;
 import fr.jtomasi.plats.Plat;
 import fr.jtomasi.ingredients.Ingredient;
 import fr.jtomasi.ingredients.Legume;
@@ -9,7 +10,8 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class PlatTest {
-    private final Padawan jeremy = new Padawan("Tomasi","Jeremy", Genre.HOMME,"");
+    private Chef chef = new Chef("Etchebest","Philippe",Genre.HOMME,"1234567",4,"Gastronomie",50);
+    private final Padawan jeremy = new Padawan("Tomasi","Jeremy", Genre.HOMME,"","1234567",chef);
     @Test
     public void testListIngredients(){
         Plat plat = new Plat("Burger",jeremy);

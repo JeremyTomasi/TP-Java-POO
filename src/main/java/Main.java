@@ -28,7 +28,7 @@ public class Main {
         MembreJury membreJury2 = new MembreJury("Lignac","Cyril",Genre.HOMME,4);
         MembreJury membreJury3 = new MembreJury("Sarran","Michel",Genre.HOMME,4);
 
-        Padawan padawan1 = new Padawan("Tomasi","Jeremy",Genre.HOMME,"1513");
+        Padawan padawan1 = new Padawan("Tomasi","Jeremy",Genre.HOMME,"1513","21/3/2001",chef1);
 
         topChef.addChefConcours(chef1);
         topChef.addChefConcours(chef2);

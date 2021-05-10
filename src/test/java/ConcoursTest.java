@@ -12,6 +12,10 @@ import fr.jtomasi.personnes.Padawan;
 import fr.jtomasi.plats.Plat;
 import org.junit.jupiter.api.Test;
 
+import java.time.LocalDate;
+import java.time.Month;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -21,7 +25,8 @@ public class ConcoursTest {
 
     private final ListeConcours listeConcours = new ListeConcours();
     private final Logger logger = Logger.getLogger(this.getClass().getName());
-    private final Padawan jeremy = new Padawan("Tomasi", "Jeremy", Genre.HOMME, "");
+    private Chef chef = new Chef("Etchebest","Philippe",Genre.HOMME,"1234567",4,"Gastronomie",50);
+    private final Padawan jeremy = new Padawan("Tomasi", "Jeremy", Genre.HOMME, "","21/3/2001",chef);
 
     @Test
     public void testCreationConcours() {
@@ -88,9 +93,8 @@ public class ConcoursTest {
     @Test
     public void testDisplayParticipants() {
         Concours topChef = new Concours("Top Chef", "2021-04-17", "2021-05-17", listeConcours);
-        Padawan padawan1 = new Padawan("Tomasi", "Jeremy", Genre.HOMME, "0605442051");
 
-        topChef.addParticipant(padawan1);
+        topChef.addParticipant(jeremy);
 
         logger.log(Level.INFO, "\n Test : testDisplayParticipants \n");
         topChef.displayListeParticipants();
@@ -151,7 +155,7 @@ public class ConcoursTest {
         topChef.addMembreJuryConcours(new MembreJury("test", "test", Genre.FEMME, 5));
         topChef.addMembreJuryConcours(new MembreJury("test", "test", Genre.FEMME, 5));
 
-        topChef.addParticipant(new Padawan("Tomasi", "Jeremy", Genre.HOMME, "0605442051", chef1));
+        topChef.addParticipant(jeremy);
 
         logger.log(Level.INFO, "\n Test : testDemarrageConcours \n");
         topChef.displayListeParticipants();
@@ -178,7 +182,7 @@ public class ConcoursTest {
         topChef.addMembreJuryConcours(new MembreJury("test", "test", Genre.FEMME, 5));
         topChef.addMembreJuryConcours(new MembreJury("test", "test", Genre.FEMME, 5));
 
-        topChef.addParticipant(new Padawan( "Tomasi", "Jeremy", Genre.HOMME, "0605442051"));
+        topChef.addParticipant(jeremy);
 
         try {
             topChef.demarrerConcours();
@@ -212,7 +216,7 @@ public class ConcoursTest {
         topChef.addMembreJuryConcours(new MembreJury("test", "test", Genre.FEMME, 5));
         topChef.addMembreJuryConcours(new MembreJury("test", "test", Genre.FEMME, 5));
 
-        topChef.addParticipant(new Padawan("Tomasi", "Jeremy", Genre.HOMME, "0605442051"));
+        topChef.addParticipant(jeremy);
 
         try {
             topChef.demarrerConcours();
@@ -244,7 +248,7 @@ public class ConcoursTest {
         topChef.addMembreJuryConcours(new MembreJury("test", "test", Genre.FEMME, 5));
         topChef.addMembreJuryConcours(new MembreJury("test", "test", Genre.FEMME, 5));
 
-        topChef.addParticipant(new Padawan("Tomasi", "Jeremy", Genre.HOMME, "0605442051"));
+        topChef.addParticipant(jeremy);
 
         try {
             topChef.demarrerConcours();

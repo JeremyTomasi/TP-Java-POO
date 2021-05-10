@@ -16,8 +16,10 @@ public class Chef extends Personne {
     private int nbEtoiles;
     private String specialite;
     private int nbPlatsRealises;
+    private int nbVictoires = 0;
     private transient List<Concours> participationsConcours = new ArrayList<>();
     private transient List<Plat> platConnu = new ArrayList<>();
+    private transient List<Padawan> padawans= new ArrayList<>();
     private transient Logger logger = Logger.getLogger(this.getClass().getName());
 
     public Chef(){
@@ -30,6 +32,10 @@ public class Chef extends Personne {
         this.nbEtoiles = nbEtoiles;
         this.specialite = specialite;
         this.nbPlatsRealises = nbPlatsRealises;
+    }
+
+    public void ajouterPadawan(Padawan padawan){
+        this.padawans.add(padawan);
     }
 
     /**
@@ -131,5 +137,13 @@ public class Chef extends Personne {
             logger.log(Level.INFO,"Calories du plat : " + plat.getCaloriesPlat());
             plat.displayIngredients();
         }
+    }
+
+    public void ajouterVictoire(){
+        this.nbVictoires++;
+    }
+
+    public List<Padawan> getPadawans(){
+        return padawans;
     }
 }

@@ -9,9 +9,14 @@ import fr.jtomasi.exceptions.TousPlatsNonNotesException;
 import fr.jtomasi.personnes.Chef;
 import fr.jtomasi.personnes.MembreJury;
 import fr.jtomasi.personnes.Padawan;
+import javassist.Loader;
 
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.Period;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -74,9 +79,12 @@ public class Concours {
      * Finit le concours si tous les plats ont été notés
      * @throws TousPlatsNonNotesException Si tous les plats n'ont pas été notés
      */
-    public Chef finirConcours() throws TousPlatsNonNotesException {
+    public void finirConcours() throws TousPlatsNonNotesException {
         Chef nouveauChef;
         Padawan winner;
+        int nombreJoursPasses = 0;
+        Padawan doyen;
+
         int nbPlatsNotes = 0;
         for(Plat plat : this.listePlats){
             if(plat.isNote()){
@@ -87,15 +95,21 @@ public class Concours {
         if(nbPlatsNotes == listePlats.size()){
             this.concoursTermine = true;
             winner = this.getWinnerConcours();
+            winner.getChefRef().ajouterVictoire();
             logger.log(Level.INFO,"Le gagnant est : " + winner.getNom() + " " + winner.getPrenom());
             listeConcours.addConcoursTermine(this);
             listeConcours.getConcoursEnCours().remove(this);
-            nouveauChef = new Chef(winner.getNom(), winner.getPrenom(),winner.getGenre(), winner.getTelephone(), 1,"",getNbPlatsRealisesPadawan(winner));
+
+            Chef chefGagnant = winner.getChefRef();
+
+            for(Padawan padawan : chefGagnant.getPadawans()){
+                Period period = Period.between(padawan.getDateNaissance(),LocalDate.now());
+
+            }
         } else {
             throw new TousPlatsNonNotesException("Tous les plats n'ont pas ete notes !");
         }
         winner = null;
-        return nouveauChef;
     }
 
 

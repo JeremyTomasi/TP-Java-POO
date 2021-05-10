@@ -13,7 +13,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class ListeConcoursTest {
 
     private final ListeConcours listeConcours = new ListeConcours();
-    private final Padawan jeremy = new Padawan("Tomasi","Jeremy",Genre.HOMME,"");
+    private Chef chef = new Chef("Etchebest","Philippe",Genre.HOMME,"1234567",4,"Gastronomie",50);
+    private final Padawan jeremy = new Padawan("Tomasi","Jeremy",Genre.HOMME,"1234567","21/3/2001",chef);
 
     @Test
     public void testAddConcoursPrevu(){
@@ -43,7 +44,7 @@ public class ListeConcoursTest {
         meilleurPatissier.addMembreJuryConcours(new MembreJury("Mercotte","Mercotte",Genre.FEMME,5));
         meilleurPatissier.addMembreJuryConcours(new MembreJury("Mercotte","Mercotte",Genre.FEMME,5));
 
-        meilleurPatissier.addParticipant(new Padawan("Tomasi","Jeremy",Genre.HOMME,"0605442051"));
+        meilleurPatissier.addParticipant(jeremy);
 
         try {
             meilleurPatissier.demarrerConcours();
@@ -72,7 +73,7 @@ public class ListeConcoursTest {
         meilleurPatissier.addMembreJuryConcours(new MembreJury("Mercotte","Mercotte",Genre.FEMME,5));
         meilleurPatissier.addMembreJuryConcours(new MembreJury("Mercotte","Mercotte",Genre.FEMME,5));
 
-        meilleurPatissier.addParticipant(new Padawan("Tomasi","Jeremy",Genre.HOMME,"0605442051"));
+        meilleurPatissier.addParticipant(jeremy);
 
         try {
             meilleurPatissier.demarrerConcours();
@@ -111,7 +112,7 @@ public class ListeConcoursTest {
         meilleurPatissier.addMembreJuryConcours(new MembreJury("Mercotte","Mercotte",Genre.FEMME,5));
         meilleurPatissier.addMembreJuryConcours(new MembreJury("Mercotte","Mercotte",Genre.FEMME,5));
 
-        meilleurPatissier.addParticipant(new Padawan("Tomasi","Jeremy",Genre.HOMME,"0605442051"));
+        meilleurPatissier.addParticipant(jeremy);
 
         try {
             meilleurPatissier.demarrerConcours();
@@ -124,7 +125,7 @@ public class ListeConcoursTest {
 
             gateau.noterPlat(8);
 
-            nouveauChef = meilleurPatissier.finirConcours();
+            meilleurPatissier.finirConcours();
 
         }catch (Exception e){
             System.out.println(e.getMessage());
