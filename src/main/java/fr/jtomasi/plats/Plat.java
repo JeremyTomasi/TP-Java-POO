@@ -152,4 +152,8 @@ public class Plat {
     public boolean isBio(){
         return bio;
     }
+
+    public boolean isNote(){
+        return notePlat != -1;
+    }
 }

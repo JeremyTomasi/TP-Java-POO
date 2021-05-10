@@ -76,17 +76,20 @@ public class Concours {
     public void finirConcours() throws TousPlatsNonNotesException {
         int nbPlatsNotes = 0;
         for(Plat plat : this.listePlats){
-            if(plat.getNotePlat() != -1){
+            if(plat.isNote()){
                 nbPlatsNotes++;
             }
         }
 
+        System.out.println("nbPlatsNotes : " + nbPlatsNotes);
+        System.out.println("listePlats.size() : " + listePlats.size());
+
         if(nbPlatsNotes == listePlats.size()){
-            concoursTermine = true;
+            this.concoursTermine = true;
             Padawan winner = this.getWinnerConcours();
             logger.log(Level.INFO,"Le gagnant est : " + winner.getNom() + " " + winner.getPrenom());
-            listeConcours.getConcoursEnCours().remove(this);
             listeConcours.addConcoursTermine(this);
+            listeConcours.getConcoursEnCours().remove(this);
         } else {
             throw new TousPlatsNonNotesException("Tous les plats n'ont pas ete notes !");
         }

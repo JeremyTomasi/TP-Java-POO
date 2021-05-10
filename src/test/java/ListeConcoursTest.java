@@ -8,6 +8,8 @@ import fr.jtomasi.personnes.Padawan;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 public class ListeConcoursTest {
 
     private final ListeConcours listeConcours = new ListeConcours();
@@ -24,7 +26,7 @@ public class ListeConcoursTest {
             System.out.println(e.getMessage());
         }
 
-        Assertions.assertEquals("Top Chef",listeConcours.getConcoursPrevus().get(0).getNomConcours());
+        assertEquals("Top Chef",listeConcours.getConcoursPrevus().get(0).getNomConcours());
     }
 
     @Test
@@ -53,7 +55,7 @@ public class ListeConcoursTest {
 
         listeConcours.displayListeConcoursEnCours();
 
-        Assertions.assertEquals("Le Meilleur Patissier",listeConcours.getConcoursEnCours().get(0).getNomConcours());
+        assertEquals("Le Meilleur Patissier",listeConcours.getConcoursEnCours().get(0).getNomConcours());
     }
 
     @Test
@@ -79,6 +81,8 @@ public class ListeConcoursTest {
 
             Plat gateau = new Plat("Gateau au chocolat",jeremy);
 
+            meilleurPatissier.addPlatConcours(gateau);
+
             gateau.noterPlat(8);
 
             meilleurPatissier.finirConcours();
@@ -87,8 +91,8 @@ public class ListeConcoursTest {
             System.out.println(e.getMessage());
         }
 
-        listeConcours.displayListeConcoursTermines();
+        //listeConcours.displayListeConcoursTermines();
 
-        Assertions.assertEquals("Le Meilleur Patissier",listeConcours.getConcoursTermines().get(0).getNomConcours());
+        assertEquals("Le Meilleur Patissier",listeConcours.getConcoursTermines().get(0).getNomConcours());
     }
 }

@@ -43,9 +43,7 @@ public class ListeConcours {
      * @param concours Concours terminé
      */
     public void addConcoursTermine(Concours concours){
-        if(concours.isConcoursTermine()){
-            this.concoursTermines.add(concours);
-        }
+        this.concoursTermines.add(concours);
     }
 
     /**

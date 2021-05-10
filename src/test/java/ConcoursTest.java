@@ -1,6 +1,5 @@
 import fr.jtomasi.concours.Concours;
 import fr.jtomasi.concours.ListeConcours;
-import fr.jtomasi.plats.Plat;
 import fr.jtomasi.exceptions.NoNumberChefRequiredException;
 import fr.jtomasi.exceptions.NoNumberMembreJuryRequiredException;
 import fr.jtomasi.exceptions.NoParticipantsException;
@@ -10,6 +9,7 @@ import fr.jtomasi.personnes.Chef;
 import fr.jtomasi.personnes.Genre;
 import fr.jtomasi.personnes.MembreJury;
 import fr.jtomasi.personnes.Padawan;
+import fr.jtomasi.plats.Plat;
 import org.junit.jupiter.api.Test;
 
 import java.util.logging.Level;
