@@ -1,5 +1,6 @@
 package fr.jtomasi.concours;
 
+import fr.jtomasi.personnes.Personne;
 import fr.jtomasi.plats.Plat;
 import fr.jtomasi.exceptions.NoNumberChefRequiredException;
 import fr.jtomasi.exceptions.NoNumberMembreJuryRequiredException;
@@ -73,7 +74,9 @@ public class Concours {
      * Finit le concours si tous les plats ont été notés
      * @throws TousPlatsNonNotesException Si tous les plats n'ont pas été notés
      */
-    public void finirConcours() throws TousPlatsNonNotesException {
+    public Chef finirConcours() throws TousPlatsNonNotesException {
+        Chef nouveauChef;
+        Padawan winner;
         int nbPlatsNotes = 0;
         for(Plat plat : this.listePlats){
             if(plat.isNote()){
@@ -81,18 +84,18 @@ public class Concours {
             }
         }
 
-        System.out.println("nbPlatsNotes : " + nbPlatsNotes);
-        System.out.println("listePlats.size() : " + listePlats.size());
-
         if(nbPlatsNotes == listePlats.size()){
             this.concoursTermine = true;
-            Padawan winner = this.getWinnerConcours();
+            winner = this.getWinnerConcours();
             logger.log(Level.INFO,"Le gagnant est : " + winner.getNom() + " " + winner.getPrenom());
             listeConcours.addConcoursTermine(this);
             listeConcours.getConcoursEnCours().remove(this);
+            nouveauChef = new Chef(winner.getNom(), winner.getPrenom(),winner.getGenre(), winner.getTelephone(), 1,"",getNbPlatsRealisesPadawan(winner));
         } else {
             throw new TousPlatsNonNotesException("Tous les plats n'ont pas ete notes !");
         }
+        winner = null;
+        return nouveauChef;
     }
 
 
@@ -271,5 +274,15 @@ public class Concours {
 
     public List<Chef> getListeChefs() {
         return this.chefConcours;
+    }
+
+    public int getNbPlatsRealisesPadawan(Padawan padawan){
+        int nbPlatsRealises = 0;
+        for(Plat plat : this.listePlats){
+            if(plat.getAuteurPlat().equals(padawan)){
+                nbPlatsRealises++;
+            }
+        }
+        return nbPlatsRealises;
     }
 }

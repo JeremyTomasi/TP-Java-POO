@@ -95,4 +95,44 @@ public class ListeConcoursTest {
 
         assertEquals("Le Meilleur Patissier",listeConcours.getConcoursTermines().get(0).getNomConcours());
     }
+
+    @Test
+    public void testPassagePadawanChef(){
+        Chef nouveauChef = null;
+        Concours meilleurPatissier = new Concours("Le Meilleur Patissier","2021-04-24","2021-04-24",listeConcours);
+
+        meilleurPatissier.addChefConcours(new Chef("Lignac","Cyril", Genre.HOMME,"123",4,"Patisserie",20));
+        meilleurPatissier.addChefConcours(new Chef("Lignac","Cyril", Genre.HOMME,"123",4,"Patisserie",20));
+        meilleurPatissier.addChefConcours(new Chef("Lignac","Cyril", Genre.HOMME,"123",4,"Patisserie",20));
+        meilleurPatissier.addChefConcours(new Chef("Lignac","Cyril", Genre.HOMME,"123",4,"Patisserie",20));
+        meilleurPatissier.addChefConcours(new Chef("Lignac","Cyril", Genre.HOMME,"123",4,"Patisserie",20));
+
+        meilleurPatissier.addMembreJuryConcours(new MembreJury("Mercotte","Mercotte",Genre.FEMME,5));
+        meilleurPatissier.addMembreJuryConcours(new MembreJury("Mercotte","Mercotte",Genre.FEMME,5));
+        meilleurPatissier.addMembreJuryConcours(new MembreJury("Mercotte","Mercotte",Genre.FEMME,5));
+
+        meilleurPatissier.addParticipant(new Padawan("Tomasi","Jeremy",Genre.HOMME,"0605442051"));
+
+        try {
+            meilleurPatissier.demarrerConcours();
+
+            listeConcours.addConcoursEnCours(meilleurPatissier);
+
+            Plat gateau = new Plat("Gateau au chocolat",jeremy);
+
+            meilleurPatissier.addPlatConcours(gateau);
+
+            gateau.noterPlat(8);
+
+            nouveauChef = meilleurPatissier.finirConcours();
+
+        }catch (Exception e){
+            System.out.println(e.getMessage());
+        }
+
+        if(nouveauChef != null){
+            assertEquals("Tomasi",nouveauChef.getNom());
+            assertEquals("Jeremy",nouveauChef.getPrenom());
+        }
+    }
 }
