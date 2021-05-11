@@ -1,6 +1,8 @@
 package fr.jtomasi.concours;
 
 import fr.jtomasi.personnes.Chef;
+import fr.jtomasi.personnes.MembreJury;
+import fr.jtomasi.personnes.Padawan;
 import fr.jtomasi.plats.Plat;
 import fr.jtomasi.plats.Recette;
 import fr.jtomasi.personnes.Personne;
@@ -133,13 +135,18 @@ public class ListeConcours {
     private void writeBdd(EntityManager em, List<Concours> tabConcours ){
         for(Concours c: tabConcours){
 
-            for(Personne p: c.getChefConcours()){
+            for(Chef p: c.getChefConcours()){
+                for(Padawan padawan : p.getPadawans()){
+                    em.getTransaction().begin();
+                    em.persist(padawan);
+                    em.getTransaction().commit();
+                }
                 em.getTransaction().begin();
                 em.persist(p);
                 em.getTransaction().commit();
             }
 
-            for(Personne p: c.getMembreJuryConcours()){
+            for(MembreJury p: c.getMembreJuryConcours()){
                 em.getTransaction().begin();
                 em.persist(p);
                 em.getTransaction().commit();
