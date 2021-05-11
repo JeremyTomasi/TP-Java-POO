@@ -4,10 +4,16 @@ import fr.jtomasi.personnes.Chef;
 import fr.jtomasi.plats.Plat;
 import fr.jtomasi.plats.Recette;
 import fr.jtomasi.personnes.Personne;
+import jakarta.json.bind.Jsonb;
+import jakarta.json.bind.JsonbBuilder;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import java.io.FileOutputStream;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
@@ -171,5 +177,33 @@ public class ListeConcours {
                 }
             }
         }
+    }
+
+    public void saveIngredientsJson(){
+        Jsonb jb = JsonbBuilder.create();
+        List<Recette> recettes = new ArrayList<>();
+
+        for(Concours c : this.getConcoursEnCours()){
+            for(Plat p: c.getListePlats()){
+                recettes.addAll(p.getListeIngredients());
+            }
+        }
+
+        for(Concours c : this.getConcoursTermines()){
+            for(Plat p : c.getListePlats()){
+                recettes.addAll(p.getListeIngredients());
+            }
+        }
+
+        String convert = jb.toJson(recettes);
+        try {
+            FileWriter writer = new FileWriter("ingredients.json");
+            writer.write(convert);
+            writer.close();
+        } catch (IOException e){
+            e.printStackTrace();
+        }
+
+        logger.log(Level.INFO,convert);
     }
 }

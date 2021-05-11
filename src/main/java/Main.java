@@ -54,9 +54,11 @@ public class Main {
 
             topChef.addPlatConcours(rizCurry);
 
-            listeConcours.afficherIngredientsConnus();
+            //listeConcours.afficherIngredientsConnus();
 
-            //listeConcours.saveBdd();
+            listeConcours.saveIngredientsJson();
+
+            listeConcours.saveBdd();
 
         } catch (Exception e){
             logger.log(Level.SEVERE,e.getMessage());

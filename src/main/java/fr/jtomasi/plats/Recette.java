@@ -14,6 +14,7 @@ public class Recette {
     private int id;
     private transient Ingredient ingredient;
     private String idIngredient;
+    private String nomIngredient;
     private int quantite;
     private String preparation;
 
@@ -24,6 +25,7 @@ public class Recette {
     public Recette(Ingredient i, int quantite, String preparation){
         this.ingredient = i;
         this.quantite = quantite;
+        this.nomIngredient = i.getNom();
         this.preparation = preparation;
         this.idIngredient = i.getId();
     }
@@ -50,6 +52,10 @@ public class Recette {
      */
     public String getPreparation(){
         return preparation;
+    }
+
+    public String getNomIngredient(){
+        return nomIngredient;
     }
 
 

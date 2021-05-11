@@ -1,6 +1,7 @@
 package fr.jtomasi.personnes;
 
 import fr.jtomasi.concours.Concours;
+import fr.jtomasi.exceptions.AlreadyHasChefException;
 import fr.jtomasi.plats.Plat;
 
 import javax.persistence.Entity;
@@ -36,7 +37,11 @@ public class Chef extends Personne {
 
     public void ajouterPadawan(Padawan padawan){
         this.padawans.add(padawan);
-        padawan.setChefRef(this);
+        try {
+            padawan.setChefRef(this);
+        } catch (AlreadyHasChefException e){
+            e.printStackTrace();
+        }
     }
 
     /**

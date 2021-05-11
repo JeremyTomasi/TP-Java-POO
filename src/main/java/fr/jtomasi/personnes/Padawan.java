@@ -1,5 +1,7 @@
 package fr.jtomasi.personnes;
 
+import fr.jtomasi.exceptions.AlreadyHasChefException;
+
 import javax.persistence.Entity;
 import java.time.LocalDate;
 import java.util.logging.Level;
@@ -47,8 +49,12 @@ public class Padawan extends Personne{
         return chefRef;
     }
 
-    public void setChefRef(Chef chefRef) {
-        this.chefRef = chefRef;
+    public void setChefRef(Chef chefRef) throws AlreadyHasChefException {
+        if(this.chefRef == null){
+            this.chefRef = chefRef;
+        } else {
+            throw new AlreadyHasChefException("Ce padawan a déja un chef !");
+        }
     }
 
     public String displayDateNaissance(){
