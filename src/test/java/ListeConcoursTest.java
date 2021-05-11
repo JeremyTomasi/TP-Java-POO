@@ -125,7 +125,7 @@ public class ListeConcoursTest {
 
             gateau.noterPlat(8);
 
-            meilleurPatissier.finirConcours();
+            //meilleurPatissier.finirConcours();
 
         }catch (Exception e){
             System.out.println(e.getMessage());

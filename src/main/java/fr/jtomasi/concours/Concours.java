@@ -14,6 +14,7 @@ import javassist.Loader;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.Period;
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
@@ -79,11 +80,11 @@ public class Concours {
      * Finit le concours si tous les plats ont été notés
      * @throws TousPlatsNonNotesException Si tous les plats n'ont pas été notés
      */
-    public void finirConcours() throws TousPlatsNonNotesException {
-        Chef nouveauChef;
+    public Chef finirConcours() throws TousPlatsNonNotesException {
+        Chef nouveauChef = null;
         Padawan winner;
         int nombreJoursPasses = 0;
-        Padawan doyen;
+        Padawan doyen = null;
 
         int nbPlatsNotes = 0;
         for(Plat plat : this.listePlats){
@@ -103,13 +104,20 @@ public class Concours {
             Chef chefGagnant = winner.getChefRef();
 
             for(Padawan padawan : chefGagnant.getPadawans()){
-                Period period = Period.between(padawan.getDateNaissance(),LocalDate.now());
-
+                long days = ChronoUnit.DAYS.between(padawan.getDateNaissance(),LocalDate.now());
+                if(days > nombreJoursPasses){
+                    doyen = padawan;
+                }
             }
+
+            if(doyen != null){
+                nouveauChef = new Chef(doyen.getNom(), doyen.getPrenom(), doyen.getGenre(), doyen.getTelephone(),1,"",getNbPlatsRealisesPadawan(doyen));
+            }
+            winner = null;
         } else {
             throw new TousPlatsNonNotesException("Tous les plats n'ont pas ete notes !");
         }
-        winner = null;
+        return nouveauChef;
     }
 
 

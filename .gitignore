@@ -3,3 +3,5 @@
 build
 src/main/resources/META-INF/persistence.xml
 mysql/
+src/main/resources/META-INF/.env
+.DS_Store

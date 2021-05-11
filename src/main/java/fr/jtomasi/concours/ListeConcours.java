@@ -167,4 +167,14 @@ public class ListeConcours {
             }
         }
     }
+
+    public void afficherIngredientsConnus(){
+        for(Concours c : this.concoursEnCours){
+            for(Plat plat : c.getListePlats()){
+                for(Recette recette : plat.getListeIngredients()){
+                    logger.log(Level.INFO,"Nom de l'ingredient : " + recette.getIngredient().getNom());
+                }
+            }
+        }
+    }
 }

@@ -72,8 +72,6 @@ public class Padawan extends Personne{
 
             naissance = LocalDate.of(anneeNaissance,moisNaissance,jourNaissance);
         }
-
-
         return naissance;
     }
 }
