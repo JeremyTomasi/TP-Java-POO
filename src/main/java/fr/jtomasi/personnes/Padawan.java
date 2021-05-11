@@ -17,11 +17,9 @@ public class Padawan extends Personne{
         super();
     }
 
-    public Padawan(String nom, String prenom, Genre genre, String telephone, String dateNaissance, Chef chefRef) {
+    public Padawan(String nom, String prenom, Genre genre, String telephone, String dateNaissance) {
         super(nom, prenom, genre);
         this.telephone = telephone;
-        this.chefRef = chefRef;
-        chefRef.ajouterPadawan(this);
         naissance = setDateNaissance(dateNaissance);
     }
 
@@ -51,11 +49,10 @@ public class Padawan extends Personne{
 
     public void setChefRef(Chef chefRef) {
         this.chefRef = chefRef;
-        chefRef.ajouterPadawan(this);
     }
 
-    public void displayDateNaissance(){
-        logger.log(Level.INFO,"Date de naissance : " + naissance.getDayOfMonth() + "/" + naissance.getMonthValue() + "/" + naissance.getYear());
+    public String displayDateNaissance(){
+        return naissance.getDayOfMonth() + "/" + naissance.getMonthValue() + "/" + naissance.getYear();
     }
 
     public LocalDate getDateNaissance(){
@@ -64,7 +61,7 @@ public class Padawan extends Personne{
 
     public LocalDate setDateNaissance(String dateNaissance){
         LocalDate naissance = null;
-        if(Pattern.matches("\\d+\\/\\d+\\/\\d+",dateNaissance)){
+        if(Pattern.matches("\\d+/\\d+/\\d+",dateNaissance)){
             String[] infosNaissances = dateNaissance.split("/");
             int jourNaissance = Integer.parseInt(infosNaissances[0]);
             int moisNaissance = Integer.parseInt(infosNaissances[1]);

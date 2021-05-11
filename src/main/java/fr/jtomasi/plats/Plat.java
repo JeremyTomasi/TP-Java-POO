@@ -23,19 +23,13 @@ public class Plat {
     private String nomPlat;
     private transient final List<Recette> listeIngredients = new ArrayList<>();
     private int notePlat = -1;
-    private transient Personne auteurPlat;
+    private transient Padawan auteurPlat;
     private String idAuteurPlat;
     private boolean bio = false;
     private double caloriesPlat;
     private transient final Logger logger = Logger.getLogger(this.getClass().getName());
 
     public Plat(String nomPlat, Padawan auteurPlat){
-        this.nomPlat = nomPlat;
-        this.auteurPlat = auteurPlat;
-        this.idAuteurPlat = auteurPlat.getId();
-    }
-
-    public Plat(String nomPlat, Chef auteurPlat){
         this.nomPlat = nomPlat;
         this.auteurPlat = auteurPlat;
         this.idAuteurPlat = auteurPlat.getId();
@@ -71,7 +65,7 @@ public class Plat {
      * Récupère la personne auteur du plat
      * @return Personne
      */
-    public Personne getAuteurPlat(){
+    public Padawan getAuteurPlat(){
         return auteurPlat;
     }
 

@@ -1,6 +1,5 @@
 package fr.jtomasi.concours;
 
-import fr.jtomasi.personnes.Personne;
 import fr.jtomasi.plats.Plat;
 import fr.jtomasi.exceptions.NoNumberChefRequiredException;
 import fr.jtomasi.exceptions.NoNumberMembreJuryRequiredException;
@@ -9,17 +8,15 @@ import fr.jtomasi.exceptions.TousPlatsNonNotesException;
 import fr.jtomasi.personnes.Chef;
 import fr.jtomasi.personnes.MembreJury;
 import fr.jtomasi.personnes.Padawan;
-import javassist.Loader;
 
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
-import java.time.Period;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.TimeUnit;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
+import static fr.jtomasi.utilities.Utilities.ucfirst;
 
 public class Concours {
     private boolean concoursDemarre = false;
@@ -27,7 +24,6 @@ public class Concours {
 
     private final List<Chef> chefConcours = new ArrayList<>();
     private final List<MembreJury> juryConcours = new ArrayList<>();
-    private final List<Padawan> participantsConcours = new ArrayList<>();
     private final List<Plat> listePlats = new ArrayList<>();
 
     private final String nomConcours;
@@ -47,15 +43,20 @@ public class Concours {
     public void demarrerConcours() throws NoNumberChefRequiredException, NoNumberMembreJuryRequiredException,NoParticipantsException {
         int minMembreJury = 3;
         int minChef = 5;
+        int nbPadawans = 0;
+        for(Chef chefInscrit : this.chefConcours){
+            for(Padawan padawan : chefInscrit.getPadawans()){
+                nbPadawans++;
+            }
+        }
         if(chefConcours.size() < minChef){
             throw new NoNumberChefRequiredException("Il manque des chefs !!");
         } else if(juryConcours.size() < minMembreJury){
             throw new NoNumberMembreJuryRequiredException("Il manque des membres de jury !!");
-        } else if(participantsConcours.size() == 0){
-            throw new NoParticipantsException("Il n'y a pas de participants !!");
+        } else if(nbPadawans == 0) {
+            throw new NoParticipantsException("Il n'y a pas de participants !");
         } else {
             concoursDemarre = true;
-            listeConcours.getConcoursPrevus().remove(this);
             listeConcours.addConcoursEnCours(this);
         }
     }
@@ -64,16 +65,14 @@ public class Concours {
      * Récupère le gagnant du concours
      * @return Padawan
      */
-    public Padawan getWinnerConcours(){
+    public Chef getWinnerConcours(){
         Plat platWithMaxNote = this.listePlats.get(0);
         for(Plat plat : this.listePlats){
-            if(plat.getAuteurPlat() instanceof Padawan){
                 if(plat.getNotePlat() > platWithMaxNote.getNotePlat()){
                     platWithMaxNote = plat;
-                }
             }
         }
-        return (Padawan) platWithMaxNote.getAuteurPlat();
+        return platWithMaxNote.getAuteurPlat().getChefRef();
     }
 
     /**
@@ -82,7 +81,7 @@ public class Concours {
      */
     public Chef finirConcours() throws TousPlatsNonNotesException {
         Chef nouveauChef = null;
-        Padawan winner;
+        Chef chefGagnant;
         int nombreJoursPasses = 0;
         Padawan doyen = null;
 
@@ -95,25 +94,20 @@ public class Concours {
 
         if(nbPlatsNotes == listePlats.size()){
             this.concoursTermine = true;
-            winner = this.getWinnerConcours();
-            winner.getChefRef().ajouterVictoire();
-            logger.log(Level.INFO,"Le gagnant est : " + winner.getNom() + " " + winner.getPrenom());
+            chefGagnant = this.getWinnerConcours();
+            chefGagnant.ajouterVictoire();
+            logger.log(Level.INFO,"Le gagnant est : " + chefGagnant.getNom() + " " + chefGagnant.getPrenom());
             listeConcours.addConcoursTermine(this);
             listeConcours.getConcoursEnCours().remove(this);
 
-            Chef chefGagnant = winner.getChefRef();
-
+            /*
             for(Padawan padawan : chefGagnant.getPadawans()){
                 long days = ChronoUnit.DAYS.between(padawan.getDateNaissance(),LocalDate.now());
                 if(days > nombreJoursPasses){
                     doyen = padawan;
                 }
             }
-
-            if(doyen != null){
-                nouveauChef = new Chef(doyen.getNom(), doyen.getPrenom(), doyen.getGenre(), doyen.getTelephone(),1,"",getNbPlatsRealisesPadawan(doyen));
-            }
-            winner = null;
+             */
         } else {
             throw new TousPlatsNonNotesException("Tous les plats n'ont pas ete notes !");
         }
@@ -126,17 +120,49 @@ public class Concours {
      * @param membreJury Membre à ajouter au concours
      */
     public void addMembreJuryConcours(MembreJury membreJury){
-        this.juryConcours.add(membreJury);
-        membreJury.ajouterParticipationConcours(this);
+        membreJury.setPrenom(ucfirst(membreJury.getPrenom()));
+        membreJury.setNom(ucfirst(membreJury.getNom()));
+        if(this.juryConcours.size() == 0){
+            this.juryConcours.add(membreJury);
+            membreJury.ajouterParticipationConcours(this);
+        } else {
+            boolean membreJuryTrouve = false;
+            for(MembreJury membreJuryInscrit : this.juryConcours){
+                if(membreJuryInscrit.getNom().equals(membreJury.getNom())){
+                    membreJuryTrouve = true;
+                }
+            }
+            if(!membreJuryTrouve){
+                this.juryConcours.add(membreJury);
+                membreJury.ajouterParticipationConcours(this);
+            }
+        }
     }
+
 
     /**
      * Ajoute un chef au concours
      * @param chef Chef à ajouter au concours
      */
     public void addChefConcours(Chef chef){
-        this.chefConcours.add(chef);
-        chef.addParticipationConcours(this);
+        chef.setPrenom(ucfirst(chef.getPrenom()));
+        chef.setNom(ucfirst(chef.getNom()));
+        if(this.chefConcours.size() == 0){
+            this.chefConcours.add(chef);
+            chef.addParticipationConcours(this);
+        } else {
+            boolean chefTrouve = false;
+            for(Chef chefInscrit : this.chefConcours){
+                if(chefInscrit.getNom().equals(chef.getNom())){
+                    chefTrouve = true;
+                    break;
+                }
+            }
+            if(!chefTrouve){
+                this.chefConcours.add(chef);
+                chef.addParticipationConcours(this);
+            }
+        }
     }
 
     public Concours(String nomConcours, String dateDebutConcours, String dateFinConcours, ListeConcours listeConcours){
@@ -154,14 +180,6 @@ public class Concours {
      */
     public String getNomConcours(){
         return this.nomConcours;
-    }
-
-    /**
-     * Ajoute un nouvel participant au concours
-     * @param padawan Participant à ajouter au concours
-     */
-    public void addParticipant(Padawan padawan){
-        this.participantsConcours.add(padawan);
     }
 
     /**
@@ -215,19 +233,6 @@ public class Concours {
     }
 
     /**
-     * Affiche la liste des participants
-     */
-    public void displayListeParticipants(){
-        for(Padawan participant : this.participantsConcours){
-            logger.log(Level.INFO,"Nom du participant : " + participant.getNom());
-            logger.log(Level.INFO,"Prenom du participant : " + participant.getPrenom());
-            if(participant.getChefRef() != null){
-                logger.log(Level.INFO,"Nom / Prenom de son chef referent : " + participant.getChefRef().getNom() + " " + participant.getChefRef().getPrenom());
-            }
-        }
-    }
-
-    /**
      * Affiche tous les plats bio
      */
     public void displayPlatBio(){
@@ -276,10 +281,6 @@ public class Concours {
 
     public List<MembreJury> getMembreJuryConcours(){
         return this.juryConcours;
-    }
-
-    public List<Padawan> getParticipants(){
-        return this.participantsConcours;
     }
 
     public void displayClassement(){

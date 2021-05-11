@@ -36,6 +36,7 @@ public class Chef extends Personne {
 
     public void ajouterPadawan(Padawan padawan){
         this.padawans.add(padawan);
+        padawan.setChefRef(this);
     }
 
     /**
@@ -145,5 +146,14 @@ public class Chef extends Personne {
 
     public List<Padawan> getPadawans(){
         return padawans;
+    }
+
+    public void displayListePadawans(){
+        logger.log(Level.INFO,"Padawans du chef " + this.getNom() + " " + this.getPrenom() + " :");
+        for(Padawan padawan : this.padawans){
+            logger.log(Level.INFO,"Nom du padawan : " + padawan.getNom());
+            logger.log(Level.INFO,"Prenom du padawan : " + padawan.getPrenom());
+            logger.log(Level.INFO,"Date de naissance du padawan : " + padawan.displayDateNaissance());
+        }
     }
 }

@@ -1,4 +1,5 @@
 import fr.jtomasi.personnes.*;
+import fr.jtomasi.plats.Plat;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -8,8 +9,6 @@ public class PersonneTest {
     @Test
     public void testCreationChef(){
         Chef chef = new Chef("Test","Test", Genre.HOMME,"0605442051",4,"Street Food",50);
-
-        chef.displayPlatsConnus();
 
         assertEquals("Test",chef.getNom());
         assertEquals("Test",chef.getPrenom());
@@ -24,14 +23,13 @@ public class PersonneTest {
     @Test
     public void testCreationPadawan(){
         Chef chef = new Chef("Etchebest","Philippe",Genre.HOMME,"12564",4,"Gastronomie",50);
-        Padawan padawan = new Padawan("Kenobi","Obi-wan",Genre.HOMME,"0605442051","21/3/2001",chef);
+        Padawan padawan = new Padawan("Kenobi","Obi-wan",Genre.HOMME,"0605442051","21/3/2001");
 
         assertEquals("Kenobi",padawan.getNom());
         assertEquals("Obi-wan",padawan.getPrenom());
         assertEquals(Genre.HOMME,padawan.getGenre());
         assertEquals("0605442051",padawan.getTelephone());
-
-        padawan.displayDateNaissance();
+        assertEquals("21/3/2001",padawan.displayDateNaissance());
     }
 
     @Test

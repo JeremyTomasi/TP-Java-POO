@@ -26,9 +26,11 @@ public class Main {
 
         MembreJury membreJury1 = new MembreJury("Marx","Thierry",Genre.HOMME,4);
         MembreJury membreJury2 = new MembreJury("Lignac","Cyril",Genre.HOMME,4);
-        MembreJury membreJury3 = new MembreJury("Sarran","Michel",Genre.HOMME,4);
+        MembreJury membreJury3 = new MembreJury("Arabian","Ghislaine",Genre.FEMME,4);
 
-        Padawan padawan1 = new Padawan("Tomasi","Jeremy",Genre.HOMME,"1513","21/3/2001",chef1);
+        Padawan padawan1 = new Padawan("Tomasi","Jeremy",Genre.HOMME,"1513","21/3/2001");
+
+        chef1.ajouterPadawan(padawan1);
 
         topChef.addChefConcours(chef1);
         topChef.addChefConcours(chef2);
@@ -39,8 +41,6 @@ public class Main {
         topChef.addMembreJuryConcours(membreJury1);
         topChef.addMembreJuryConcours(membreJury2);
         topChef.addMembreJuryConcours(membreJury3);
-
-        topChef.addParticipant(padawan1);
         try {
             topChef.demarrerConcours();
 

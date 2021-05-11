@@ -26,7 +26,7 @@ public class ConcoursTest {
     private final ListeConcours listeConcours = new ListeConcours();
     private final Logger logger = Logger.getLogger(this.getClass().getName());
     private Chef chef = new Chef("Etchebest","Philippe",Genre.HOMME,"1234567",4,"Gastronomie",50);
-    private final Padawan jeremy = new Padawan("Tomasi", "Jeremy", Genre.HOMME, "","21/3/2001",chef);
+    private final Padawan jeremy = new Padawan("Tomasi", "Jeremy", Genre.HOMME, "","21/3/2001");
 
     @Test
     public void testCreationConcours() {
@@ -91,16 +91,6 @@ public class ConcoursTest {
     }
 
     @Test
-    public void testDisplayParticipants() {
-        Concours topChef = new Concours("Top Chef", "2021-04-17", "2021-05-17", listeConcours);
-
-        topChef.addParticipant(jeremy);
-
-        logger.log(Level.INFO, "\n Test : testDisplayParticipants \n");
-        topChef.displayListeParticipants();
-    }
-
-    @Test
     public void testChefException() {
         Concours topChef = new Concours("Top Chef", "2021-04-19", "2021-05-19", listeConcours);
 
@@ -155,10 +145,7 @@ public class ConcoursTest {
         topChef.addMembreJuryConcours(new MembreJury("test", "test", Genre.FEMME, 5));
         topChef.addMembreJuryConcours(new MembreJury("test", "test", Genre.FEMME, 5));
 
-        topChef.addParticipant(jeremy);
-
         logger.log(Level.INFO, "\n Test : testDemarrageConcours \n");
-        topChef.displayListeParticipants();
 
         try {
             topChef.demarrerConcours();
@@ -181,8 +168,6 @@ public class ConcoursTest {
         topChef.addMembreJuryConcours(new MembreJury("test", "test", Genre.FEMME, 5));
         topChef.addMembreJuryConcours(new MembreJury("test", "test", Genre.FEMME, 5));
         topChef.addMembreJuryConcours(new MembreJury("test", "test", Genre.FEMME, 5));
-
-        topChef.addParticipant(jeremy);
 
         try {
             topChef.demarrerConcours();
@@ -216,24 +201,22 @@ public class ConcoursTest {
         topChef.addMembreJuryConcours(new MembreJury("test", "test", Genre.FEMME, 5));
         topChef.addMembreJuryConcours(new MembreJury("test", "test", Genre.FEMME, 5));
 
-        topChef.addParticipant(jeremy);
-
         try {
             topChef.demarrerConcours();
 
             Plat rizCurry = new Plat("Riz au curry", jeremy);
             rizCurry.addIngredient(new Ingredient("Riz", 200, false), 2, "Bien cuit");
 
-            rizCurry.noterPlat(15);
             topChef.addPlatConcours(rizCurry);
 
             topChef.finirConcours();
+
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
 
-        //assertThrows(TousPlatsNonNotesException.class, topChef::finirConcours);
-        //assertFalse(topChef.isConcoursTermine());
+        assertThrows(TousPlatsNonNotesException.class, topChef::finirConcours);
+        assertFalse(topChef.isConcoursTermine());
     }
 
     @Test
@@ -248,8 +231,6 @@ public class ConcoursTest {
         topChef.addMembreJuryConcours(new MembreJury("test", "test", Genre.FEMME, 5));
         topChef.addMembreJuryConcours(new MembreJury("test", "test", Genre.FEMME, 5));
         topChef.addMembreJuryConcours(new MembreJury("test", "test", Genre.FEMME, 5));
-
-        topChef.addParticipant(jeremy);
 
         try {
             topChef.demarrerConcours();

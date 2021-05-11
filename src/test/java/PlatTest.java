@@ -11,7 +11,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class PlatTest {
     private Chef chef = new Chef("Etchebest","Philippe",Genre.HOMME,"1234567",4,"Gastronomie",50);
-    private final Padawan jeremy = new Padawan("Tomasi","Jeremy", Genre.HOMME,"","1234567",chef);
+    private Padawan jeremy = new Padawan("Tomasi","Jeremy", Genre.HOMME,"","1234567");
     @Test
     public void testListIngredients(){
         Plat plat = new Plat("Burger",jeremy);

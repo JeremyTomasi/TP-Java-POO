@@ -126,11 +126,6 @@ public class ListeConcours {
      */
     private void writeBdd(EntityManager em, List<Concours> tabConcours ){
         for(Concours c: tabConcours){
-            for(Personne p : c.getParticipants()){
-                em.getTransaction().begin();
-                em.persist(p);
-                em.getTransaction().commit();
-            }
 
             for(Personne p: c.getChefConcours()){
                 em.getTransaction().begin();
