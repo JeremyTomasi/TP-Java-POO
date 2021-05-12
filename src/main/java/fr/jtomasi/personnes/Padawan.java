@@ -12,6 +12,7 @@ import java.util.regex.Pattern;
 public class Padawan extends Personne{
     private String telephone;
     private transient Chef chefRef;
+    private String idChefRef;
     private LocalDate naissance;
     private transient Logger logger = Logger.getLogger(this.getClass().getName());
 
@@ -52,6 +53,7 @@ public class Padawan extends Personne{
     public void setChefRef(Chef chefRef) throws AlreadyHasChefException {
         if(this.chefRef == null){
             this.chefRef = chefRef;
+            this.idChefRef = chefRef.getId();
         } else {
             throw new AlreadyHasChefException("Ce padawan a déja un chef !");
         }

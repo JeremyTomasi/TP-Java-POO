@@ -49,10 +49,9 @@ public class Main {
             rizCurry.addIngredient(new Viande("Aiguillettes de poulet",true,200,20),6,"Bien cuit");
             rizCurry.addIngredient(new Ingredient("Sauce Curry",200,true),2,"Chaude");
 
-            rizCurry.calculCaloriesPlat();
-            rizCurry.determinerBio();
-
             topChef.addPlatConcours(rizCurry);
+
+            topChef.displayListePlats();
 
             //listeConcours.afficherIngredientsConnus();
 

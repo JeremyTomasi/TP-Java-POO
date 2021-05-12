@@ -187,6 +187,8 @@ public class Concours {
      * @param plat Plat à ajouter au concours
      */
     public void addPlatConcours(Plat plat){
+        plat.determinerBio();
+        plat.calculCaloriesPlat();
         this.listePlats.add(plat);
     }
 
@@ -204,6 +206,7 @@ public class Concours {
     public void displayListePlats(){
         for(Plat plat : this.getListePlats()){
             logger.log(Level.INFO,"Nom du plat : " + plat.getNomPlat());
+            logger.log(Level.INFO,"Calories du plat : " + plat.getCaloriesPlat());
             plat.displayIngredients();
         }
     }
