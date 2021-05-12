@@ -1,3 +1,4 @@
+import com.github.javafaker.Faker;
 import fr.jtomasi.concours.Concours;
 import fr.jtomasi.concours.ListeConcours;
 import fr.jtomasi.plats.Plat;
@@ -7,7 +8,9 @@ import fr.jtomasi.personnes.Chef;
 import fr.jtomasi.personnes.Genre;
 import fr.jtomasi.personnes.MembreJury;
 import fr.jtomasi.personnes.Padawan;
+import fr.jtomasi.utilities.Utilities;
 
+import java.util.Locale;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -18,17 +21,17 @@ public class Main {
 
         Concours topChef = new Concours("TopChef","2021-04-23","2021-05-23",listeConcours);
 
-        Chef chef1 = new Chef("Pairet","Paul",Genre.HOMME,"",4,"Gastronomie",50);
-        Chef chef2 = new Chef("Etchebest","Philippe",Genre.HOMME,"",4,"Gastronomie",50);
-        Chef chef3 = new Chef("Darroze","Helene",Genre.FEMME,"",4,"Gastronomie",50);
-        Chef chef4 = new Chef("Sarran","Michel",Genre.HOMME,"",4,"Gastronomie",50);
-        Chef chef5 = new Chef("Piege","Jean-Francois",Genre.HOMME,"",4,"Gastronomie",50);
+        Chef chef1 = new Chef("Pairet","Paul",Genre.HOMME,Utilities.generateNumTel(),4,"Gastronomie",50);
+        Chef chef2 = new Chef("Etchebest","Philippe",Genre.HOMME,Utilities.generateNumTel(),4,"Gastronomie",50);
+        Chef chef3 = new Chef("Darroze","Helene",Genre.FEMME,Utilities.generateNumTel(),4,"Gastronomie",50);
+        Chef chef4 = new Chef("Sarran","Michel",Genre.HOMME,Utilities.generateNumTel(),4,"Gastronomie",50);
+        Chef chef5 = new Chef("Piege","Jean-Francois",Genre.HOMME,Utilities.generateNumTel(),4,"Gastronomie",50);
 
         MembreJury membreJury1 = new MembreJury("Marx","Thierry",Genre.HOMME,4);
         MembreJury membreJury2 = new MembreJury("Lignac","Cyril",Genre.HOMME,4);
         MembreJury membreJury3 = new MembreJury("Arabian","Ghislaine",Genre.FEMME,4);
 
-        Padawan padawan1 = new Padawan("Tomasi","Jeremy",Genre.HOMME,"1513","21/3/2001");
+        Padawan padawan1 = new Padawan("Tomasi","Jeremy",Genre.HOMME,Utilities.generateNumTel(),"21/3/2001");
 
         chef1.ajouterPadawan(padawan1);
 
@@ -51,11 +54,13 @@ public class Main {
 
             topChef.addPlatConcours(rizCurry);
 
-            topChef.displayListePlats();
+            rizCurry.noterPlat(15);
+
+            //topChef.displayListePlats();
 
             //listeConcours.afficherIngredientsConnus();
 
-            listeConcours.saveIngredientsJson();
+            //listeConcours.saveIngredientsJson();
 
             listeConcours.saveBdd();
 

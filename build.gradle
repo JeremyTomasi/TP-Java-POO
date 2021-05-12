@@ -19,6 +19,7 @@ dependencies {
   implementation group: 'jakarta.json.bind', name: 'jakarta.json.bind-api',version: '2.0.0'
   implementation group: 'org.eclipse', name: 'yasson', version: '2.0.1'
   implementation group: 'javax.json', name: 'javax.json-api', version: '1.1.4'
+  compile group: 'com.github.javafaker', name: 'javafaker', version: '1.0.2'
 }
 
 test {
