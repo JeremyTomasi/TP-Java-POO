@@ -204,6 +204,7 @@ public class Concours {
      * Affiche la liste des plats et leurs ingrédients
      */
     public void displayListePlats(){
+        logger.log(Level.INFO,"Affichage de la liste des plats : \n");
         for(Plat plat : this.getListePlats()){
             logger.log(Level.INFO,"Nom du plat : " + plat.getNomPlat());
             logger.log(Level.INFO,"Calories du plat : " + plat.getCaloriesPlat());
@@ -278,30 +279,52 @@ public class Concours {
         return concoursTermine;
     }
 
+    /**
+     * Renvoie la liste des chefs inscrits au concours
+     * @return La liste des chefs inscrits au concours
+     */
     public List<Chef> getChefConcours(){
         return this.chefConcours;
     }
 
+    /**
+     * Renvoie la liste des membres du jury du concours
+     * @return La liste des membres du jury du concours
+     */
     public List<MembreJury> getMembreJuryConcours(){
         return this.juryConcours;
     }
 
+    /**
+     * Affiche le classement
+     */
     public void displayClassement(){
         for(Plat p : this.listePlats){
             logger.log(Level.INFO,"Nom du plat : " + p.getNomPlat());
+            logger.log(Level.INFO,"Nom de l'auteur du plat : " + p.getAuteurPlat().getNom() + " " + p.getAuteurPlat().getPrenom());
+            logger.log(Level.INFO,"Nom du chef référent de l'auteur du plat : " + p.getAuteurPlat().getChefRef().getNom() + " " + p.getAuteurPlat().getChefRef().getPrenom());
             if(p.getNotePlat() != -1){
-                logger.log(Level.INFO,"Note du plat : " + p.getNotePlat());
+                logger.log(Level.INFO,"Note du plat : " + p.getNotePlat() + "\n");
             } else {
-                logger.log(Level.INFO,"Ce plat n'a pas encore ete note !");
+                logger.log(Level.INFO,"Ce plat n'a pas encore ete note !\n");
             }
         }
     }
 
 
+    /**
+     * Renvoie la liste des chefs inscrits au concours
+     * @return La liste des chefs inscrits au concours
+     */
     public List<Chef> getListeChefs() {
         return this.chefConcours;
     }
 
+    /**
+     * Renvoie le nombre de plats réalisés par un Padawan
+     * @param padawan Le padawan dont on veut connaître le nombre de plats réalisés
+     * @return Le nombre de plats réalisés
+     */
     public int getNbPlatsRealisesPadawan(Padawan padawan){
         int nbPlatsRealises = 0;
         for(Plat plat : this.listePlats){

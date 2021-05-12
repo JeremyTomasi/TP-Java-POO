@@ -5,13 +5,14 @@ import fr.jtomasi.ingredients.Legume;
 import fr.jtomasi.ingredients.Viande;
 import fr.jtomasi.personnes.Genre;
 import fr.jtomasi.personnes.Padawan;
+import fr.jtomasi.utilities.Utilities;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 public class PlatTest {
-    private Chef chef = new Chef("Etchebest","Philippe",Genre.HOMME,"1234567",4,"Gastronomie",50);
-    private Padawan jeremy = new Padawan("Tomasi","Jeremy", Genre.HOMME,"","1234567");
+    private Chef chef = new Chef("Etchebest","Philippe",Genre.HOMME,Utilities.generateNumTel(),4,"Gastronomie",50);
+    private Padawan jeremy = new Padawan("Tomasi","Jeremy", Genre.HOMME,Utilities.generateNumTel(),"21/3/2001");
     @Test
     public void testListIngredients(){
         Plat plat = new Plat("Burger",jeremy);
@@ -43,8 +44,11 @@ public class PlatTest {
         plat.addIngredient(sauce,1,"Chaude");
         plat.addIngredient(pain,1,"Cuit au four");
 
+        plat.displayIngredients();
+
+        plat.determinerBio();
+
         assertTrue(plat.isBio());
-        System.out.println(plat.isBio());
     }
 
 }

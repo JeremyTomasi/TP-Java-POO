@@ -1,6 +1,9 @@
 import com.github.javafaker.Faker;
 import fr.jtomasi.concours.Concours;
 import fr.jtomasi.concours.ListeConcours;
+import fr.jtomasi.exceptions.NoNumberChefRequiredException;
+import fr.jtomasi.exceptions.NoNumberMembreJuryRequiredException;
+import fr.jtomasi.exceptions.NoParticipantsException;
 import fr.jtomasi.plats.Plat;
 import fr.jtomasi.ingredients.Ingredient;
 import fr.jtomasi.ingredients.Viande;
@@ -56,15 +59,17 @@ public class Main {
 
             rizCurry.noterPlat(15);
 
-            //topChef.displayListePlats();
+            topChef.displayListePlats();
 
-            //listeConcours.afficherIngredientsConnus();
+            topChef.displayClassement();
 
-            //listeConcours.saveIngredientsJson();
+            listeConcours.afficherIngredientsConnus();
+
+            listeConcours.saveIngredientsJson("ingredients.json");
 
             listeConcours.saveBdd();
 
-        } catch (Exception e){
+        } catch (NoNumberChefRequiredException | NoNumberMembreJuryRequiredException | NoParticipantsException e){
             logger.log(Level.SEVERE,e.getMessage());
         }
     }

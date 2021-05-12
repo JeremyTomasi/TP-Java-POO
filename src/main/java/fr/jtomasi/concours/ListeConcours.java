@@ -166,18 +166,33 @@ public class ListeConcours {
         }
     }
 
+    /**
+     * Permet d'afficher la liste des concours auquel le chef passé en paramètre est inscrit
+     * @param chef Le chef dont on veut vérifier ses participations aux concours
+     */
     public void listeConcoursChefInscrit(Chef chef){
+        logger.log(Level.INFO,"Liste des concours auquel le chef " + chef.getNom() + " " + chef.getPrenom());
         for(Concours concours : this.concoursEnCours){
             for(Chef chefInscrits : concours.getListeChefs()){
-                if(chef.getId().equals(chefInscrits.getId())){
-                    logger.log(Level.INFO,"Nom du concours : " + concours.getNomConcours());
-                }
+                logger.log(Level.INFO,"Nom du concours : "  + concours.getNomConcours());
             }
         }
     }
 
+    /**
+     * Permet d'afficher tous les ingrédients composant les différents plats des différents concours en cours et terminés
+     */
     public void afficherIngredientsConnus(){
+        logger.log(Level.INFO,"Affichage de la liste des ingrédients connus : \n");
         for(Concours c : this.concoursEnCours){
+            for(Plat plat : c.getListePlats()){
+                for(Recette recette : plat.getListeIngredients()){
+                    logger.log(Level.INFO,"Nom de l'ingredient : " + recette.getIngredient().getNom());
+                }
+            }
+        }
+
+        for(Concours c : this.concoursTermines){
             for(Plat plat : c.getListePlats()){
                 for(Recette recette : plat.getListeIngredients()){
                     logger.log(Level.INFO,"Nom de l'ingredient : " + recette.getIngredient().getNom());
@@ -186,7 +201,11 @@ public class ListeConcours {
         }
     }
 
-    public void saveIngredientsJson(){
+
+    /**
+     * Permet de sauvegarder la liste des ingrédients dans un fichier JSON
+     */
+    public void saveIngredientsJson(String nomFichier){
         Jsonb jb = JsonbBuilder.create();
         List<Recette> recettes = new ArrayList<>();
 
@@ -204,7 +223,7 @@ public class ListeConcours {
 
         String convert = jb.toJson(recettes);
         try {
-            FileWriter writer = new FileWriter("ingredients.json");
+            FileWriter writer = new FileWriter(nomFichier);
             writer.write(convert);
             writer.close();
         } catch (IOException e){

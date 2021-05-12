@@ -110,6 +110,7 @@ public class Plat {
             logger.log(Level.INFO,"Nom de l'ingredient : " + recette.getIngredient().getNom());
             logger.log(Level.INFO,"Quantite : " + recette.getQuantite());
             logger.log(Level.INFO,"Preparation : " + recette.getPreparation());
+            logger.log(Level.INFO,"Bio : "+ recette.getIngredient().isBio());
         }
     }
 
@@ -140,7 +141,7 @@ public class Plat {
                 nbIngredientsBio++;
             }
         }
-        bio = nbIngredientsBio == listeIngredients.size();
+        bio = (nbIngredientsBio == listeIngredients.size());
     }
 
     public boolean isBio(){
