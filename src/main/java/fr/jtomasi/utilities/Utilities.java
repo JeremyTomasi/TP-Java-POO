@@ -2,7 +2,9 @@ package fr.jtomasi.utilities;
 
 import com.github.javafaker.Faker;
 
+import java.time.LocalDate;
 import java.util.Locale;
+import java.util.regex.Pattern;
 
 public class Utilities {
     public static String ucfirst(String str){
@@ -18,5 +20,30 @@ public class Utilities {
         }
         numTel = numTel.replaceAll(" ","");
         return numTel;
+    }
+
+    public static LocalDate generateDate(String date){
+        LocalDate dateGenerated = null;
+        try {
+            if(Pattern.matches("\\d+/\\d+/\\d+",date)){
+                String[] infosDate = date.split("/");
+                int jourNaissance = Integer.parseInt(infosDate[0]);
+                int moisNaissance = Integer.parseInt(infosDate[1]);
+                int anneeNaissance = Integer.parseInt(infosDate[2]);
+
+                dateGenerated = LocalDate.of(anneeNaissance,moisNaissance,jourNaissance);
+            } else if(Pattern.matches("\\d+-\\d+-\\d+",date)){
+                String[] infosDate = date.split("-");
+                int jourNaissance = Integer.parseInt(infosDate[0]);
+                int moisNaissance = Integer.parseInt(infosDate[1]);
+                int anneeNaissance = Integer.parseInt(infosDate[2]);
+
+                dateGenerated = LocalDate.of(anneeNaissance,moisNaissance,jourNaissance);
+            }
+        } catch (NumberFormatException e){
+            e.printStackTrace();
+        } finally {
+            return dateGenerated;
+        }
     }
 }

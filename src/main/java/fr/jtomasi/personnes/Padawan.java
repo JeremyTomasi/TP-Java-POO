@@ -1,6 +1,7 @@
 package fr.jtomasi.personnes;
 
 import fr.jtomasi.exceptions.AlreadyHasChefException;
+import fr.jtomasi.utilities.Utilities;
 
 import javax.persistence.Entity;
 import java.time.LocalDate;
@@ -68,15 +69,6 @@ public class Padawan extends Personne{
     }
 
     public LocalDate setDateNaissance(String dateNaissance){
-        LocalDate naissance = null;
-        if(Pattern.matches("\\d+/\\d+/\\d+",dateNaissance)){
-            String[] infosNaissances = dateNaissance.split("/");
-            int jourNaissance = Integer.parseInt(infosNaissances[0]);
-            int moisNaissance = Integer.parseInt(infosNaissances[1]);
-            int anneeNaissance = Integer.parseInt(infosNaissances[2]);
-
-            naissance = LocalDate.of(anneeNaissance,moisNaissance,jourNaissance);
-        }
-        return naissance;
+        return Utilities.generateDate(dateNaissance);
     }
 }
