@@ -5,29 +5,30 @@ import fr.jtomasi.personnes.Chef;
 import fr.jtomasi.personnes.Padawan;
 import fr.jtomasi.personnes.Personne;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 @Entity
-public class Plat {
+public class Plat implements Serializable {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private int idPlat;
+    private String idPlat = UUID.randomUUID().toString();
     private String nomPlat;
-    private transient final List<Recette> listeIngredients = new ArrayList<>();
+    @Transient
+    private final List<Recette> listeIngredients = new ArrayList<>();
     private int notePlat = -1;
-    private transient Padawan auteurPlat;
+    @Transient
+    private Padawan auteurPlat;
     private String idAuteurPlat;
     private boolean bio = false;
     private double caloriesPlat;
-    private transient final Logger logger = Logger.getLogger(this.getClass().getName());
+    @Transient
+    private final Logger logger = Logger.getLogger(this.getClass().getName());
 
     public Plat(String nomPlat, Padawan auteurPlat){
         this.nomPlat = nomPlat;

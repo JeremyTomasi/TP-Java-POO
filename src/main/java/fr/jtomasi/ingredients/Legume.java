@@ -1,9 +1,10 @@
 package fr.jtomasi.ingredients;
 
 import javax.persistence.Entity;
+import java.io.Serializable;
 
 @Entity
-public class Legume extends Ingredient{
+public class Legume extends Ingredient implements Serializable {
     private double tauxFibre;
 
     public Legume(){

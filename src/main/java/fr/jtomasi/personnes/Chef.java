@@ -5,6 +5,7 @@ import fr.jtomasi.exceptions.AlreadyHasChefException;
 import fr.jtomasi.plats.Plat;
 
 import javax.persistence.Entity;
+import javax.persistence.Transient;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
@@ -18,10 +19,14 @@ public class Chef extends Personne {
     private String specialite;
     private int nbPlatsRealises;
     private int nbVictoires = 0;
-    private transient List<Concours> participationsConcours = new ArrayList<>();
-    private transient List<Plat> platConnu = new ArrayList<>();
-    private transient List<Padawan> padawans= new ArrayList<>();
-    private transient Logger logger = Logger.getLogger(this.getClass().getName());
+    @Transient
+    private List<Concours> participationsConcours = new ArrayList<>();
+    @Transient
+    private List<Plat> platConnu = new ArrayList<>();
+    @Transient
+    private List<Padawan> padawans= new ArrayList<>();
+    @Transient
+    private Logger logger = Logger.getLogger(this.getClass().getName());
 
     public Chef(){
         super();

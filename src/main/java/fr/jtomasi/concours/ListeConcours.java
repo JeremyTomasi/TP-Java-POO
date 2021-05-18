@@ -12,10 +12,7 @@ import jakarta.json.bind.JsonbBuilder;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
-import java.io.FileOutputStream;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.ObjectOutputStream;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
@@ -118,7 +115,7 @@ public class ListeConcours {
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("Bdd");
         EntityManager em = emf.createEntityManager();
 
-        // Sauvegarde personnes
+        // Sauvegarde concours
         writeBdd(em,this.concoursPrevus);
         writeBdd(em,this.concoursEnCours);
         writeBdd(em,this.concoursTermines);
@@ -163,6 +160,9 @@ public class ListeConcours {
                 em.persist(plat);
                 em.getTransaction().commit();
             }
+            em.getTransaction().begin();
+            em.persist(c);
+            em.getTransaction().commit();
         }
     }
 
@@ -231,5 +231,23 @@ public class ListeConcours {
         }
 
         logger.log(Level.INFO,convert);
+    }
+
+    public void saveCuisine(){
+        File saveFile = new File("cuisine.ser");
+        try {
+            FileOutputStream fos = new FileOutputStream(saveFile);
+            ObjectOutputStream oos = new ObjectOutputStream(fos);
+
+            for(Concours concours : this.concoursEnCours){
+                for(Plat plat : concours.getListePlats()){
+                    for(Recette recette : plat.getListeIngredients()){
+                        oos.writeObject(recette);
+                    }
+                }
+            }
+        } catch (IOException e){
+            e.printStackTrace();
+        }
     }
 }

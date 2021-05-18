@@ -1,11 +1,12 @@
 package fr.jtomasi.ingredients;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.UUID;
 
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-public class Ingredient {
+public class Ingredient implements Serializable {
 
     @Id
     protected String id;

@@ -3,6 +3,7 @@ package fr.jtomasi.personnes;
 import fr.jtomasi.concours.Concours;
 
 import javax.persistence.Entity;
+import javax.persistence.Transient;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,7 +12,8 @@ public class MembreJury extends Personne{
 
     private int nbParticipations;
 
-    private transient List<Concours> participationsConcours = new ArrayList<>();
+    @Transient
+    private List<Concours> participationsConcours = new ArrayList<>();
 
     public MembreJury(){
         super();

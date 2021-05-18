@@ -1,9 +1,10 @@
 package fr.jtomasi.ingredients;
 
 import javax.persistence.Entity;
+import java.io.Serializable;
 
 @Entity
-public class Epice extends Ingredient{
+public class Epice extends Ingredient implements Serializable {
 
     public Epice(){
         super();

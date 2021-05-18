@@ -9,30 +9,48 @@ import fr.jtomasi.personnes.Chef;
 import fr.jtomasi.personnes.MembreJury;
 import fr.jtomasi.personnes.Padawan;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Transient;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import static fr.jtomasi.utilities.Utilities.ucfirst;
 
+@Entity
 public class Concours {
     private boolean concoursDemarre = false;
     private boolean concoursTermine = false;
 
+    @Transient
     private final List<Chef> chefConcours = new ArrayList<>();
+
+    @Transient
     private final List<MembreJury> juryConcours = new ArrayList<>();
+
+    @Transient
     private final List<Plat> listePlats = new ArrayList<>();
 
-    private final String nomConcours;
-    private final String dateDebutConcours;
-    private final String dateFinConcours;
+    @Id
+    private String idConcours = UUID.randomUUID().toString();
+    private String nomConcours;
+    private String dateDebutConcours;
+    private String dateFinConcours;
 
-    private final Logger logger = Logger.getLogger(this.getClass().getName());
+    @Transient
+    private Logger logger = Logger.getLogger(this.getClass().getName());
 
-    private final ListeConcours listeConcours;
+    @Transient
+    private ListeConcours listeConcours;
+
+    public Concours(){
+        super();
+    }
 
     /**
      * Démarre le concours si les conditions sont requises
@@ -65,6 +83,7 @@ public class Concours {
      * Récupère le gagnant du concours
      * @return Padawan
      */
+    @Transient
     public Chef getWinnerConcours(){
         Plat platWithMaxNote = this.listePlats.get(0);
         for(Plat plat : this.listePlats){

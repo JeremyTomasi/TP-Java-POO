@@ -2,17 +2,17 @@ package fr.jtomasi.plats;
 
 import fr.jtomasi.ingredients.Ingredient;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity
-public class Recette {
+public class Recette implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
-    private transient Ingredient ingredient;
+
+    @Transient
+    private Ingredient ingredient;
     private String idIngredient;
     private String nomIngredient;
     private int quantite;

@@ -67,6 +67,8 @@ public class Main {
 
             listeConcours.saveIngredientsJson("ingredients.json");
 
+            //listeConcours.saveCuisine();
+
             listeConcours.saveBdd();
 
         } catch (NoNumberChefRequiredException | NoNumberMembreJuryRequiredException | NoParticipantsException e){

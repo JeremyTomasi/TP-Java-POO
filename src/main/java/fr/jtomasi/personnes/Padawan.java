@@ -4,6 +4,7 @@ import fr.jtomasi.exceptions.AlreadyHasChefException;
 import fr.jtomasi.utilities.Utilities;
 
 import javax.persistence.Entity;
+import javax.persistence.Transient;
 import java.time.LocalDate;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -12,10 +13,12 @@ import java.util.regex.Pattern;
 @Entity
 public class Padawan extends Personne{
     private String telephone;
-    private transient Chef chefRef;
+    @Transient
+    private Chef chefRef;
     private String idChefRef;
     private LocalDate naissance;
-    private transient Logger logger = Logger.getLogger(this.getClass().getName());
+    @Transient
+    private Logger logger = Logger.getLogger(this.getClass().getName());
 
     public Padawan(){
         super();

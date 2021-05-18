@@ -1,9 +1,10 @@
 package fr.jtomasi.ingredients;
 
 import javax.persistence.Entity;
+import java.io.Serializable;
 
 @Entity
-public class Viande extends Ingredient{
+public class Viande extends Ingredient implements Serializable {
 
     private double tauxGraisse = 0;
 
