@@ -5,6 +5,7 @@ import fr.jtomasi.personnes.Chef;
 import fr.jtomasi.personnes.Genre;
 import fr.jtomasi.personnes.MembreJury;
 import fr.jtomasi.personnes.Padawan;
+import fr.jtomasi.utilities.Utilities;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -103,7 +104,7 @@ public class ListeConcoursTest {
             System.out.println(e.getMessage());
         }
 
-        //listeConcours.displayListeConcoursTermines();
+        listeConcours.displayListeConcoursTermines();
 
         assertEquals("Le Meilleur Patissier",listeConcours.getConcoursTermines().get(0).getNomConcours());
     }
@@ -113,20 +114,30 @@ public class ListeConcoursTest {
         Chef nouveauChef = null;
         Concours meilleurPatissier = new Concours("Le Meilleur Patissier","2021-04-24","2021-04-24",listeConcours);
 
-        meilleurPatissier.addChefConcours(new Chef("Lignac","Cyril", Genre.HOMME,"123",4,"Patisserie",20));
-        meilleurPatissier.addChefConcours(new Chef("Lignac","Cyril", Genre.HOMME,"123",4,"Patisserie",20));
-        meilleurPatissier.addChefConcours(new Chef("Lignac","Cyril", Genre.HOMME,"123",4,"Patisserie",20));
-        meilleurPatissier.addChefConcours(new Chef("Lignac","Cyril", Genre.HOMME,"123",4,"Patisserie",20));
-        meilleurPatissier.addChefConcours(new Chef("Lignac","Cyril", Genre.HOMME,"123",4,"Patisserie",20));
+        Chef chef1 = new Chef("Lignac","Cyril",Genre.HOMME,Utilities.generateNumTel(),4,"Patisserie",25);
+        Chef chef2 = new Chef("Lignaca","Cyril",Genre.HOMME,Utilities.generateNumTel(),4,"Patisserie",25);
+        Chef chef3 = new Chef("Lignacz","Cyril",Genre.HOMME,Utilities.generateNumTel(),4,"Patisserie",25);
+        Chef chef4 = new Chef("Lignace","Cyril",Genre.HOMME,Utilities.generateNumTel(),4,"Patisserie",25);
+        Chef chef5 = new Chef("Lignacr","Cyril",Genre.HOMME,Utilities.generateNumTel(),4,"Patisserie",25);
 
-        meilleurPatissier.addMembreJuryConcours(new MembreJury("Mercotte","Mercotte",Genre.FEMME,5));
-        meilleurPatissier.addMembreJuryConcours(new MembreJury("Mercotte","Mercotte",Genre.FEMME,5));
-        meilleurPatissier.addMembreJuryConcours(new MembreJury("Mercotte","Mercotte",Genre.FEMME,5));
+        meilleurPatissier.addChefConcours(chef1);
+        meilleurPatissier.addChefConcours(chef2);
+        meilleurPatissier.addChefConcours(chef3);
+        meilleurPatissier.addChefConcours(chef4);
+        meilleurPatissier.addChefConcours(chef5);
+
+        MembreJury membreJury1 = new MembreJury("Mercotte","Mercotte",Genre.FEMME,5);
+        MembreJury membreJury2 = new MembreJury("Mercottea","Mercotte",Genre.FEMME,5);
+        MembreJury membreJury3 = new MembreJury("Mercottez","Mercotte",Genre.FEMME,5);
+
+        meilleurPatissier.addMembreJuryConcours(membreJury1);
+        meilleurPatissier.addMembreJuryConcours(membreJury2);
+        meilleurPatissier.addMembreJuryConcours(membreJury3);
+
+        chef1.ajouterPadawan(jeremy);
 
         try {
             meilleurPatissier.demarrerConcours();
-
-            listeConcours.addConcoursEnCours(meilleurPatissier);
 
             Plat gateau = new Plat("Gateau au chocolat",jeremy);
 

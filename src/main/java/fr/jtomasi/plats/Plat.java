@@ -27,17 +27,12 @@ public class Plat implements Serializable {
     private String idAuteurPlat;
     private boolean bio = false;
     private double caloriesPlat;
-    @Transient
-    private transient Logger logger = Logger.getLogger(Plat.class.getName());
+    private final transient Logger logger = Logger.getLogger(Plat.class.getName());
 
     public Plat(String nomPlat, Padawan auteurPlat){
         this.nomPlat = nomPlat;
         this.auteurPlat = auteurPlat;
         this.idAuteurPlat = auteurPlat.getId();
-    }
-
-    public Plat(String nomPlat){
-        this.nomPlat = nomPlat;
     }
 
     public Plat(){

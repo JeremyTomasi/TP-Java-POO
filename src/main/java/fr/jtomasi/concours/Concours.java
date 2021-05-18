@@ -38,7 +38,7 @@ public class Concours implements Serializable {
     private final List<Plat> listePlats = new ArrayList<>();
 
     @Id
-    private String idConcours = UUID.randomUUID().toString();
+    private final String idConcours = UUID.randomUUID().toString();
     private String nomConcours;
     private String dateDebutConcours;
     private String dateFinConcours;
@@ -115,18 +115,18 @@ public class Concours implements Serializable {
             this.concoursTermine = true;
             chefGagnant = this.getWinnerConcours();
             chefGagnant.ajouterVictoire();
-            logger.log(Level.INFO,"Le gagnant est : " + chefGagnant.getNom() + " " + chefGagnant.getPrenom());
+            logger.log(Level.INFO,"Le chef gagnant est : " + chefGagnant.getNom() + " " + chefGagnant.getPrenom());
             listeConcours.addConcoursTermine(this);
             listeConcours.getConcoursEnCours().remove(this);
 
-            /*
             for(Padawan padawan : chefGagnant.getPadawans()){
-                long days = ChronoUnit.DAYS.between(padawan.getDateNaissance(),LocalDate.now());
+                long days = ChronoUnit.DAYS.between(padawan.getDateNaissance(), LocalDate.now());
                 if(days > nombreJoursPasses){
                     doyen = padawan;
                 }
             }
-             */
+
+            nouveauChef = new Chef(doyen.getNom(),doyen.getPrenom(),doyen.getGenre(),doyen.getTelephone(),1,chefGagnant.getSpecialite(),getNbPlatsRealisesPadawan(doyen));
         } else {
             throw new TousPlatsNonNotesException("Tous les plats n'ont pas ete notes !");
         }
@@ -147,8 +147,9 @@ public class Concours implements Serializable {
         } else {
             boolean membreJuryTrouve = false;
             for(MembreJury membreJuryInscrit : this.juryConcours){
-                if(membreJuryInscrit.getNom().equals(membreJury.getNom())){
+                if (membreJuryInscrit.getNom().equals(membreJury.getNom())) {
                     membreJuryTrouve = true;
+                    break;
                 }
             }
             if(!membreJuryTrouve){

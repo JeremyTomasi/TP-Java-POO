@@ -171,10 +171,20 @@ public class ListeConcours implements Serializable{
      * @param chef Le chef dont on veut vérifier ses participations aux concours
      */
     public void listeConcoursChefInscrit(Chef chef){
-        logger.log(Level.INFO,"Liste des concours auquel le chef " + chef.getNom() + " " + chef.getPrenom());
+        logger.log(Level.INFO,"Liste des concours auquel le chef " + chef.getNom() + " " + chef.getPrenom() + " participe");
         for(Concours concours : this.concoursEnCours){
             for(Chef chefInscrits : concours.getListeChefs()){
-                logger.log(Level.INFO,"Nom du concours : "  + concours.getNomConcours());
+                if(chefInscrits.getId().equals(chef.getId())){
+                    logger.log(Level.INFO,"Nom du concours : " + concours.getNomConcours());
+                }
+            }
+        }
+
+        for(Concours concours : this.concoursTermines){
+            for(Chef chefInscrits : concours.getListeChefs()){
+                if(chefInscrits.getId().equals(chef.getId())){
+                    logger.log(Level.INFO,"Nom du concours : " + concours.getNomConcours());
+                }
             }
         }
     }
