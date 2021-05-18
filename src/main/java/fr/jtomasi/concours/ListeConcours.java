@@ -18,12 +18,12 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class ListeConcours {
+public class ListeConcours implements Serializable{
 
     private final List<Concours> concoursPrevus = new ArrayList<>();
     private final List<Concours> concoursEnCours = new ArrayList<>();
     private final List<Concours> concoursTermines = new ArrayList<>();
-    private final Logger logger = Logger.getLogger(this.getClass().getName());
+    private final transient Logger logger = Logger.getLogger(this.getClass().getName());
 
     /**
      * Ajout un concours à la liste des concours prévus
@@ -239,13 +239,7 @@ public class ListeConcours {
             FileOutputStream fos = new FileOutputStream(saveFile);
             ObjectOutputStream oos = new ObjectOutputStream(fos);
 
-            for(Concours concours : this.concoursEnCours){
-                for(Plat plat : concours.getListePlats()){
-                    for(Recette recette : plat.getListeIngredients()){
-                        oos.writeObject(recette);
-                    }
-                }
-            }
+            oos.writeObject(this);
         } catch (IOException e){
             e.printStackTrace();
         }

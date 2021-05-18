@@ -4,11 +4,12 @@ import fr.jtomasi.concours.Concours;
 
 import javax.persistence.Entity;
 import javax.persistence.Transient;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-public class MembreJury extends Personne{
+public class MembreJury extends Personne implements Serializable {
 
     private int nbParticipations;
 

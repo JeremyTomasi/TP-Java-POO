@@ -5,20 +5,20 @@ import fr.jtomasi.utilities.Utilities;
 
 import javax.persistence.Entity;
 import javax.persistence.Transient;
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.regex.Pattern;
 
 @Entity
-public class Padawan extends Personne{
+public class Padawan extends Personne implements Serializable {
     private String telephone;
     @Transient
     private Chef chefRef;
     private String idChefRef;
     private LocalDate naissance;
-    @Transient
-    private Logger logger = Logger.getLogger(this.getClass().getName());
+    private transient Logger logger = Logger.getLogger(Padawan.class.getName());
 
     public Padawan(){
         super();

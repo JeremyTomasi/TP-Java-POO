@@ -6,13 +6,14 @@ import fr.jtomasi.plats.Plat;
 
 import javax.persistence.Entity;
 import javax.persistence.Transient;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 @Entity
-public class Chef extends Personne {
+public class Chef extends Personne implements Serializable {
 
     private String telephone;
     private int nbEtoiles;
@@ -25,8 +26,7 @@ public class Chef extends Personne {
     private List<Plat> platConnu = new ArrayList<>();
     @Transient
     private List<Padawan> padawans= new ArrayList<>();
-    @Transient
-    private Logger logger = Logger.getLogger(this.getClass().getName());
+    private transient Logger logger = Logger.getLogger(Chef.class.getName());
 
     public Chef(){
         super();

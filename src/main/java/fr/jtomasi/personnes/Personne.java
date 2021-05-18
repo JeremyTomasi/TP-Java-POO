@@ -1,11 +1,12 @@
 package fr.jtomasi.personnes;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.UUID;
 
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-public class Personne {
+public class Personne implements Serializable {
     @Id
     protected String id = UUID.randomUUID().toString();
     protected String nom;

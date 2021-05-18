@@ -12,6 +12,7 @@ import fr.jtomasi.personnes.Padawan;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Transient;
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
@@ -23,7 +24,7 @@ import java.util.logging.Logger;
 import static fr.jtomasi.utilities.Utilities.ucfirst;
 
 @Entity
-public class Concours {
+public class Concours implements Serializable {
     private boolean concoursDemarre = false;
     private boolean concoursTermine = false;
 
@@ -42,8 +43,7 @@ public class Concours {
     private String dateDebutConcours;
     private String dateFinConcours;
 
-    @Transient
-    private Logger logger = Logger.getLogger(this.getClass().getName());
+    private final transient Logger logger = Logger.getLogger(Concours.class.getName());
 
     @Transient
     private ListeConcours listeConcours;
