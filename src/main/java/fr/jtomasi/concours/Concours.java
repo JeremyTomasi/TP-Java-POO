@@ -139,8 +139,6 @@ public class Concours implements Serializable {
      * @param membreJury Membre à ajouter au concours
      */
     public void addMembreJuryConcours(MembreJury membreJury){
-        membreJury.setPrenom(ucfirst(membreJury.getPrenom()));
-        membreJury.setNom(ucfirst(membreJury.getNom()));
         if(this.juryConcours.size() == 0){
             this.juryConcours.add(membreJury);
             membreJury.ajouterParticipationConcours(this);
@@ -165,8 +163,6 @@ public class Concours implements Serializable {
      * @param chef Chef à ajouter au concours
      */
     public void addChefConcours(Chef chef){
-        chef.setPrenom(ucfirst(chef.getPrenom()));
-        chef.setNom(ucfirst(chef.getNom()));
         if(this.chefConcours.size() == 0){
             this.chefConcours.add(chef);
             chef.addParticipationConcours(this);

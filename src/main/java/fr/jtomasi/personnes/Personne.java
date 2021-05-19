@@ -1,5 +1,7 @@
 package fr.jtomasi.personnes;
 
+import fr.jtomasi.utilities.Utilities;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.UUID;
@@ -17,8 +19,8 @@ public class Personne implements Serializable {
         super();
     }
     public Personne(String nom,String prenom,Genre genre){
-        this.nom = nom;
-        this.prenom = prenom;
+        this.nom = Utilities.ucfirst(nom);
+        this.prenom = Utilities.ucfirst(prenom);
         this.genre = genre;
     }
 

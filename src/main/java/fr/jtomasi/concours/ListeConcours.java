@@ -249,7 +249,11 @@ public class ListeConcours implements Serializable{
             FileOutputStream fos = new FileOutputStream(saveFile);
             ObjectOutputStream oos = new ObjectOutputStream(fos);
 
-            oos.writeObject(this);
+            for(Concours concours : this.concoursEnCours){
+                for(Plat plat : concours.getListePlats()){
+                    oos.writeObject(plat);
+                }
+            }
         } catch (IOException e){
             e.printStackTrace();
         }
