@@ -25,7 +25,7 @@ public class Chef extends Personne implements Serializable {
     @Transient
     private List<Plat> platConnu = new ArrayList<>();
     @Transient
-    private List<Padawan> padawans= new ArrayList<>();
+    private List<Padawan> padawans = new ArrayList<>();
     private transient Logger logger = Logger.getLogger(Chef.class.getName());
 
     public Chef(){
@@ -169,5 +169,9 @@ public class Chef extends Personne implements Serializable {
 
     public int getNbVictoires(){
         return this.nbVictoires;
+    }
+
+    public void ajouterEtoiles(int nbEtoiles){
+        this.nbEtoiles += nbEtoiles;
     }
 }

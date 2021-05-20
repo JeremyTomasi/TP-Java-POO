@@ -69,7 +69,7 @@ public class Main {
 
             listeConcours.saveCuisine();
 
-            //listeConcours.saveBdd();
+            listeConcours.saveBdd();
 
         } catch (NoNumberChefRequiredException | NoNumberMembreJuryRequiredException | NoParticipantsException e){
             logger.log(Level.SEVERE,e.getMessage());

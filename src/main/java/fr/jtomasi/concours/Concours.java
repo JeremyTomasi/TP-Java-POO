@@ -21,8 +21,6 @@ import java.util.UUID;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import static fr.jtomasi.utilities.Utilities.ucfirst;
-
 @Entity
 public class Concours implements Serializable {
     private boolean concoursDemarre = false;
@@ -128,7 +126,11 @@ public class Concours implements Serializable {
 
             nouveauChef = new Chef(doyen.getNom(),doyen.getPrenom(),doyen.getGenre(),doyen.getTelephone(),chefGagnant.getSpecialite(),getNbPlatsRealisesPadawan(doyen));
             if(chefGagnant.getNbVictoires() > 1){
-
+                chefGagnant.ajouterEtoiles(1);
+            } else if(chefGagnant.getNbVictoires() > 3){
+                chefGagnant.ajouterEtoiles(2);
+            } else if(chefGagnant.getNbVictoires() > 5){
+                chefGagnant.ajouterEtoiles(3);
             }
         } else {
             throw new TousPlatsNonNotesException("Tous les plats n'ont pas ete notes !");

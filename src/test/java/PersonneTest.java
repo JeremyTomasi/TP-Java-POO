@@ -8,7 +8,7 @@ public class PersonneTest {
 
     @Test
     public void testCreationChef(){
-        Chef chef = new Chef("Test","Test", Genre.HOMME,"0605442051",4,"Street Food",50);
+        Chef chef = new Chef("Test","Test", Genre.HOMME,"0605442051","Street Food",50);
 
         assertEquals("Test",chef.getNom());
         assertEquals("Test",chef.getPrenom());
@@ -22,7 +22,7 @@ public class PersonneTest {
 
     @Test
     public void testCreationPadawan(){
-        Chef chef = new Chef("Etchebest","Philippe",Genre.HOMME,"12564",4,"Gastronomie",50);
+        Chef chef = new Chef("Etchebest","Philippe",Genre.HOMME,"12564","Gastronomie",50);
         Padawan padawan = new Padawan("Kenobi","Obi-wan",Genre.HOMME,"0605442051","21/3/2001");
 
         assertEquals("Kenobi",padawan.getNom());
