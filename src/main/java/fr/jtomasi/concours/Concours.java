@@ -50,6 +50,15 @@ public class Concours implements Serializable {
         super();
     }
 
+    public Concours(String nomConcours, String dateDebutConcours, String dateFinConcours, ListeConcours listeConcours){
+        this.nomConcours = nomConcours;
+        this.dateDebutConcours = dateDebutConcours;
+        this.dateFinConcours = dateFinConcours;
+
+        this.listeConcours = listeConcours;
+        listeConcours.addConcoursPrevu(this);
+    }
+
     /**
      * Démarre le concours si les conditions sont requises
      * @throws NoNumberChefRequiredException S'il n'y a pas assez de chefs
@@ -81,7 +90,6 @@ public class Concours implements Serializable {
      * Récupère le gagnant du concours
      * @return Padawan
      */
-    @Transient
     public Chef getWinnerConcours(){
         Plat platWithMaxNote = this.listePlats.get(0);
         for(Plat plat : this.listePlats){
@@ -184,15 +192,6 @@ public class Concours implements Serializable {
                 chef.addParticipationConcours(this);
             }
         }
-    }
-
-    public Concours(String nomConcours, String dateDebutConcours, String dateFinConcours, ListeConcours listeConcours){
-        this.nomConcours = nomConcours;
-        this.dateDebutConcours = dateDebutConcours;
-        this.dateFinConcours = dateFinConcours;
-
-        this.listeConcours = listeConcours;
-        listeConcours.addConcoursPrevu(this);
     }
 
     /**

@@ -1,7 +1,7 @@
 package fr.jtomasi.exceptions;
 
 public class NoParticipantsException extends Exception{
-    public NoParticipantsException(String error){
-        super(error);
+    public NoParticipantsException(String message){
+        super(message);
     }
 }

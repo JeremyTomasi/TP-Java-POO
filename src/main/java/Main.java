@@ -28,7 +28,7 @@ public class Main {
         Chef chef2 = new Chef("Etchebest","Philippe",Genre.HOMME,Utilities.generateNumTel(),"Gastronomie",50);
         Chef chef3 = new Chef("Darroze","Helene",Genre.FEMME,Utilities.generateNumTel(),"Gastronomie",50);
         Chef chef4 = new Chef("Sarran","Michel",Genre.HOMME,Utilities.generateNumTel(),"Gastronomie",50);
-        Chef chef5 = new Chef("Piege","Jean-Francois",Genre.HOMME,Utilities.generateNumTel(),"Gastronomie",50);
+        //Chef chef5 = new Chef("Piege","Jean-Francois",Genre.HOMME,Utilities.generateNumTel(),"Gastronomie",50);
 
         MembreJury membreJury1 = new MembreJury("Marx","Thierry",Genre.HOMME,4);
         MembreJury membreJury2 = new MembreJury("Lignac","Cyril",Genre.HOMME,4);
@@ -42,7 +42,7 @@ public class Main {
         topChef.addChefConcours(chef2);
         topChef.addChefConcours(chef3);
         topChef.addChefConcours(chef4);
-        topChef.addChefConcours(chef5);
+        //topChef.addChefConcours(chef5);
 
         topChef.addMembreJuryConcours(membreJury1);
         topChef.addMembreJuryConcours(membreJury2);
