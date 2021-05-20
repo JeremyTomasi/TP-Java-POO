@@ -24,11 +24,11 @@ public class Main {
 
         Concours topChef = new Concours("TopChef","2021-04-23","2021-05-23",listeConcours);
 
-        Chef chef1 = new Chef("Pairet","Paul",Genre.HOMME,Utilities.generateNumTel(),4,"Gastronomie",50);
-        Chef chef2 = new Chef("Etchebest","Philippe",Genre.HOMME,Utilities.generateNumTel(),4,"Gastronomie",50);
-        Chef chef3 = new Chef("Darroze","Helene",Genre.FEMME,Utilities.generateNumTel(),4,"Gastronomie",50);
-        Chef chef4 = new Chef("Sarran","Michel",Genre.HOMME,Utilities.generateNumTel(),4,"Gastronomie",50);
-        Chef chef5 = new Chef("Piege","Jean-Francois",Genre.HOMME,Utilities.generateNumTel(),4,"Gastronomie",50);
+        Chef chef1 = new Chef("Pairet","Paul",Genre.HOMME,Utilities.generateNumTel(),"Gastronomie",50);
+        Chef chef2 = new Chef("Etchebest","Philippe",Genre.HOMME,Utilities.generateNumTel(),"Gastronomie",50);
+        Chef chef3 = new Chef("Darroze","Helene",Genre.FEMME,Utilities.generateNumTel(),"Gastronomie",50);
+        Chef chef4 = new Chef("Sarran","Michel",Genre.HOMME,Utilities.generateNumTel(),"Gastronomie",50);
+        Chef chef5 = new Chef("Piege","Jean-Francois",Genre.HOMME,Utilities.generateNumTel(),"Gastronomie",50);
 
         MembreJury membreJury1 = new MembreJury("Marx","Thierry",Genre.HOMME,4);
         MembreJury membreJury2 = new MembreJury("Lignac","Cyril",Genre.HOMME,4);

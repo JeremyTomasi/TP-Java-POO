@@ -14,7 +14,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class ListeConcoursTest {
 
     private final ListeConcours listeConcours = new ListeConcours();
-    private Chef chef = new Chef("Etchebest","Philippe",Genre.HOMME,"1234567",4,"Gastronomie",50);
+    private Chef chef = new Chef("Etchebest","Philippe",Genre.HOMME,"1234567","Gastronomie",50);
     private final Padawan jeremy = new Padawan("Tomasi","Jeremy",Genre.HOMME,"1234567","21/3/2001");
 
     @Test
@@ -29,11 +29,11 @@ public class ListeConcoursTest {
     public void testAddConcoursEnCours(){
         Concours meilleurPatissier = new Concours("Le Meilleur Patissier","2021-04-24","2021-05-24",listeConcours);
 
-        Chef chef1 = new Chef("Pairet","Paul",Genre.HOMME,"",4,"Gastronomie",50);
-        Chef chef2 = new Chef("Etchebest","Philippe",Genre.HOMME,"",4,"Gastronomie",50);
-        Chef chef3 = new Chef("Darroze","Helene",Genre.FEMME,"",4,"Gastronomie",50);
-        Chef chef4 = new Chef("Sarran","Michel",Genre.HOMME,"",4,"Gastronomie",50);
-        Chef chef5 = new Chef("Piege","Jean-Francois",Genre.HOMME,"",4,"Gastronomie",50);
+        Chef chef1 = new Chef("Pairet","Paul",Genre.HOMME,Utilities.generateNumTel(),"Gastronomie",50);
+        Chef chef2 = new Chef("Etchebest","Philippe",Genre.HOMME,Utilities.generateNumTel(),"Gastronomie",50);
+        Chef chef3 = new Chef("Darroze","Helene",Genre.FEMME,"","Gastronomie",50);
+        Chef chef4 = new Chef("Sarran","Michel",Genre.HOMME,"","Gastronomie",50);
+        Chef chef5 = new Chef("Piege","Jean-Francois",Genre.HOMME,"","Gastronomie",50);
 
         meilleurPatissier.addChefConcours(chef1);
         meilleurPatissier.addChefConcours(chef2);
@@ -67,11 +67,11 @@ public class ListeConcoursTest {
     public void testAddConcoursTermines(){
         Concours meilleurPatissier = new Concours("Le Meilleur Patissier","2021-04-24","2021-05-24",listeConcours);
 
-        Chef chef1 = new Chef("Pairet","Paul",Genre.HOMME,"",4,"Gastronomie",50);
-        Chef chef2 = new Chef("Etchebest","Philippe",Genre.HOMME,"",4,"Gastronomie",50);
-        Chef chef3 = new Chef("Darroze","Helene",Genre.FEMME,"",4,"Gastronomie",50);
-        Chef chef4 = new Chef("Sarran","Michel",Genre.HOMME,"",4,"Gastronomie",50);
-        Chef chef5 = new Chef("Piege","Jean-Francois",Genre.HOMME,"",4,"Gastronomie",50);
+        Chef chef1 = new Chef("Pairet","Paul",Genre.HOMME,Utilities.generateNumTel(),"Gastronomie",50);
+        Chef chef2 = new Chef("Etchebest","Philippe",Genre.HOMME,Utilities.generateNumTel(),"Gastronomie",50);
+        Chef chef3 = new Chef("Darroze","Helene",Genre.FEMME,Utilities.generateNumTel(),"Gastronomie",50);
+        Chef chef4 = new Chef("Sarran","Michel",Genre.HOMME,Utilities.generateNumTel(),"Gastronomie",50);
+        Chef chef5 = new Chef("Piege","Jean-Francois",Genre.HOMME,Utilities.generateNumTel(),"Gastronomie",50);
 
         meilleurPatissier.addChefConcours(chef1);
         meilleurPatissier.addChefConcours(chef2);
@@ -114,11 +114,11 @@ public class ListeConcoursTest {
         Chef nouveauChef = null;
         Concours meilleurPatissier = new Concours("Le Meilleur Patissier","2021-04-24","2021-04-24",listeConcours);
 
-        Chef chef1 = new Chef("Lignac","Cyril",Genre.HOMME,Utilities.generateNumTel(),4,"Patisserie",25);
-        Chef chef2 = new Chef("Lignaca","Cyril",Genre.HOMME,Utilities.generateNumTel(),4,"Patisserie",25);
-        Chef chef3 = new Chef("Lignacz","Cyril",Genre.HOMME,Utilities.generateNumTel(),4,"Patisserie",25);
-        Chef chef4 = new Chef("Lignace","Cyril",Genre.HOMME,Utilities.generateNumTel(),4,"Patisserie",25);
-        Chef chef5 = new Chef("Lignacr","Cyril",Genre.HOMME,Utilities.generateNumTel(),4,"Patisserie",25);
+        Chef chef1 = new Chef("Lignac","Cyril",Genre.HOMME,Utilities.generateNumTel(),"Patisserie",25);
+        Chef chef2 = new Chef("Lignaca","Cyril",Genre.HOMME,Utilities.generateNumTel(),"Patisserie",25);
+        Chef chef3 = new Chef("Lignacz","Cyril",Genre.HOMME,Utilities.generateNumTel(),"Patisserie",25);
+        Chef chef4 = new Chef("Lignace","Cyril",Genre.HOMME,Utilities.generateNumTel(),"Patisserie",25);
+        Chef chef5 = new Chef("Lignacr","Cyril",Genre.HOMME,Utilities.generateNumTel(),"Patisserie",25);
 
         meilleurPatissier.addChefConcours(chef1);
         meilleurPatissier.addChefConcours(chef2);

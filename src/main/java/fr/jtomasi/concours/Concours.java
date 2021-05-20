@@ -126,7 +126,10 @@ public class Concours implements Serializable {
                 }
             }
 
-            nouveauChef = new Chef(doyen.getNom(),doyen.getPrenom(),doyen.getGenre(),doyen.getTelephone(),1,chefGagnant.getSpecialite(),getNbPlatsRealisesPadawan(doyen));
+            nouveauChef = new Chef(doyen.getNom(),doyen.getPrenom(),doyen.getGenre(),doyen.getTelephone(),chefGagnant.getSpecialite(),getNbPlatsRealisesPadawan(doyen));
+            if(chefGagnant.getNbVictoires() > 1){
+
+            }
         } else {
             throw new TousPlatsNonNotesException("Tous les plats n'ont pas ete notes !");
         }

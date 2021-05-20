@@ -5,7 +5,6 @@ import fr.jtomasi.personnes.MembreJury;
 import fr.jtomasi.personnes.Padawan;
 import fr.jtomasi.plats.Plat;
 import fr.jtomasi.plats.Recette;
-import fr.jtomasi.personnes.Personne;
 import jakarta.json.bind.Jsonb;
 import jakarta.json.bind.JsonbBuilder;
 

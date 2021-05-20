@@ -32,10 +32,10 @@ public class Chef extends Personne implements Serializable {
         super();
     }
 
-    public Chef(String nom, String prenom, Genre genre, String telephone, int nbEtoiles, String specialite,int nbPlatsRealises) {
+    public Chef(String nom, String prenom, Genre genre, String telephone, String specialite,int nbPlatsRealises) {
         super(nom, prenom, genre);
         this.telephone = telephone;
-        this.nbEtoiles = nbEtoiles;
+        this.nbEtoiles = 0;
         this.specialite = specialite;
         this.nbPlatsRealises = nbPlatsRealises;
     }
@@ -165,5 +165,9 @@ public class Chef extends Personne implements Serializable {
             logger.log(Level.INFO,"Prenom du padawan : " + padawan.getPrenom());
             logger.log(Level.INFO,"Date de naissance du padawan : " + padawan.displayDateNaissance());
         }
+    }
+
+    public int getNbVictoires(){
+        return this.nbVictoires;
     }
 }
