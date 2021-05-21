@@ -20,14 +20,14 @@ public class ListeConcoursTest {
     @Test
     public void testAddConcoursPrevu(){
 
-        Concours topChef = new Concours("Top Chef","2021-04-23","2021-05-23",listeConcours);
+        Concours topChef = new Concours("Top Chef","2021-04-23",listeConcours);
 
         assertEquals("Top Chef",listeConcours.getConcoursPrevus().get(0).getNomConcours());
     }
 
     @Test
     public void testAddConcoursEnCours(){
-        Concours meilleurPatissier = new Concours("Le Meilleur Patissier","24-04-2021","24-05-2021",listeConcours);
+        Concours meilleurPatissier = new Concours("Le Meilleur Patissier","24-04-2021",listeConcours);
 
         Chef chef1 = new Chef("Pairet","Paul",Genre.HOMME,Utilities.generateNumTel(),"Gastronomie",50);
         Chef chef2 = new Chef("Etchebest","Philippe",Genre.HOMME,Utilities.generateNumTel(),"Gastronomie",50);
@@ -65,7 +65,7 @@ public class ListeConcoursTest {
 
     @Test
     public void testAddConcoursTermines(){
-        Concours meilleurPatissier = new Concours("Le Meilleur Patissier","24-04-2021","24-05-2021",listeConcours);
+        Concours meilleurPatissier = new Concours("Le Meilleur Patissier","24-04-2021",listeConcours);
 
         Chef chef1 = new Chef("Pairet","Paul",Genre.HOMME,Utilities.generateNumTel(),"Gastronomie",50);
         Chef chef2 = new Chef("Etchebest","Philippe",Genre.HOMME,Utilities.generateNumTel(),"Gastronomie",50);
@@ -112,7 +112,7 @@ public class ListeConcoursTest {
     @Test
     public void testPassagePadawanChef(){
         Chef nouveauChef = null;
-        Concours meilleurPatissier = new Concours("Le Meilleur Patissier","24-04-2021","24-05-2021",listeConcours);
+        Concours meilleurPatissier = new Concours("Le Meilleur Patissier","24-04-2021",listeConcours);
 
         Chef chef1 = new Chef("Lignac","Cyril",Genre.HOMME,Utilities.generateNumTel(),"Patisserie",25);
         Chef chef2 = new Chef("Lignaca","Cyril",Genre.HOMME,Utilities.generateNumTel(),"Patisserie",25);
@@ -155,5 +155,11 @@ public class ListeConcoursTest {
             assertEquals("Tomasi",nouveauChef.getNom());
             assertEquals("Jeremy",nouveauChef.getPrenom());
         }
+    }
+
+    @Test
+    public void testReadFile(){
+        ListeConcours liste = ListeConcours.loadCuisine("cuisine.ser");
+        liste.displayConcoursEnCours();
     }
 }

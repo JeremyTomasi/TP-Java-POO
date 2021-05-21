@@ -24,7 +24,7 @@ public class ListeConcours implements Serializable{
     private final List<Concours> concoursPrevus = new ArrayList<>();
     private Concours concoursEnCours;
     private final List<Concours> concoursTermines = new ArrayList<>();
-    private final transient Logger logger = Logger.getLogger(this.getClass().getName());
+    private static final Logger logger = Logger.getLogger(ListeConcours.class.getName());
 
     /**
      * Ajout un concours à la liste des concours prévus
@@ -85,7 +85,6 @@ public class ListeConcours implements Serializable{
         for(Concours c : this.concoursPrevus){
             logger.log(Level.INFO,"Nom du concours : " + c.getNomConcours());
             logger.log(Level.INFO,"Date début concours : " + Utilities.displayDate(c.getDateDebutConcours()));
-            logger.log(Level.INFO, "Date fin concours : " + Utilities.displayDate(c.getDateFinConcours()));
         }
     }
 
@@ -95,7 +94,6 @@ public class ListeConcours implements Serializable{
     public void displayConcoursEnCours(){
         logger.log(Level.INFO,"Nom du concours en cours : " + concoursEnCours.getNomConcours());
         logger.log(Level.INFO,"Date de debut du concours : " + Utilities.displayDate(concoursEnCours.getDateDebutConcours()));
-        logger.log(Level.INFO,"Date de fin du concours : " + Utilities.displayDate(concoursEnCours.getDateFinConcours()));
     }
 
     /**
@@ -239,17 +237,28 @@ public class ListeConcours implements Serializable{
         logger.log(Level.INFO,convert);
     }
 
-    public void saveCuisine(){
-        File saveFile = new File("cuisine.ser");
+    public void saveCuisine(String nameFile){
+        File saveFile = new File(nameFile);
         try {
             FileOutputStream fos = new FileOutputStream(saveFile);
             ObjectOutputStream oos = new ObjectOutputStream(fos);
-
-                for(Plat plat : concoursEnCours.getListePlats()){
-                    oos.writeObject(plat);
-                }
+            oos.writeObject(this);
         } catch (IOException e){
             e.printStackTrace();
         }
+    }
+
+    public static ListeConcours loadCuisine(String nameFile){
+        File loadFile = new File(nameFile);
+        ListeConcours liste = null;
+        try {
+            FileInputStream fis = new FileInputStream(loadFile);
+            ObjectInputStream ois = new ObjectInputStream(fis);
+
+            liste =  (ListeConcours) ois.readObject();
+        } catch (IOException | ClassNotFoundException e){
+            e.printStackTrace();
+        }
+        return liste;
     }
 }

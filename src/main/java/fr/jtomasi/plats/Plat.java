@@ -18,6 +18,7 @@ public class Plat implements Serializable {
 
     @Id
     private String idPlat = UUID.randomUUID().toString();
+    private String idConcours;
     private String nomPlat;
     @Transient
     private final List<Recette> listeIngredients = new ArrayList<>();
@@ -47,6 +48,10 @@ public class Plat implements Serializable {
      */
     public void addIngredient(Ingredient ingredient, int quantite, String preparation){
         listeIngredients.add(new Recette(ingredient,quantite,preparation));
+    }
+
+    public void setIdConcours(String idConcours){
+        this.idConcours = idConcours;
     }
 
     /**

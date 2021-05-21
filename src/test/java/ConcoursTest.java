@@ -31,28 +31,28 @@ public class ConcoursTest {
 
     @Test
     public void testCreationConcours() {
-        Concours topChef = new Concours("Top Chef", "2021-04-15", "2021-05-15", listeConcours);
+        Concours topChef = new Concours("Top Chef", "2021-04-15", listeConcours);
 
         assertEquals("Top Chef", topChef.getNomConcours());
     }
 
     @Test
     public void testGetDateDebutConcours() {
-        Concours topChef = new Concours("Top Chef", "15-04-2021", "15-04-2021", listeConcours);
+        Concours topChef = new Concours("Top Chef", "15-04-2021", listeConcours);
 
         assertEquals("15/4/2021", Utilities.displayDate(topChef.getDateDebutConcours()));
     }
 
     @Test
     public void testGetDateFinConcours() {
-        Concours topChef = new Concours("Top Chef", "15-04-2021", "15-05-2021", listeConcours);
+        Concours topChef = new Concours("Top Chef", "15-04-2021", listeConcours);
 
         assertEquals("15/5/2021", Utilities.displayDate(topChef.getDateFinConcours()));
     }
 
     @Test
     public void testAjoutPlat() {
-        Concours topChef = new Concours("Top Chef", "2021-04-15", "2021-05-15", listeConcours);
+        Concours topChef = new Concours("Top Chef", "2021-04-15", listeConcours);
 
         Plat rizCurry = new Plat("Riz au curry", jeremy);
 
@@ -67,7 +67,7 @@ public class ConcoursTest {
 
     @Test
     public void testDisplayChefs() {
-        Concours topChef = new Concours("Top Chef", "2021-04-17", "2021-05-17", listeConcours);
+        Concours topChef = new Concours("Top Chef", "2021-04-17", listeConcours);
         Chef etchebest = new Chef("Etchebest", "Phillipe", Genre.HOMME, "", "Gastronomie", 50);
         Chef lignac = new Chef("Lignac", "Cyril", Genre.HOMME, "", "Patisserie", 20);
         Chef norbert = new Chef("Tarayre", "Norbert", Genre.HOMME, "", "Gastronomie", 20);
@@ -82,7 +82,7 @@ public class ConcoursTest {
 
     @Test
     public void testDisplayMembreJury() {
-        Concours topChef = new Concours("Top Chef", "2021-04-23", "2021-05-23", listeConcours);
+        Concours topChef = new Concours("Top Chef", "2021-04-23", listeConcours);
         topChef.addMembreJuryConcours(new MembreJury("testa", "test", Genre.FEMME, 5));
         topChef.addMembreJuryConcours(new MembreJury("testz", "test", Genre.FEMME, 5));
         topChef.addMembreJuryConcours(new MembreJury("teste", "test", Genre.FEMME, 5));
@@ -93,14 +93,14 @@ public class ConcoursTest {
 
     @Test
     public void testChefException() {
-        Concours topChef = new Concours("Top Chef", "2021-04-19", "2021-05-19", listeConcours);
+        Concours topChef = new Concours("Top Chef", "2021-04-19", listeConcours);
 
         assertThrows(NoNumberChefRequiredException.class, topChef::demarrerConcours);
     }
 
     @Test
     public void testMembreJuryException() {
-        Concours topChef = new Concours("Top Chef", "2021-04-19", "2021-05-19", listeConcours);
+        Concours topChef = new Concours("Top Chef", "2021-04-19", listeConcours);
         topChef.addChefConcours(new Chef( "Etchebesta", "Philippe", Genre.HOMME, "",  "Gastronomie", 50));
         topChef.addChefConcours(new Chef( "Etchebestz", "Philippe", Genre.HOMME, "",  "Gastronomie", 50));
         topChef.addChefConcours(new Chef("Etchebeste", "Philippe", Genre.HOMME, "", "Gastronomie", 50));
@@ -112,7 +112,7 @@ public class ConcoursTest {
 
     @Test
     public void testParticipantsException() {
-        Concours topChef = new Concours("Top Chef", "2021-04-19", "2021-05-19", listeConcours);
+        Concours topChef = new Concours("Top Chef", "2021-04-19", listeConcours);
         topChef.addChefConcours(new Chef("Etchebesta", "Philippe", Genre.HOMME, "", "Gastronomie", 50));
         topChef.addChefConcours(new Chef("Etchebestz", "Philippe", Genre.HOMME, "", "Gastronomie", 50));
         topChef.addChefConcours(new Chef("Etchebeste", "Philippe", Genre.HOMME, "", "Gastronomie", 50));
@@ -128,7 +128,7 @@ public class ConcoursTest {
 
     @Test
     public void testDemarrageConcours() {
-        Concours topChef = new Concours("Top Chef", "2021-04-19", "2021-05-19", listeConcours);
+        Concours topChef = new Concours("Top Chef", "2021-04-19", listeConcours);
 
         Chef chef1 = new Chef("Etchebesta", "Philippe", Genre.HOMME, Utilities.generateNumTel(), "Gastronomie", 50);
         Chef chef2 = new Chef("Etchebestz", "Philippe", Genre.HOMME, Utilities.generateNumTel(), "Gastronomie", 50);
@@ -161,7 +161,7 @@ public class ConcoursTest {
 
     @Test
     public void testFinirConcours() {
-        Concours topChef = new Concours("Top Chef", "2021-04-19", "2021-05-19", listeConcours);
+        Concours topChef = new Concours("Top Chef", "2021-04-19", listeConcours);
         Chef chef1 = new Chef("Etchebesta", "Philippe", Genre.HOMME, Utilities.generateNumTel(), "Gastronomie", 50);
         Chef chef2 = new Chef("Etchebestz", "Philippe", Genre.HOMME, Utilities.generateNumTel(), "Gastronomie", 50);
         Chef chef3 = new Chef("Etchebeste", "Philippe", Genre.HOMME, Utilities.generateNumTel(), "Gastronomie", 50);
@@ -201,7 +201,7 @@ public class ConcoursTest {
 
     @Test
     public void testFinirConcoursException() {
-        Concours topChef = new Concours("Top Chef", "2021-04-19", "2021-05-19", listeConcours);
+        Concours topChef = new Concours("Top Chef", "2021-04-19", listeConcours);
         Chef chef1 = new Chef("Etchebesta", "Philippe", Genre.HOMME, Utilities.generateNumTel(), "Gastronomie", 50);
         Chef chef2 = new Chef("Etchebestz", "Philippe", Genre.HOMME, Utilities.generateNumTel(), "Gastronomie", 50);
         Chef chef3 = new Chef("Etchebeste", "Philippe", Genre.HOMME, Utilities.generateNumTel(), "Gastronomie", 50);
@@ -240,7 +240,7 @@ public class ConcoursTest {
 
     @Test
     public void testDisplayClassement(){
-        Concours topChef = new Concours("Top Chef", "2021-04-19", "2021-05-19", listeConcours);
+        Concours topChef = new Concours("Top Chef", "2021-04-19", listeConcours);
         Chef chef1 = new Chef("Etchebesta", "Philippe", Genre.HOMME, Utilities.generateNumTel(), "Gastronomie", 50);
         Chef chef2 = new Chef("Etchebestz", "Philippe", Genre.HOMME, Utilities.generateNumTel(), "Gastronomie", 50);
         Chef chef3 = new Chef("Etchebeste", "Philippe", Genre.HOMME, Utilities.generateNumTel(), "Gastronomie", 50);
@@ -276,8 +276,8 @@ public class ConcoursTest {
     public void testSortConcours(){
         ListeConcours listeConcours = new ListeConcours();
 
-        Concours topChef = new Concours("Top Chef","20/05/2020","20/06/2020",listeConcours);
-        Concours meilleurPatissier = new Concours("Le Meilleur Patissier","21/05/2020","21/06/2020",listeConcours);
+        Concours topChef = new Concours("Top Chef","20/05/2020",listeConcours);
+        Concours meilleurPatissier = new Concours("Le Meilleur Patissier","21/05/2020",listeConcours);
 
         listeConcours.displayListeConcoursPrevus();
 

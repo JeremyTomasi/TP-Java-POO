@@ -48,10 +48,9 @@ public class Concours implements Serializable, Comparable<Concours> {
         super();
     }
 
-    public Concours(String nomConcours, String dateDebutConcours, String dateFinConcours, ListeConcours listeConcours){
+    public Concours(String nomConcours, String dateDebutConcours, ListeConcours listeConcours){
         this.nomConcours = nomConcours;
         this.dateDebutConcours = Utilities.generateDate(dateDebutConcours);
-        this.dateFinConcours = Utilities.generateDate(dateFinConcours);
 
         this.listeConcours = listeConcours;
         listeConcours.addConcoursPrevu(this);
@@ -124,6 +123,7 @@ public class Concours implements Serializable, Comparable<Concours> {
             chefGagnant.ajouterVictoire();
             logger.log(Level.INFO,"Le chef gagnant est : " + chefGagnant.getNom() + " " + chefGagnant.getPrenom());
             listeConcours.addConcoursTermine(this);
+            this.dateFinConcours = LocalDate.now();
 
             for(Padawan padawan : chefGagnant.getPadawans()){
                 long days = ChronoUnit.DAYS.between(padawan.getDateNaissance(), LocalDate.now());
@@ -211,6 +211,7 @@ public class Concours implements Serializable, Comparable<Concours> {
     public void addPlatConcours(Plat plat){
         plat.determinerBio();
         plat.calculCaloriesPlat();
+        plat.setIdConcours(this.getIdConcours());
         this.listePlats.add(plat);
     }
 
@@ -360,5 +361,9 @@ public class Concours implements Serializable, Comparable<Concours> {
     @Override
     public int compareTo(Concours o) {
         return this.dateDebutConcours.compareTo(o.getDateDebutConcours());
+    }
+
+    public String getIdConcours(){
+        return this.idConcours;
     }
 }
