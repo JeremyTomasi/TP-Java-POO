@@ -1,9 +1,5 @@
-import com.github.javafaker.Faker;
 import fr.jtomasi.concours.Concours;
 import fr.jtomasi.concours.ListeConcours;
-import fr.jtomasi.exceptions.NoNumberChefRequiredException;
-import fr.jtomasi.exceptions.NoNumberMembreJuryRequiredException;
-import fr.jtomasi.exceptions.NoParticipantsException;
 import fr.jtomasi.plats.Plat;
 import fr.jtomasi.ingredients.Ingredient;
 import fr.jtomasi.ingredients.Viande;
@@ -13,7 +9,6 @@ import fr.jtomasi.personnes.MembreJury;
 import fr.jtomasi.personnes.Padawan;
 import fr.jtomasi.utilities.Utilities;
 
-import java.util.Locale;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 

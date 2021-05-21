@@ -39,7 +39,7 @@ public class Concours implements Serializable, Comparable<Concours> {
     private LocalDate dateDebutConcours;
     private LocalDate dateFinConcours;
 
-    private final transient Logger logger = Logger.getLogger(Concours.class.getName());
+    private static final Logger logger = Logger.getLogger(Concours.class.getName());
 
     @Transient
     private ListeConcours listeConcours;

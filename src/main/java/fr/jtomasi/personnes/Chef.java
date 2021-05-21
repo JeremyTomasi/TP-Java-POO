@@ -22,12 +22,12 @@ public class Chef extends Personne implements Serializable {
     private int nbPlatsRealises;
     private int nbVictoires = 0;
     @Transient
-    private List<Concours> participationsConcours = new ArrayList<>();
+    private final List<Concours> participationsConcours = new ArrayList<>();
     @Transient
-    private List<Plat> platConnu = new ArrayList<>();
+    private final List<Plat> platConnu = new ArrayList<>();
     @Transient
-    private List<Padawan> padawans = new ArrayList<>();
-    private transient Logger logger = Logger.getLogger(Chef.class.getName());
+    private final List<Padawan> padawans = new ArrayList<>();
+    private static final Logger logger = Logger.getLogger(Chef.class.getName());
 
     public Chef(){
         super();
