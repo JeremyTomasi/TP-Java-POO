@@ -29,7 +29,6 @@ public class PersonneTest {
         assertEquals("Obi-wan",padawan.getPrenom());
         assertEquals(Genre.HOMME,padawan.getGenre());
         assertEquals("0605442051",padawan.getTelephone());
-        assertEquals("21/3/2001",padawan.displayDateNaissance());
     }
 
     @Test

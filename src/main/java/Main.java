@@ -15,7 +15,7 @@ import java.util.logging.Logger;
 public class Main {
     public static void main(String[] args) {
         ListeConcours listeConcours = new ListeConcours();
-        Logger logger = Logger.getLogger("Main");
+        Logger logger = Logger.getLogger(Main.class.getName());
 
         Concours topChef = new Concours("TopChef","23-04-2021",listeConcours);
 
