@@ -1,13 +1,11 @@
 package fr.jtomasi.concours;
 
+import fr.jtomasi.exceptions.*;
 import fr.jtomasi.plats.Plat;
-import fr.jtomasi.exceptions.NoNumberChefRequiredException;
-import fr.jtomasi.exceptions.NoNumberMembreJuryRequiredException;
-import fr.jtomasi.exceptions.NoParticipantsException;
-import fr.jtomasi.exceptions.TousPlatsNonNotesException;
 import fr.jtomasi.personnes.Chef;
 import fr.jtomasi.personnes.MembreJury;
 import fr.jtomasi.personnes.Padawan;
+import fr.jtomasi.utilities.Utilities;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -22,7 +20,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 @Entity
-public class Concours implements Serializable {
+public class Concours implements Serializable, Comparable<Concours> {
     private boolean concoursDemarre = false;
     private boolean concoursTermine = false;
 
@@ -38,8 +36,8 @@ public class Concours implements Serializable {
     @Id
     private final String idConcours = UUID.randomUUID().toString();
     private String nomConcours;
-    private String dateDebutConcours;
-    private String dateFinConcours;
+    private LocalDate dateDebutConcours;
+    private LocalDate dateFinConcours;
 
     private final transient Logger logger = Logger.getLogger(Concours.class.getName());
 
@@ -52,8 +50,8 @@ public class Concours implements Serializable {
 
     public Concours(String nomConcours, String dateDebutConcours, String dateFinConcours, ListeConcours listeConcours){
         this.nomConcours = nomConcours;
-        this.dateDebutConcours = dateDebutConcours;
-        this.dateFinConcours = dateFinConcours;
+        this.dateDebutConcours = Utilities.generateDate(dateDebutConcours);
+        this.dateFinConcours = Utilities.generateDate(dateFinConcours);
 
         this.listeConcours = listeConcours;
         listeConcours.addConcoursPrevu(this);
@@ -65,25 +63,28 @@ public class Concours implements Serializable {
      * @throws NoNumberMembreJuryRequiredException S'il n'y a pas assez de membre du jury
      * @throws NoParticipantsException S'il n'y a pas de participants
      */
-    public void demarrerConcours() throws NoNumberChefRequiredException, NoNumberMembreJuryRequiredException,NoParticipantsException {
+    public void demarrerConcours() throws Exception {
         int minMembreJury = 3;
         int minChef = 5;
         int nbPadawans = 0;
-        for(Chef chefInscrit : this.chefConcours){
-            for(Padawan padawan : chefInscrit.getPadawans()){
+        for (Chef chefInscrit : this.chefConcours) {
+            for (Padawan padawan : chefInscrit.getPadawans()) {
                 nbPadawans++;
             }
         }
-        if(chefConcours.size() < minChef){
+        if (chefConcours.size() < minChef) {
             throw new NoNumberChefRequiredException("Il manque des chefs !!");
-        } else if(juryConcours.size() < minMembreJury){
+        } else if (juryConcours.size() < minMembreJury) {
             throw new NoNumberMembreJuryRequiredException("Il manque des membres de jury !!");
-        } else if(nbPadawans == 0) {
+        } else if (nbPadawans == 0) {
             throw new NoParticipantsException("Il n'y a pas de participants !");
+        } else if (listeConcours.getConcoursEnCours() != null && !(listeConcours.getConcoursEnCours().isConcoursTermine())) {
+            throw new ConcoursNotFinishedException("Le concours precedent n'est pas termine !!");
         } else {
             concoursDemarre = true;
             listeConcours.addConcoursEnCours(this);
         }
+
     }
 
     /**
@@ -123,7 +124,6 @@ public class Concours implements Serializable {
             chefGagnant.ajouterVictoire();
             logger.log(Level.INFO,"Le chef gagnant est : " + chefGagnant.getNom() + " " + chefGagnant.getPrenom());
             listeConcours.addConcoursTermine(this);
-            listeConcours.getConcoursEnCours().remove(this);
 
             for(Padawan padawan : chefGagnant.getPadawans()){
                 long days = ChronoUnit.DAYS.between(padawan.getDateNaissance(), LocalDate.now());
@@ -132,7 +132,9 @@ public class Concours implements Serializable {
                 }
             }
 
-            nouveauChef = new Chef(doyen.getNom(),doyen.getPrenom(),doyen.getGenre(),doyen.getTelephone(),chefGagnant.getSpecialite(),getNbPlatsRealisesPadawan(doyen));
+            if(doyen != null){
+                nouveauChef = new Chef(doyen.getNom(),doyen.getPrenom(),doyen.getGenre(),doyen.getTelephone(),chefGagnant.getSpecialite(),getNbPlatsRealisesPadawan(doyen));
+            }
             if(chefGagnant.getNbVictoires() > 1){
                 chefGagnant.ajouterEtoiles(1);
             } else if(chefGagnant.getNbVictoires() > 3){
@@ -271,7 +273,7 @@ public class Concours implements Serializable {
      * Récupère la date de début du concours
      * @return String
      */
-    public String getDateDebutConcours(){
+    public LocalDate getDateDebutConcours(){
         return this.dateDebutConcours;
     }
 
@@ -279,7 +281,7 @@ public class Concours implements Serializable {
      * Récupère la date de fin du concours
      * @return String
      */
-    public String getDateFinConcours(){
+    public LocalDate getDateFinConcours(){
         return this.dateFinConcours;
     }
 
@@ -353,5 +355,10 @@ public class Concours implements Serializable {
             }
         }
         return nbPlatsRealises;
+    }
+
+    @Override
+    public int compareTo(Concours o) {
+        return this.dateDebutConcours.compareTo(o.getDateDebutConcours());
     }
 }

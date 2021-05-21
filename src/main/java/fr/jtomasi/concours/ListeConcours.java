@@ -5,6 +5,7 @@ import fr.jtomasi.personnes.MembreJury;
 import fr.jtomasi.personnes.Padawan;
 import fr.jtomasi.plats.Plat;
 import fr.jtomasi.plats.Recette;
+import fr.jtomasi.utilities.Utilities;
 import jakarta.json.bind.Jsonb;
 import jakarta.json.bind.JsonbBuilder;
 
@@ -13,6 +14,7 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import java.io.*;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -20,7 +22,7 @@ import java.util.logging.Logger;
 public class ListeConcours implements Serializable{
 
     private final List<Concours> concoursPrevus = new ArrayList<>();
-    private final List<Concours> concoursEnCours = new ArrayList<>();
+    private Concours concoursEnCours;
     private final List<Concours> concoursTermines = new ArrayList<>();
     private final transient Logger logger = Logger.getLogger(this.getClass().getName());
 
@@ -30,6 +32,7 @@ public class ListeConcours implements Serializable{
      */
     public void addConcoursPrevu(Concours concours){
         this.concoursPrevus.add(concours);
+        Collections.sort(concoursPrevus);
     }
 
     /**
@@ -38,7 +41,7 @@ public class ListeConcours implements Serializable{
      */
     public void addConcoursEnCours(Concours concours){
         if(concours.isConcoursDemarre()){
-            this.concoursEnCours.add(concours);
+            concoursEnCours = concours;
         }
     }
 
@@ -48,6 +51,7 @@ public class ListeConcours implements Serializable{
      */
     public void addConcoursTermine(Concours concours){
         this.concoursTermines.add(concours);
+        concoursEnCours = null;
     }
 
     /**
@@ -62,7 +66,7 @@ public class ListeConcours implements Serializable{
      * Récupère la liste des concours en cours
      * @return List<Concours>
      */
-    public List<Concours> getConcoursEnCours(){
+    public Concours getConcoursEnCours(){
         return concoursEnCours;
     }
 
@@ -80,20 +84,18 @@ public class ListeConcours implements Serializable{
     public void displayListeConcoursPrevus(){
         for(Concours c : this.concoursPrevus){
             logger.log(Level.INFO,"Nom du concours : " + c.getNomConcours());
-            logger.log(Level.INFO,"Date début concours : " + c.getDateDebutConcours());
-            logger.log(Level.INFO, "Date fin concours : " + c.getDateFinConcours());
+            logger.log(Level.INFO,"Date début concours : " + Utilities.displayDate(c.getDateDebutConcours()));
+            logger.log(Level.INFO, "Date fin concours : " + Utilities.displayDate(c.getDateFinConcours()));
         }
     }
 
     /**
      * Affiche la liste des concours en cours
      */
-    public void displayListeConcoursEnCours(){
-        for(Concours c : this.concoursEnCours){
-            logger.log(Level.INFO,"Nom du councours : " + c.getNomConcours());
-            logger.log(Level.INFO,"Date début concours : " + c.getDateDebutConcours());
-            logger.log(Level.INFO, "Date fin concours : " + c.getDateFinConcours());
-        }
+    public void displayConcoursEnCours(){
+        logger.log(Level.INFO,"Nom du concours en cours : " + concoursEnCours.getNomConcours());
+        logger.log(Level.INFO,"Date de debut du concours : " + Utilities.displayDate(concoursEnCours.getDateDebutConcours()));
+        logger.log(Level.INFO,"Date de fin du concours : " + Utilities.displayDate(concoursEnCours.getDateFinConcours()));
     }
 
     /**
@@ -102,8 +104,8 @@ public class ListeConcours implements Serializable{
     public void displayListeConcoursTermines(){
         for(Concours c : this.concoursTermines){
             logger.log(Level.INFO,"Nom du councours : " + c.getNomConcours());
-            logger.log(Level.INFO,"Date début concours : " + c.getDateDebutConcours());
-            logger.log(Level.INFO, "Date fin concours : " + c.getDateFinConcours());
+            logger.log(Level.INFO,"Date début concours : " + Utilities.displayDate(c.getDateDebutConcours()));
+            logger.log(Level.INFO, "Date fin concours : " + Utilities.displayDate(c.getDateFinConcours()));
         }
     }
 
@@ -116,7 +118,6 @@ public class ListeConcours implements Serializable{
 
         // Sauvegarde concours
         writeBdd(em,this.concoursPrevus);
-        writeBdd(em,this.concoursEnCours);
         writeBdd(em,this.concoursTermines);
 
         em.close();
@@ -171,7 +172,7 @@ public class ListeConcours implements Serializable{
      */
     public void listeConcoursChefInscrit(Chef chef){
         logger.log(Level.INFO,"Liste des concours auquel le chef " + chef.getNom() + " " + chef.getPrenom() + " participe");
-        for(Concours concours : this.concoursEnCours){
+        for(Concours concours : this.concoursPrevus){
             for(Chef chefInscrits : concours.getListeChefs()){
                 if(chefInscrits.getId().equals(chef.getId())){
                     logger.log(Level.INFO,"Nom du concours : " + concours.getNomConcours());
@@ -193,11 +194,9 @@ public class ListeConcours implements Serializable{
      */
     public void afficherIngredientsConnus(){
         logger.log(Level.INFO,"Affichage de la liste des ingrédients connus : \n");
-        for(Concours c : this.concoursEnCours){
-            for(Plat plat : c.getListePlats()){
-                for(Recette recette : plat.getListeIngredients()){
-                    logger.log(Level.INFO,"Nom de l'ingredient : " + recette.getIngredient().getNom());
-                }
+        for(Plat plat : concoursEnCours.getListePlats()){
+            for(Recette recette : plat.getListeIngredients()){
+                logger.log(Level.INFO,"Nom de l'ingredient : " + recette.getIngredient().getNom());
             }
         }
 
@@ -218,11 +217,9 @@ public class ListeConcours implements Serializable{
         Jsonb jb = JsonbBuilder.create();
         List<Recette> recettes = new ArrayList<>();
 
-        for(Concours c : this.getConcoursEnCours()){
-            for(Plat p: c.getListePlats()){
+            for(Plat p: concoursEnCours.getListePlats()){
                 recettes.addAll(p.getListeIngredients());
             }
-        }
 
         for(Concours c : this.getConcoursTermines()){
             for(Plat p : c.getListePlats()){
@@ -248,11 +245,9 @@ public class ListeConcours implements Serializable{
             FileOutputStream fos = new FileOutputStream(saveFile);
             ObjectOutputStream oos = new ObjectOutputStream(fos);
 
-            for(Concours concours : this.concoursEnCours){
-                for(Plat plat : concours.getListePlats()){
+                for(Plat plat : concoursEnCours.getListePlats()){
                     oos.writeObject(plat);
                 }
-            }
         } catch (IOException e){
             e.printStackTrace();
         }

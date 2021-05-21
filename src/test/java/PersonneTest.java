@@ -14,7 +14,7 @@ public class PersonneTest {
         assertEquals("Test",chef.getPrenom());
         assertEquals(Genre.HOMME,chef.getGenre());
         assertEquals("0605442051",chef.getTelephone());
-        assertEquals(4,chef.getNbEtoiles());
+        assertEquals(0,chef.getNbEtoiles());
         assertEquals("Street Food",chef.getSpecialite());
         assertEquals(50,chef.getNbPlatsRealises());
 

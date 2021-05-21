@@ -1,6 +1,7 @@
 package fr.jtomasi.utilities;
 
 import com.github.javafaker.Faker;
+import net.bytebuddy.asm.Advice;
 
 import java.time.LocalDate;
 import java.util.Locale;
@@ -27,23 +28,27 @@ public class Utilities {
         try {
             if(Pattern.matches("\\d+/\\d+/\\d+",date)){
                 String[] infosDate = date.split("/");
-                int jourNaissance = Integer.parseInt(infosDate[0]);
-                int moisNaissance = Integer.parseInt(infosDate[1]);
-                int anneeNaissance = Integer.parseInt(infosDate[2]);
+                int jour = Integer.parseInt(infosDate[0]);
+                int mois = Integer.parseInt(infosDate[1]);
+                int annee = Integer.parseInt(infosDate[2]);
 
-                dateGenerated = LocalDate.of(anneeNaissance,moisNaissance,jourNaissance);
+                dateGenerated = LocalDate.of(annee,mois,jour);
             } else if(Pattern.matches("\\d+-\\d+-\\d+",date)){
                 String[] infosDate = date.split("-");
-                int jourNaissance = Integer.parseInt(infosDate[0]);
-                int moisNaissance = Integer.parseInt(infosDate[1]);
-                int anneeNaissance = Integer.parseInt(infosDate[2]);
+                int jour = Integer.parseInt(infosDate[0]);
+                int mois = Integer.parseInt(infosDate[1]);
+                int annee = Integer.parseInt(infosDate[2]);
 
-                dateGenerated = LocalDate.of(anneeNaissance,moisNaissance,jourNaissance);
+                dateGenerated = LocalDate.of(annee,mois,jour);
             }
         } catch (NumberFormatException e){
             e.printStackTrace();
         } finally {
             return dateGenerated;
         }
+    }
+
+    public static String displayDate(LocalDate date){
+        return date.getDayOfMonth() + "/" + date.getMonthValue() + "/" + date.getYear();
     }
 }

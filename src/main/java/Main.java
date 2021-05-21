@@ -71,7 +71,7 @@ public class Main {
 
             listeConcours.saveBdd();
 
-        } catch (NoNumberChefRequiredException | NoNumberMembreJuryRequiredException | NoParticipantsException e){
+        } catch (Exception e){
             logger.log(Level.SEVERE,e.getMessage());
         }
     }

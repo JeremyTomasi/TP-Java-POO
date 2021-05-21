@@ -27,7 +27,7 @@ public class ListeConcoursTest {
 
     @Test
     public void testAddConcoursEnCours(){
-        Concours meilleurPatissier = new Concours("Le Meilleur Patissier","2021-04-24","2021-05-24",listeConcours);
+        Concours meilleurPatissier = new Concours("Le Meilleur Patissier","24-04-2021","24-05-2021",listeConcours);
 
         Chef chef1 = new Chef("Pairet","Paul",Genre.HOMME,Utilities.generateNumTel(),"Gastronomie",50);
         Chef chef2 = new Chef("Etchebest","Philippe",Genre.HOMME,Utilities.generateNumTel(),"Gastronomie",50);
@@ -58,14 +58,14 @@ public class ListeConcoursTest {
             System.out.println(e.getMessage());
         }
 
-        listeConcours.displayListeConcoursEnCours();
+        listeConcours.displayConcoursEnCours();
 
-        assertEquals("Le Meilleur Patissier",listeConcours.getConcoursEnCours().get(0).getNomConcours());
+        assertEquals("Le Meilleur Patissier",listeConcours.getConcoursEnCours().getNomConcours());
     }
 
     @Test
     public void testAddConcoursTermines(){
-        Concours meilleurPatissier = new Concours("Le Meilleur Patissier","2021-04-24","2021-05-24",listeConcours);
+        Concours meilleurPatissier = new Concours("Le Meilleur Patissier","24-04-2021","24-05-2021",listeConcours);
 
         Chef chef1 = new Chef("Pairet","Paul",Genre.HOMME,Utilities.generateNumTel(),"Gastronomie",50);
         Chef chef2 = new Chef("Etchebest","Philippe",Genre.HOMME,Utilities.generateNumTel(),"Gastronomie",50);
@@ -112,7 +112,7 @@ public class ListeConcoursTest {
     @Test
     public void testPassagePadawanChef(){
         Chef nouveauChef = null;
-        Concours meilleurPatissier = new Concours("Le Meilleur Patissier","2021-04-24","2021-04-24",listeConcours);
+        Concours meilleurPatissier = new Concours("Le Meilleur Patissier","24-04-2021","24-05-2021",listeConcours);
 
         Chef chef1 = new Chef("Lignac","Cyril",Genre.HOMME,Utilities.generateNumTel(),"Patisserie",25);
         Chef chef2 = new Chef("Lignaca","Cyril",Genre.HOMME,Utilities.generateNumTel(),"Patisserie",25);
