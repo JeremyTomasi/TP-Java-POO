@@ -7,7 +7,9 @@ Les sources se situent dans le dossier `src/main/java` et les tests se situent d
 
 Le dossier `src/main/java/fr/jtomasi/exceptions` contient toutes les exceptions utilisées dans le projet.  
 Le dossier `src/main/java/fr/jtomasi/ingredients` contient toutes les classes liés aux ingrédients dans le projet.  
-Le dossier `src/main/java/fr/jtomasi/personnes` contient toutes les classes en relation avec les différentes personnes dans le projet.
+Le dossier `src/main/java/fr/jtomasi/personnes` contient toutes les classes en relation avec les différentes personnes dans le projet.  
+Le dossier `src/main/java/fr/jtomasi/plats` contient toutes les classes en relation avec les plats.
+Le dossier `src/main/java/fr/jtomasi/utilities` contient la classe Utilities et contient des utilitaires pour le projet.
 
 Le fichier `src/main/resources/META-INF/.env.example` est à renommer en `src/main/resources/META-INF/.env` et il faut indiquer toutes les informations relatives à la base de données
 (nom d'hôte, user, mot de passe, nom de la base).  
