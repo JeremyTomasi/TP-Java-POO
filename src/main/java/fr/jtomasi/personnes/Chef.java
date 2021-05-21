@@ -3,6 +3,7 @@ package fr.jtomasi.personnes;
 import fr.jtomasi.concours.Concours;
 import fr.jtomasi.exceptions.AlreadyHasChefException;
 import fr.jtomasi.plats.Plat;
+import fr.jtomasi.utilities.Utilities;
 
 import javax.persistence.Entity;
 import javax.persistence.Transient;
@@ -40,6 +41,10 @@ public class Chef extends Personne implements Serializable {
         this.nbPlatsRealises = nbPlatsRealises;
     }
 
+    /**
+     * Ajoute un nouveau Padawan dans la liste des Padawans du chef
+     * @param padawan Le padawan à ajouter
+     */
     public void ajouterPadawan(Padawan padawan){
         this.padawans.add(padawan);
         try {
@@ -150,27 +155,45 @@ public class Chef extends Personne implements Serializable {
         }
     }
 
+    /**
+     * Ajoute une victoire au chef s'il gagne le concours
+     */
     public void ajouterVictoire(){
         this.nbVictoires++;
     }
 
+    /**
+     * Récupère la liste des padawans
+     * @return La liste des padawans
+     */
     public List<Padawan> getPadawans(){
         return padawans;
     }
 
+    /**
+     * Affiche la liste des padawans
+     */
     public void displayListePadawans(){
         logger.log(Level.INFO,"Padawans du chef " + this.getNom() + " " + this.getPrenom() + " :");
         for(Padawan padawan : this.padawans){
             logger.log(Level.INFO,"Nom du padawan : " + padawan.getNom());
             logger.log(Level.INFO,"Prenom du padawan : " + padawan.getPrenom());
-            logger.log(Level.INFO,"Date de naissance du padawan : " + padawan.displayDateNaissance());
+            logger.log(Level.INFO,"Date de naissance du padawan : " + Utilities.displayDate(padawan.getDateNaissance()));
         }
     }
 
+    /**
+     * Récupère le nombre de victoires du chef
+     * @return Le nombre de victoires du chef
+     */
     public int getNbVictoires(){
         return this.nbVictoires;
     }
 
+    /**
+     * Ajoute des étoiles au chef en cas de victoire
+     * @param nbEtoiles Le nombre d'étoiles à ajouter
+     */
     public void ajouterEtoiles(int nbEtoiles){
         this.nbEtoiles += nbEtoiles;
     }

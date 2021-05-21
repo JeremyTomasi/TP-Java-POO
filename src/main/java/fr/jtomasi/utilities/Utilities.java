@@ -8,10 +8,19 @@ import java.util.Locale;
 import java.util.regex.Pattern;
 
 public class Utilities {
+    /**
+     * Met en majuscule le premier caractère de la chaîne
+     * @param str La chaîne
+     * @return Une nouvelle chaîne de caractères avec le premier caractère en majuscule
+     */
     public static String ucfirst(String str){
         return Character.toUpperCase(str.charAt(0)) + str.substring(1);
     }
 
+    /**
+     * Génère un faux numéro de téléphone
+     * @return Le faux numéro de téléphone
+     */
     public static String generateNumTel(){
         Faker faker = new Faker(new Locale("fr-FR"));
         String numTel = faker.phoneNumber().cellPhone();
@@ -23,6 +32,11 @@ public class Utilities {
         return numTel;
     }
 
+    /**
+     * Parse la date en chaîne de caractères en LocalDate
+     * @param date La date à parser
+     * @return LocalDate
+     */
     public static LocalDate generateDate(String date){
         LocalDate dateGenerated = null;
         try {
@@ -48,6 +62,11 @@ public class Utilities {
         }
     }
 
+    /**
+     * Retourne la date sous forme de phrase
+     * @param date La date à afficher
+     * @return La date sous forme de phrases
+     */
     public static String displayDate(LocalDate date){
         return date.getDayOfMonth() + "/" + date.getMonthValue() + "/" + date.getYear();
     }

@@ -50,6 +50,10 @@ public class Plat implements Serializable {
         listeIngredients.add(new Recette(ingredient,quantite,preparation));
     }
 
+    /**
+     * Definit l'ID du concours
+     * @param idConcours ID du concours
+     */
     public void setIdConcours(String idConcours){
         this.idConcours = idConcours;
     }
@@ -145,10 +149,18 @@ public class Plat implements Serializable {
         bio = (nbIngredientsBio == listeIngredients.size());
     }
 
+    /**
+     * Permet de savoir si le plat est bio ou pas
+     * @return Un booléen qui dit si le plat est bio ou pas
+     */
     public boolean isBio(){
         return bio;
     }
 
+    /**
+     * Permet de savoir si le plat est noté ou pas
+     * @return Un booléen qui dit si le plat est noté ou pas
+     */
     public boolean isNote(){
         return notePlat != -1;
     }

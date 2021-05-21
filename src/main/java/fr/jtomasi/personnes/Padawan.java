@@ -54,6 +54,11 @@ public class Padawan extends Personne implements Serializable {
         return chefRef;
     }
 
+    /**
+     * Définit un chef pour le Padawan
+     * @param chefRef Le chef référent du Padawan
+     * @throws AlreadyHasChefException Si le chef référent a déja été défini
+     */
     public void setChefRef(Chef chefRef) throws AlreadyHasChefException {
         if(this.chefRef == null){
             this.chefRef = chefRef;
@@ -63,14 +68,19 @@ public class Padawan extends Personne implements Serializable {
         }
     }
 
-    public String displayDateNaissance(){
-        return naissance.getDayOfMonth() + "/" + naissance.getMonthValue() + "/" + naissance.getYear();
-    }
-
+    /**
+     * Récupère la date de naissance du Padawan
+     * @return La date de naissance
+     */
     public LocalDate getDateNaissance(){
         return naissance;
     }
 
+    /**
+     * Définit la date de naissance du Padawan
+     * @param dateNaissance La date de naissance
+     * @return Un LocalDate avec la date de naissance
+     */
     public LocalDate setDateNaissance(String dateNaissance){
         return Utilities.generateDate(dateNaissance);
     }

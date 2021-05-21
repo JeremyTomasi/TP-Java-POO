@@ -237,6 +237,10 @@ public class ListeConcours implements Serializable{
         logger.log(Level.INFO,convert);
     }
 
+    /**
+     * Sauvegarde la section cuisine dans un fichier
+     * @param nameFile Le nom du fichier de sauvegarde
+     */
     public void saveCuisine(String nameFile){
         File saveFile = new File(nameFile);
         try {
@@ -248,6 +252,11 @@ public class ListeConcours implements Serializable{
         }
     }
 
+    /**
+     * Charge un objet de type ListeConcours depuis un fichier
+     * @param nameFile Le nom du fichier de sauvegarde
+     * @return ListeConcours
+     */
     public static ListeConcours loadCuisine(String nameFile){
         File loadFile = new File(nameFile);
         ListeConcours liste = null;

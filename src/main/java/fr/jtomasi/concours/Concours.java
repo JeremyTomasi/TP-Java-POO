@@ -363,6 +363,10 @@ public class Concours implements Serializable, Comparable<Concours> {
         return this.dateDebutConcours.compareTo(o.getDateDebutConcours());
     }
 
+    /**
+     * Retourne l'ID du concours
+     * @return L'ID du concours
+     */
     public String getIdConcours(){
         return this.idConcours;
     }
