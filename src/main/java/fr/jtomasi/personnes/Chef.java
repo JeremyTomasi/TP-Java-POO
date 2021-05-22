@@ -46,8 +46,10 @@ public class Chef extends Personne implements Serializable {
      * @param padawan Le padawan à ajouter
      */
     public void ajouterPadawan(Padawan padawan){
+        // On ajoute le Padawan dans la liste des padawans
         this.padawans.add(padawan);
         try {
+            // On essaie de définir un chef référent pour le padawan
             padawan.setChefRef(this);
         } catch (AlreadyHasChefException e){
             e.printStackTrace();

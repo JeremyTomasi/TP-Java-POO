@@ -22,12 +22,16 @@ public class Utilities {
      * @return Le faux numéro de téléphone
      */
     public static String generateNumTel(){
+        // on définit le français en tant que locale
         Faker faker = new Faker(new Locale("fr-FR"));
+        // On génère un numéro de téléphone français
         String numTel = faker.phoneNumber().cellPhone();
+        // Si le numéro de téléphone commence par l'indicatif +33
         if(numTel.startsWith("+33")){
             numTel = numTel.substring(numTel.indexOf(" ") + 1);
             numTel = "0"+numTel;
         }
+        // On supprime tous les espaces dans le numéro
         numTel = numTel.replaceAll(" ","");
         return numTel;
     }
@@ -40,19 +44,26 @@ public class Utilities {
     public static LocalDate generateDate(String date){
         LocalDate dateGenerated = null;
         try {
+            //si la date est au format "dd/mm/yyyy"
             if(Pattern.matches("\\d+/\\d+/\\d+",date)){
+                // On sépare la chaîne pour obtenir le jour, le mois et l'année
                 String[] infosDate = date.split("/");
                 int jour = Integer.parseInt(infosDate[0]);
                 int mois = Integer.parseInt(infosDate[1]);
                 int annee = Integer.parseInt(infosDate[2]);
 
+                // On génère un LocalDate avec le jour, le mois et l'année
                 dateGenerated = LocalDate.of(annee,mois,jour);
-            } else if(Pattern.matches("\\d+-\\d+-\\d+",date)){
+            }
+            //si la date est au format "dd-mm-yyyy"
+            else if(Pattern.matches("\\d+-\\d+-\\d+",date)){
+                // On sépare la chaîne pour obtenir le jour, le mois et l'année
                 String[] infosDate = date.split("-");
                 int jour = Integer.parseInt(infosDate[0]);
                 int mois = Integer.parseInt(infosDate[1]);
                 int annee = Integer.parseInt(infosDate[2]);
 
+                // On génère un LocalDate avec le jour, le mois et l'année
                 dateGenerated = LocalDate.of(annee,mois,jour);
             }
         } catch (NumberFormatException e){

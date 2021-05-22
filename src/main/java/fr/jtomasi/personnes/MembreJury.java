@@ -49,7 +49,9 @@ public class MembreJury extends Personne implements Serializable {
      * @param concours Le concours auquel il participe en tant que membre du jury
      */
     public void ajouterParticipationConcours(Concours concours){
+        // On ajoute le concours à la liste des participations aux concours
         this.participationsConcours.add(concours);
+        // On ajoute une participation
         this.nbParticipations++;
     }
 

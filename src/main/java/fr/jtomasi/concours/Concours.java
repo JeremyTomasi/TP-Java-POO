@@ -66,22 +66,32 @@ public class Concours implements Serializable, Comparable<Concours> {
         int minMembreJury = 3;
         int minChef = 5;
         int nbPadawans = 0;
+
+        // on compte le nombre de Padawans au total
         for (Chef chefInscrit : this.chefConcours) {
             for (Padawan padawan : chefInscrit.getPadawans()) {
                 nbPadawans++;
             }
         }
+
+        // si on a pas assez de chefs
         if (chefConcours.size() < minChef) {
             throw new NoNumberChefRequiredException("Il manque des chefs !!");
-        } else if (juryConcours.size() < minMembreJury) {
+        }
+        // si on a pas assez de membres de jury
+        else if (juryConcours.size() < minMembreJury) {
             throw new NoNumberMembreJuryRequiredException("Il manque des membres de jury !!");
-        } else if (nbPadawans == 0) {
+        }
+        // s'il n'y a pas de participants
+        else if (nbPadawans == 0) {
             throw new NoParticipantsException("Il n'y a pas de participants !");
-        } else if (listeConcours.getConcoursEnCours() != null && !(listeConcours.getConcoursEnCours().isConcoursTermine())) {
+        }
+        //si le concours précédent n'est pas terminé
+        else if (listeConcours.getConcoursEnCours() != null && !(listeConcours.getConcoursEnCours().isConcoursTermine())) {
             throw new ConcoursNotFinishedException("Le concours precedent n'est pas termine !!");
         } else {
             concoursDemarre = true;
-            listeConcours.addConcoursEnCours(this);
+            listeConcours.setConcoursEnCours(this);
         }
 
     }
@@ -91,8 +101,11 @@ public class Concours implements Serializable, Comparable<Concours> {
      * @return Padawan
      */
     public Chef getWinnerConcours(){
+        // on récupère la note du premier plat
         Plat platWithMaxNote = this.listePlats.get(0);
+        //
         for(Plat plat : this.listePlats){
+                // si la note du plat est supérieure à la note du plat avec la plus haute note
                 if(plat.getNotePlat() > platWithMaxNote.getNotePlat()){
                     platWithMaxNote = plat;
             }
@@ -112,19 +125,24 @@ public class Concours implements Serializable, Comparable<Concours> {
 
         int nbPlatsNotes = 0;
         for(Plat plat : this.listePlats){
+            // On vérifie si le plat a été noté
             if(plat.isNote()){
                 nbPlatsNotes++;
             }
         }
 
         if(nbPlatsNotes == listePlats.size()){
+            // On termine le concours
             this.concoursTermine = true;
+            // On récupère le chef gagnant du concours
             chefGagnant = this.getWinnerConcours();
+            // On ajoute une victoire au chef gagnant
             chefGagnant.ajouterVictoire();
             logger.log(Level.INFO,"Le chef gagnant est : " + chefGagnant.getNom() + " " + chefGagnant.getPrenom());
             listeConcours.addConcoursTermine(this);
             this.dateFinConcours = LocalDate.now();
 
+            // On détermine le Padawan le plus ancien
             for(Padawan padawan : chefGagnant.getPadawans()){
                 long days = ChronoUnit.DAYS.between(padawan.getDateNaissance(), LocalDate.now());
                 if(days > nombreJoursPasses){
@@ -135,11 +153,16 @@ public class Concours implements Serializable, Comparable<Concours> {
             if(doyen != null){
                 nouveauChef = new Chef(doyen.getNom(),doyen.getPrenom(),doyen.getGenre(),doyen.getTelephone(),chefGagnant.getSpecialite(),getNbPlatsRealisesPadawan(doyen));
             }
-            if(chefGagnant.getNbVictoires() > 1){
+            //si le nombre de victoires est supérieur ou égal à 1
+            if(chefGagnant.getNbVictoires() >= 1){
                 chefGagnant.ajouterEtoiles(1);
-            } else if(chefGagnant.getNbVictoires() > 3){
+            }
+            //si le nombre de victoires est supérieur ou égal à 3
+            else if(chefGagnant.getNbVictoires() >= 3){
                 chefGagnant.ajouterEtoiles(2);
-            } else if(chefGagnant.getNbVictoires() > 5){
+            }
+            //si le nombre de victoires est supérieur ou égal à 5
+            else if(chefGagnant.getNbVictoires() >= 5){
                 chefGagnant.ajouterEtoiles(3);
             }
         } else {
@@ -154,17 +177,20 @@ public class Concours implements Serializable, Comparable<Concours> {
      * @param membreJury Membre à ajouter au concours
      */
     public void addMembreJuryConcours(MembreJury membreJury){
+        // si la liste des membres du jury est vide
         if(this.juryConcours.size() == 0){
             this.juryConcours.add(membreJury);
             membreJury.ajouterParticipationConcours(this);
         } else {
             boolean membreJuryTrouve = false;
+            // On vérifie pour chaque membre du jury déja présent si ce n'est pas le même
             for(MembreJury membreJuryInscrit : this.juryConcours){
                 if (membreJuryInscrit.getNom().equals(membreJury.getNom())) {
                     membreJuryTrouve = true;
                     break;
                 }
             }
+            // si l'on a pas trouvé, on l'ajoute dans la liste des membres du jury
             if(!membreJuryTrouve){
                 this.juryConcours.add(membreJury);
                 membreJury.ajouterParticipationConcours(this);
@@ -178,17 +204,20 @@ public class Concours implements Serializable, Comparable<Concours> {
      * @param chef Chef à ajouter au concours
      */
     public void addChefConcours(Chef chef){
+        // si la liste des chefs est vide, on l'ajoute dans la liste
         if(this.chefConcours.size() == 0){
             this.chefConcours.add(chef);
             chef.addParticipationConcours(this);
         } else {
             boolean chefTrouve = false;
+            // On vérifie pour chaque chef dans la liste si ce n'est pas le même
             for(Chef chefInscrit : this.chefConcours){
                 if(chefInscrit.getNom().equals(chef.getNom())){
                     chefTrouve = true;
                     break;
                 }
             }
+            // si on l'a pas trouvé, on l'ajoute à la liste
             if(!chefTrouve){
                 this.chefConcours.add(chef);
                 chef.addParticipationConcours(this);
@@ -209,9 +238,13 @@ public class Concours implements Serializable, Comparable<Concours> {
      * @param plat Plat à ajouter au concours
      */
     public void addPlatConcours(Plat plat){
+        // On détermine si le plat est bio ou pas
         plat.determinerBio();
+        // On calcule les calories du plat
         plat.calculCaloriesPlat();
+        // On définit l'identifiant du concours au plat
         plat.setIdConcours(this.getIdConcours());
+        // On ajoute le plat dans la liste
         this.listePlats.add(plat);
     }
 
@@ -265,7 +298,7 @@ public class Concours implements Serializable, Comparable<Concours> {
     public void displayPlatBio(){
         for(Plat plat : this.listePlats){
             if(plat.isBio()){
-                this.logger.log(Level.INFO,"Nom du plat : " + plat.getNomPlat());
+                logger.log(Level.INFO,"Nom du plat : " + plat.getNomPlat());
             }
         }
     }
@@ -350,6 +383,7 @@ public class Concours implements Serializable, Comparable<Concours> {
      */
     public int getNbPlatsRealisesPadawan(Padawan padawan){
         int nbPlatsRealises = 0;
+        // On compte tous les plats réalisés par le padawan
         for(Plat plat : this.listePlats){
             if(plat.getAuteurPlat().equals(padawan)){
                 nbPlatsRealises++;

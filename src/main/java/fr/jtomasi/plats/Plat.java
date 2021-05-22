@@ -47,6 +47,7 @@ public class Plat implements Serializable {
      * @param preparation La préparation de l'ingrédient
      */
     public void addIngredient(Ingredient ingredient, int quantite, String preparation){
+        // On ajoute l'ingrédient à la liste des ingrédients
         listeIngredients.add(new Recette(ingredient,quantite,preparation));
     }
 

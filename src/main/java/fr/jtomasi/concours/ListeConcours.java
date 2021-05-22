@@ -31,7 +31,9 @@ public class ListeConcours implements Serializable{
      * @param concours Concours prévu
      */
     public void addConcoursPrevu(Concours concours){
+        // On ajoute le concours dans la liste des concours prévus
         this.concoursPrevus.add(concours);
+        // On trie selon la date de début les concours prévus
         Collections.sort(concoursPrevus);
     }
 
@@ -39,9 +41,11 @@ public class ListeConcours implements Serializable{
      * Ajoute un concours à la liste des concours en cours
      * @param concours Concours en cours
      */
-    public void addConcoursEnCours(Concours concours){
+    public void setConcoursEnCours(Concours concours) throws Exception{
         if(concours.isConcoursDemarre()){
             concoursEnCours = concours;
+        } else {
+            throw new Exception("Un autre concours est déja en cours !");
         }
     }
 
@@ -50,7 +54,9 @@ public class ListeConcours implements Serializable{
      * @param concours Concours terminé
      */
     public void addConcoursTermine(Concours concours){
+        // On ajoute le concours à la liste des concours terminés
         this.concoursTermines.add(concours);
+        // On définit le concours en cours à null
         concoursEnCours = null;
     }
 
@@ -108,7 +114,7 @@ public class ListeConcours implements Serializable{
     }
 
     /**
-     * Sauvegarde la liste des concours ainsi que leurs infos relatives
+     * Sauvegarde la liste des concours ainsi que leurs infos relatives dans la base de données
      */
     public void saveBdd(){
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("Bdd");
@@ -130,6 +136,7 @@ public class ListeConcours implements Serializable{
     private void writeBdd(EntityManager em, List<Concours> tabConcours ){
         for(Concours c: tabConcours){
 
+            // On sauvegarde les chefs ainsi que leurs padawans dans la BDD
             for(Chef p: c.getChefConcours()){
                 for(Padawan padawan : p.getPadawans()){
                     em.getTransaction().begin();
@@ -141,12 +148,14 @@ public class ListeConcours implements Serializable{
                 em.getTransaction().commit();
             }
 
+            // On sauvegarde les membres de jury dans la BDD
             for(MembreJury p: c.getMembreJuryConcours()){
                 em.getTransaction().begin();
                 em.persist(p);
                 em.getTransaction().commit();
             }
 
+            // On sauvegarde les plats et les recettes dans la BDD
             for(Plat plat : c.getListePlats()){
                 for (Recette recette : plat.getListeIngredients()){
                     em.getTransaction().begin();
